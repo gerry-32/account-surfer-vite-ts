@@ -1,0 +1,9 @@
+.DS_Store
+dist/
+node_modules/
+thumbs.db
+.idea/
+appx/local/*
+# !appx/local/*.appx
+appx/store/*
+# !appx/store/*.appx

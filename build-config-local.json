@@ -1,0 +1,27 @@
+{
+  "appId": "dospolov.com.AccountSurfer",
+  "protocols": {
+    "name": "WEB",
+    "schemes": ["http", "https"]
+  },
+  "win": {
+    "target": ["appx"],
+    "certificateFile": "buildResources/company.pfx"
+  },
+  "files": [
+    "main",
+      "src/out"
+  ],
+  "directories": {
+    "output": "appx/local",
+    "buildResources": "resources"
+  },
+  "appx": {
+    "applicationId": "dospolov.com.AccountSurfer",
+    "backgroundColor": "transparent",
+    "displayName": "Account Surfer",
+    "identityName": "4662dospolov.com.AccountSurfer",
+    "publisherDisplayName": "dospolov.com",
+    "publisher": "CN=company"
+  }
+}

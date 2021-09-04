@@ -1,0 +1,44 @@
+@import "react-grid-layout/css/styles.css";
+@import "react-resizable/css/styles.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: #131920;
+}
+
+#root {
+  background: #1f2937;
+  height: 432px;
+  width: 656px;
+}
+
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #374151;
+  border-radius: 20px;
+  border: 3px solid #1f2937;
+}
+
+input[type="checkbox"]:checked,
+input[type="checkbox"]:focus,
+input[type="checkbox"]:active {
+  box-shadow: none;
+}
+
+.app-region-drag {
+  -webkit-app-region: drag;
+}
+
+.app-region-no-drag {
+  -webkit-app-region: drag;
+}
