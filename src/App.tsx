@@ -10,7 +10,7 @@ import useStoreChange from './utils/useStoreChange'
 import './App.css'
 
 function App() {
-  let history = useHistory()
+  const history = useHistory()
   const [currentPage] = useStoreChange('currentPage')
   const [isDefaultBrowser] = useStoreChange('isDefaultBrowser')
 
@@ -20,11 +20,11 @@ function App() {
 
   useKeyPress(
     ({ code, ctrlKey, shiftKey }) => code === 'KeyI' && ctrlKey && shiftKey,
-    () => window.AS.ipcRenderer.send('requestOpenDevTools')
+    () => window.AS.ipcRenderer.send('requestOpenDevTools'),
   )
   useKeyPress(
     ({ code }) => code === 'Escape',
-    () => window.AS.ipcRenderer.send('requestHideWindow')
+    () => window.AS.ipcRenderer.send('requestHideWindow'),
   )
 
   return (
