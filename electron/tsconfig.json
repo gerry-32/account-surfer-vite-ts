@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "allowJs": true,
+    "newLine": "lf",
     "alwaysStrict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,

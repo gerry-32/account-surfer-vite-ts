@@ -4,23 +4,11 @@ import { join } from 'path'
 // Packages
 import { BrowserWindow, app, ipcMain, IpcMainEvent } from 'electron'
 import isDev from 'electron-is-dev'
-
-const height = 600
-const width = 800
+import browserWindowConfig from './browserWindow'
 
 function createWindow() {
   // Create the browser window.
-  const window = new BrowserWindow({
-    width: width,
-    height: height,
-    frame: true,
-    show: true,
-    resizable: true,
-    fullscreenable: true,
-    webPreferences: {
-      preload: join(__dirname, 'preload.js')
-    }
-  })
+  const window = new BrowserWindow(browserWindowConfig)
 
   const port = process.env.PORT || 3000
   const url = isDev
