@@ -3,14 +3,14 @@ import { PlusIcon, CheckIcon, XIcon } from '@heroicons/react/solid'
 import { BrowserIcon } from '../../../constants'
 import useStoreChange from '../../../utils/useStoreChange'
 
-const DomainList = ({ viewer }) => {
+const DomainList = ({ viewer }: any) => {
   const [grid, storeGrid] = useStoreChange('grid')
   const { id, browser, channelName, account, incognito, domains } = viewer
   const userTitle = account?.title || incognito?.title
-  const [newDomain, setNewDomain] = useState(null)
+  const [newDomain, setNewDomain] = useState('')
 
-  const updateDomains = (viewerId, domains) =>
-    storeGrid(grid.map(v => (v.id === viewerId ? { ...v, domains } : v)))
+  const updateDomains = (viewerId: any, domains: any) =>
+    storeGrid(grid.map((v: any) => (v.id === viewerId ? { ...v, domains } : v)))
 
   return (
     <div key={id} className="bg-gray-900 p-3 mb-3">
@@ -25,14 +25,14 @@ const DomainList = ({ viewer }) => {
         {userTitle && `: ${userTitle}`}
       </h3>
       <div className="">
-        {domains.map(domain => (
+        {domains.map((domain: any) => (
           <div
             key={domain}
             className="inline-flex bg-gray-600 p-1 m-0.5 relative pr-6"
             onClick={() =>
               updateDomains(
                 viewer.id,
-                domains.filter(d => d !== domain)
+                domains.filter((d: any) => d !== domain)
               )
             }
           >
@@ -66,7 +66,10 @@ const DomainList = ({ viewer }) => {
             />
             <div
               className="inline-flex p-1 h-7 align-baseline m-0.5 relative bg-red-900 hover:bg-red-800"
-              onClick={() => setNewDomain(null)}
+              onClick={() => {
+                // TODO fix return null
+                setNewDomain('')
+              }}
             >
               <div className="inline-flex px-1.5 text-sm text-gray-200">Cancel</div>
             </div>
@@ -75,7 +78,7 @@ const DomainList = ({ viewer }) => {
               onClick={() => {
                 if (newDomain) {
                   updateDomains(viewer.id, [...domains, newDomain])
-                  setNewDomain(null)
+                  setNewDomain('')
                 }
               }}
             >

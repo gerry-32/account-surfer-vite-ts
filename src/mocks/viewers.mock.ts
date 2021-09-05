@@ -19,33 +19,33 @@
 // ]
 
 type Browser = {
-  exePath: string,
-  name: string,
+  exePath: string
+  name: string
   title: string
 }
 
 type Incognito = {
-  name: string,
-  title: String
+  name: string
+  title: string
 }
 
 type Account = {
-  name: string,
-  title: string,
-  profileDirectoryPath: string,
-  image: string,
+  name: string
+  title: string
+  profileDirectoryPath: string
+  image: string
 }
 
 type Viewer = {
-  id: string,
-  channelName: string,
-  browser: Browser,
-  incognito?: Incognito,
-  account?: Account,
-  domains: string[],
-  isVisible: boolean,
-  x: number,
-  y: number  
+  id: string
+  channelName: string
+  browser: Browser
+  incognito?: Incognito
+  account?: Account
+  domains: string[]
+  isVisible: boolean
+  x: number
+  y: number
 }
 
 const DEFAULT_VIEWERS: Viewer[] = [

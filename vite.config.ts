@@ -1,8 +1,8 @@
-import reactRefresh from '@vitejs/plugin-react-refresh';
-import { UserConfig, ConfigEnv } from 'vite';
-import { join } from 'path';
+import reactRefresh from '@vitejs/plugin-react-refresh'
+import { UserConfig, ConfigEnv } from 'vite'
+import { join } from 'path'
 
-const srcRoot = join(__dirname, 'src');
+const srcRoot = join(__dirname, 'src')
 
 export default ({ command }: ConfigEnv): UserConfig => {
   // DEV
@@ -11,21 +11,21 @@ export default ({ command }: ConfigEnv): UserConfig => {
       base: '/',
       plugins: [reactRefresh()],
       alias: {
-        '/@': srcRoot,
+        '/@': srcRoot
       },
       build: {
         outDir: join(srcRoot, '/out'),
         emptyOutDir: true,
-        rollupOptions: {},
+        rollupOptions: {}
       },
       server: {
-        port: process.env.PORT === undefined ? 3000 : +process.env.PORT,
+        port: process.env.PORT === undefined ? 3000 : +process.env.PORT
       },
       optimizeDeps: {
         auto: true,
-        exclude: ['path'],
-      },
-    };
+        exclude: ['path']
+      }
+    }
   }
   // PROD
   else {
@@ -33,20 +33,20 @@ export default ({ command }: ConfigEnv): UserConfig => {
       base: `${__dirname}/src/out/`,
       plugins: [reactRefresh()],
       alias: {
-        '/@': srcRoot,
+        '/@': srcRoot
       },
       build: {
         outDir: join(srcRoot, '/out'),
         emptyOutDir: true,
-        rollupOptions: {},
+        rollupOptions: {}
       },
       server: {
-        port: process.env.PORT === undefined ? 3000 : +process.env.PORT,
+        port: process.env.PORT === undefined ? 3000 : +process.env.PORT
       },
       optimizeDeps: {
         auto: true,
-        exclude: ['path'],
-      },
-    };
+        exclude: ['path']
+      }
+    }
   }
-};
+}

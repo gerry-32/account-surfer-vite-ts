@@ -1,7 +1,7 @@
 import React from 'react'
 import useStoreChange from '../../../utils/useStoreChange'
 
-const ViewerVisibilityToggler = ({ isVisible, viewerId }) => {
+const ViewerVisibilityToggler = ({ isVisible, viewerId }: any) => {
   const [grid, storeGrid] = useStoreChange('grid')
   return (
     <div className="flex-shrink-0 ">
@@ -13,7 +13,9 @@ const ViewerVisibilityToggler = ({ isVisible, viewerId }) => {
         }`}
         onClick={() =>
           storeGrid(
-            grid.map(v => (v.id === viewerId ? { ...v, isVisible: !isVisible } : v))
+            grid.map((v: any) =>
+              v.id === viewerId ? { ...v, isVisible: !isVisible } : v
+            )
           )
         }
       >

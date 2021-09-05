@@ -1,21 +1,25 @@
 import { useState, useEffect } from 'react'
 
 const useKeyPress = (
-  conditionMatch = e => {},
+  conditionMatch: any = (e: any): any => {
+    return
+  },
   // onPressDown = () => {},
-  onPressUp = () => {}
+  onPressUp: any = () => {
+    return
+  }
 ) => {
   const [keyPressed, setKeyPressed] = useState(false)
 
   useEffect(() => {
-    const downHandler = e => {
+    const downHandler = (e: any) => {
       if (conditionMatch(e)) {
         setKeyPressed(true)
         // onPressDown(e)
       }
     }
 
-    const upHandler = e => {
+    const upHandler = (e: any) => {
       if (conditionMatch(e)) {
         setKeyPressed(false)
         onPressUp(e)

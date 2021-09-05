@@ -2,9 +2,7 @@ import React from 'react'
 
 const TitleBar = () => {
   return (
-    <div
-      className="p-1 text-sm pl-2 text-gray-200 relative h-[30px] app-region-drag"
-    >
+    <div className="p-1 text-sm pl-2 text-gray-200 relative h-[30px] app-region-drag">
       Account Surfer
       <svg
         className="h-7 w-7 p-1 hover:bg-gray-700 absolute inset-y-0 right-0 app-region-no-drag"

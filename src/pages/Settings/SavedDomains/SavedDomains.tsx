@@ -2,7 +2,7 @@ import React from 'react'
 import DomainList from './DomainList'
 import useStoreChange from '../../../utils/useStoreChange'
 
-const SavedDomains = ({ openInFirst }) => {
+const SavedDomains = ({ openInFirst }: any) => {
   const [grid] = useStoreChange('grid')
 
   return (
@@ -20,7 +20,7 @@ const SavedDomains = ({ openInFirst }) => {
         )}
         :
       </h2>
-      {grid.map(viewer => (
+      {grid.map((viewer: any) => (
         <DomainList {...{ viewer }} key={viewer.id} />
       ))}
     </div>

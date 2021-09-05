@@ -20,11 +20,11 @@ function App() {
 
   useKeyPress(
     ({ code, ctrlKey, shiftKey }) => code === 'KeyI' && ctrlKey && shiftKey,
-    () => window.AS.ipcRenderer.send('requestOpenDevTools'),
+    () => window.AS.ipcRenderer.send('requestOpenDevTools')
   )
   useKeyPress(
     ({ code }) => code === 'Escape',
-    () => window.AS.ipcRenderer.send('requestHideWindow'),
+    () => window.AS.ipcRenderer.send('requestHideWindow')
   )
 
   return (

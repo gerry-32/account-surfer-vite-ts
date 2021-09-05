@@ -4,7 +4,7 @@ import DragDots from './DragDots'
 import ViewerVisibilityToggler from './ViewerVisibilityToggler'
 import useOnlineStatus from 'react-online-hook'
 
-const Viewer = ({ viewer, dragEnabled, linearIndex, openUrlInViewer }) => {
+const Viewer = ({ viewer, dragEnabled, linearIndex, openUrlInViewer }: any) => {
   const { isVisible, account, browser, incognito, channelName } = viewer
   const { isOnline } = useOnlineStatus()
   return (

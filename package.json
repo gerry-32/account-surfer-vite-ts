@@ -15,7 +15,7 @@
     "dist": "npm run build && electron-builder --config ./build-config-local.json",
     "pack": "npm run build && electron-builder --dir",
     "clean": "rimraf dist main src/out",
-    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
+    "lint": "eslint --fix --ext .ts,.tsx .",
     "type-check": "tsc"
   },
   "dependencies": {

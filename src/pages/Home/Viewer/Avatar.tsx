@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserIcon } from '../../../constants'
 
-const Avatar = ({ viewer }) => {
+const Avatar = ({ viewer }: any) => {
   const { isVisible, account, browser, incognito } = viewer
   const getBigCoin = () => {
     if (account?.image || !account)

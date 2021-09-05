@@ -10,12 +10,12 @@ import {
   prepareLayoutForSave
 } from '../../utils/layout'
 
-const getVisibleIndex = (item, editModeGrid) => {
-  const onlyVisible = editModeGrid.filter(item => item.isActive)
-  return onlyVisible.findIndex(gridItem => item.i === gridItem.i)
+const getVisibleIndex = (item: any, editModeGrid: any) => {
+  const onlyVisible = editModeGrid.filter((item: any) => item.isActive)
+  return onlyVisible.findIndex((gridItem: any) => item.i === gridItem.i)
 }
 
-const Grid = ({ openUrlInViewer }) => {
+const Grid = ({ openUrlInViewer }: any) => {
   const [grid, storeGrid] = useStoreChange('grid')
   const [ignoreUpdateLayout, setIgnoreUpdateLayout] = useState(true)
   const [showHidden] = useStoreChange('showHidden')
@@ -28,8 +28,8 @@ const Grid = ({ openUrlInViewer }) => {
   )
 
   useKeyPress(
-    ({ code, metaKey }) => !dragEnabled && code.includes('Digit') && !metaKey,
-    e => {
+    ({ code, metaKey }: any) => !dragEnabled && code.includes('Digit') && !metaKey,
+    (e: any) => {
       const viewerIndex = +e.key - 1
       openUrlInViewer(currentModeLayout[viewerIndex])
     }
@@ -46,7 +46,7 @@ const Grid = ({ openUrlInViewer }) => {
       containerPadding={[30, 0]}
       isDraggable={true}
       draggableHandle=".drag-dots"
-      onLayoutChange={updatedLayout => {
+      onLayoutChange={(updatedLayout: any) => {
         const squeezeRequired = getSqueezeRequired(updatedLayout)
         if (ignoreUpdateLayout && !squeezeRequired) {
           setIgnoreUpdateLayout(false)
@@ -56,7 +56,7 @@ const Grid = ({ openUrlInViewer }) => {
         }
       }}
     >
-      {currentModeLayout.map((viewer, index) => {
+      {currentModeLayout.map((viewer: any, index: any): any => {
         const linearIndex = dragEnabled ? getVisibleIndex(viewer, grid) : index
         return (
           <div key={viewer.id} title={`Hotkey: "${linearIndex + 1}"`}>

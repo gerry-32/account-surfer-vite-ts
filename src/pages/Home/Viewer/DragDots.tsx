@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DragDots = ({ isVisible }) => {
+const DragDots = ({ isVisible }: any) => {
   return (
     <div className="drag-dots flex-shrink-0">
       <div
