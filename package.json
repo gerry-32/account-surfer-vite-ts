@@ -4,6 +4,7 @@
   "version": "3.2.4",
   "main": "main/index.js",
   "author": "dospolov.com",
+  "license": "UNLICENSED",
   "description": "Quickly switch between accounts and browsers with Account Surfer.",
   "scripts": {
     "dev": "concurrently \"yarn dev:vite\" \" yarn dev:electron\"",
