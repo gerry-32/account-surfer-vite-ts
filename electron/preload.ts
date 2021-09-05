@@ -26,6 +26,7 @@ export const api = {
   }
 }
 contextBridge.exposeInMainWorld('Main', api)
+
 /**
  * Using the ipcRenderer directly in the browser through the contextBridge ist not really secure.
  * I advise using the Main/api way !!

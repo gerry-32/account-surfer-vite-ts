@@ -2,12 +2,15 @@ import { join } from 'path'
 import { BrowserWindow, app, ipcMain, IpcMainEvent } from 'electron'
 import isDev from 'electron-is-dev'
 import browserWindowConfig from './browserWindow'
-import { initStore } from '../utils/store'
+import { initStore } from './store'
 import electronLog from 'electron-log'
 
 try {
   Object.assign(console, electronLog.functions)
   console.warn('@@@@@@@ MAIN STARTED @@@@@@@')
+  const store = initStore()
+
+  console.log('currentPage', store.get('currentPage'))
 
   function createWindow() {
     const window = new BrowserWindow(browserWindowConfig)
@@ -50,10 +53,6 @@ try {
     console.log(message)
     setTimeout(() => event.sender.send('message', 'hi from electron'), 500)
   })
-
-  const store = initStore()
-  console.log("store.get('appVersion')")
-  console.log(store.get('appVersion'))
 } catch (e) {
   console.error(e)
 }

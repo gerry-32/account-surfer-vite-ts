@@ -1,5 +1,5 @@
 import Store from 'electron-store'
-import { version } from '../package.json'
+// import { version } from '../package.json'
 
 let store
 
@@ -15,7 +15,7 @@ export const initStore = () => {
     },
     appVersion: {
       type: 'string',
-      default: version
+      default: ''
     },
     progId: {
       type: 'string',
