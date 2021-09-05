@@ -1,5 +1,6 @@
 .DS_Store
 dist/
+main/
 node_modules/
 thumbs.db
 .idea/
