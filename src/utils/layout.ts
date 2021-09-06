@@ -94,10 +94,10 @@ export const getSqueezeRequired = layout => {
       y: current.x === LAST_IN_ROW ? current.y + 1 : current.y
     }
     const next = layout[i + 1]
-    // console.log('____')
-    // console.log(`x${current.x} y${current.y} current ${current.i}`)
-    // console.log(`x${desiredNext.x} y${desiredNext.y} desiredNext`)
-    // console.log(`x${next.x} y${next.y} next ${next.i}`)
+    // window.electronLog.log('____')
+    // window.electronLog.log(`x${current.x} y${current.y} current ${current.i}`)
+    // window.electronLog.log(`x${desiredNext.x} y${desiredNext.y} desiredNext`)
+    // window.electronLog.log(`x${next.x} y${next.y} next ${next.i}`)
     if (desiredNext.x !== next.x || desiredNext.y !== next.y) {
       isSqueezeRequired = true
     }

@@ -8,6 +8,7 @@ import electronLog from 'electron-log'
 try {
   Object.assign(console, electronLog.functions)
   console.warn('@@@@@@@ MAIN STARTED @@@@@@@')
+  process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
   const store = initStore()
 
   console.log('currentPage', store.get('currentPage'))

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 function App() {
-  console.log(window.ipcRenderer)
+  window.electronLog.log(window.ipcRenderer)
 
   const [isOpen, setOpen] = useState(false)
   const [isSent, setSent] = useState(false)

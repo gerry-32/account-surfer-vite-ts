@@ -5,15 +5,18 @@ import App from './App'
 import LocalStore from './utils/localStore'
 import DEFAULT_STORE from './mocks/store.mock'
 
+window.electronLog.log('@@@@@@@ RENDERER STARTED @@@@@@@')
+
 if (process.env.NODE_ENV === 'development') {
   window.AS = {
     localStore: new LocalStore(),
     ipcRenderer: {
-      send: (eventName: any): void => console.log('ipcRenderer: ', eventName)
+      send: (eventName: any): void => window.electronLog.log('ipcRenderer: ', eventName)
     },
     store: {
       data: DEFAULT_STORE,
-      set: (fieldName: string, val: any) => console.log('store set', fieldName, val),
+      set: (fieldName: string, val: any) =>
+        window.electronLog.log('store set', fieldName, val),
       get: (fieldName: any) => DEFAULT_STORE[fieldName]
     }
   }

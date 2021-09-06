@@ -18,7 +18,8 @@ const browserWindowConfig = {
   webPreferences: {
     preload: join(__dirname, 'preload.js'),
     nodeIntegration: true,
-    contextIsolation: false,
+    contextIsolation: true,
+    nativeWindowOpen: true,
     textAreasAreResizable: false,
     defaultEncoding: 'UTF-8',
     disableHtmlFullscreenWindowResize: true,

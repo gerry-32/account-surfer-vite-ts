@@ -1,11 +1,17 @@
-import { ipcRenderer, contextBridge } from 'electron'
+import { ipcRenderer, contextBridge, webFrame } from 'electron'
+import electronLog from 'electron-log'
 
 declare global {
   interface Window {
     Main: typeof api
     ipcRenderer: typeof ipcRenderer
+    electronLog: any
   }
 }
+
+Object.assign(console, electronLog.functions)
+console.log('@@@@@@@ PRELOAD STARTED @@@@@@@')
+webFrame.setZoomFactor(1)
 
 export const api = {
   /**
@@ -32,3 +38,5 @@ contextBridge.exposeInMainWorld('Main', api)
  * I advise using the Main/api way !!
  */
 contextBridge.exposeInMainWorld('ipcRenderer', ipcRenderer)
+
+contextBridge.exposeInMainWorld('electronLog', electronLog)
