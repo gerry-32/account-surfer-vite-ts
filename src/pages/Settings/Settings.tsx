@@ -5,6 +5,7 @@ import Footer from './Footer'
 import useStoreChange from '../../utils/useStoreChange'
 
 const Settings = () => {
+  const [appVersion] = useStoreChange('appVersion')
   const [openInFirst, storeOpenInFirst] = useStoreChange('openInFirst')
   return (
     <div className="h-[400px]">
@@ -37,13 +38,13 @@ const Settings = () => {
         <div className="pt-5 pb-5">
           <div
             className="px-2 inline-flex items-center py-1 border border-transparent text-xs font-medium text-gray-300 bg-gray-600 hover:bg-gray-500 cursor-default"
-            onClick={() => window.AS.ipcRenderer.send('requestResetBrowserList')}
+            onClick={() => window.sendEvent('requestResetBrowserList')}
           >
             Reset Browser list
           </div>
         </div>
         <div>
-          <p>App version: {window.AS.store.get('appVersion')}</p>
+          <p>App version: {appVersion}</p>
         </div>
       </div>
       <Footer />

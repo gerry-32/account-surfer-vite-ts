@@ -1,0 +1,1 @@
+if exist "C:\Users\Marat\AppData\Roaming\account-surfer-electron" rd /s /q "C:\Users\Marat\AppData\Roaming\account-surfer-electron"

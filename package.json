@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "description": "Quickly switch between accounts and browsers with Account Surfer.",
   "scripts": {
-    "dev": "concurrently \"yarn dev:vite\" \" yarn dev:electron\"",
+    "dev": "npm run clear:machine:cache && concurrently \"yarn dev:vite\" \" yarn dev:electron\"",
     "dev:vite": "vite",
     "dev:electron": "npm run build:electron && electron .",
     "build": "npm run build:vite && npm run build:electron",
@@ -17,7 +17,8 @@
     "pack": "npm run build && electron-builder --dir",
     "clean": "rimraf dist main src/out",
     "lint": "eslint --fix --ext .ts,.tsx .",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "clear:machine:cache": "clean-app-data.bat"
   },
   "dependencies": {
     "@headlessui/react": "^1.4.1",

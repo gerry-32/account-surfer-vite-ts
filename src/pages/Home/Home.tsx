@@ -39,7 +39,7 @@ const Home = () => {
         )
       )
     }
-    window.AS.ipcRenderer.send('requestOpenUrl', viewer)
+    window.sendEvent('requestOpenUrl', viewer)
   }
 
   return (

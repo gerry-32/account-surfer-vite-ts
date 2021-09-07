@@ -1,42 +1,34 @@
 import { ipcRenderer, contextBridge, webFrame } from 'electron'
 import electronLog from 'electron-log'
+import { initStore } from './store'
 
 declare global {
   interface Window {
-    Main: typeof api
-    ipcRenderer: typeof ipcRenderer
     electronLog: any
+    initialStoreData: any
+    sendEvent: any
+    onStoreChange: any
   }
 }
 
-Object.assign(console, electronLog.functions)
-console.log('@@@@@@@ PRELOAD STARTED @@@@@@@')
-webFrame.setZoomFactor(1)
+try {
+  Object.assign(console, electronLog.functions)
+  console.log('@@@@@@@ PRELOAD STARTED @@@@@@@')
+  webFrame.setZoomFactor(1)
+  const electronStore = initStore()
 
-export const api = {
-  /**
-   * Here you can expose functions to the renderer process
-   * so they can interact with the main (electron) side
-   * without security problems.
-   *
-   * The function below can accessed using `window.Main.sayHello`
-   */
-  sendMessage: (message: string) => {
-    ipcRenderer.send('message', message)
-  },
-  /**
-   * Provide an easier way to listen to events
-   */
-  on: (channel: string, callback: any) => {
-    ipcRenderer.on(channel, (_, data) => callback(data))
+  const sendEvent = (eventName: string, data: any) => {
+    ipcRenderer.send(eventName, data)
   }
+
+  const onStoreChange = (cb: any) => {
+    ipcRenderer.on('storeChanged', (_, newState: any) => cb(newState))
+  }
+
+  contextBridge.exposeInMainWorld('electronLog', electronLog)
+  contextBridge.exposeInMainWorld('initialStoreData', electronStore.store)
+  contextBridge.exposeInMainWorld('sendEvent', sendEvent)
+  contextBridge.exposeInMainWorld('onStoreChange', onStoreChange)
+} catch (e) {
+  console.error(e)
 }
-contextBridge.exposeInMainWorld('Main', api)
-
-/**
- * Using the ipcRenderer directly in the browser through the contextBridge ist not really secure.
- * I advise using the Main/api way !!
- */
-contextBridge.exposeInMainWorld('ipcRenderer', ipcRenderer)
-
-contextBridge.exposeInMainWorld('electronLog', electronLog)

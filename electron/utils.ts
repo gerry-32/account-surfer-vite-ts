@@ -35,3 +35,9 @@ export const findDomainInViewer = (grid: any, url: any) => {
     return false
   }
 }
+
+export const getUrlFromArgv = (argv: any) => {
+  const possibleUrl = [...argv].pop()
+  const url = /http:\/\/|https:\/\//i.test(possibleUrl) ? possibleUrl : null
+  return url
+}
