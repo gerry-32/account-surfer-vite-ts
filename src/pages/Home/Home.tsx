@@ -17,14 +17,14 @@ const Home = () => {
   const [shouldSaveDomain, storeShouldSaveDomain] = useStoreChange('shouldSaveDomain')
 
   useKeyPress(
-    ({ code }) => code === 'KeyD',
+    ({ code }: any) => code === 'KeyD',
     () => {
       if (!showHidden) storeDragEnabled(false)
       storeShowHidden(!showHidden)
     }
   )
   useKeyPress(
-    ({ code }) => code === 'KeyA',
+    ({ code }: any) => code === 'KeyA',
     () => {
       storeShouldSaveDomain(!shouldSaveDomain)
     }

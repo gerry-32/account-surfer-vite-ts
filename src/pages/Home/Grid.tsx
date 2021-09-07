@@ -22,7 +22,7 @@ const Grid = ({ openUrlInViewer }: any) => {
   const [dragEnabled] = useStoreChange('dragEnabled')
 
   const currentModeLayout = extractModeGrid(
-    grid.map(v => ({ ...v, i: v.id, h: 1, w: 1 })),
+    grid.map((v: any) => ({ ...v, i: v.id, h: 1, w: 1 })),
     dragEnabled,
     showHidden
   )
