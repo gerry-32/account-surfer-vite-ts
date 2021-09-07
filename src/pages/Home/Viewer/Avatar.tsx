@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BrowserIcon } from '../../../constants'
 
 const Avatar = ({ viewer }: any) => {
   const { isVisible, account, browser, incognito } = viewer
+  const [imageLoadFailed, setImageLoadFailed] = useState(false)
+  const [imageSrc, setImageSrc] = useState(
+    account?.image
+      ? account?.image
+      : incognito
+      ? BrowserIcon.incognito
+      : BrowserIcon[browser?.name]
+  )
+
   const getBigCoin = () => {
     if (account?.image || !account)
       return (
@@ -10,15 +19,14 @@ const Avatar = ({ viewer }: any) => {
           className={`flex-shrink-0 h-12 w-12 ${account?.image ? 'rounded-full' : ''} ${
             isVisible ? 'opacity-100' : 'opacity-40'
           }`}
-          src={
-            account?.image
-              ? account?.image
-              : incognito
-              ? BrowserIcon.incognito
-              : BrowserIcon[browser?.name]
-          }
+          src={imageSrc}
           alt=""
           style={{ filter: isVisible ? 'none' : 'grayscale(80%)' }}
+          onError={() => {
+            setImageLoadFailed(true)
+            setImageSrc(BrowserIcon[browser?.name])
+            console.error(`image loading failed: ${imageSrc}`)
+          }}
         />
       )
 
@@ -47,7 +55,7 @@ const Avatar = ({ viewer }: any) => {
   return (
     <div className="relative">
       {getBigCoin()}
-      {getSmallCoin()}
+      {imageLoadFailed || getSmallCoin()}
     </div>
   )
 }
