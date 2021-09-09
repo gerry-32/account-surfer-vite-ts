@@ -13,8 +13,14 @@
   ],
   "directories": {
     "output": "appx/local",
-    "buildResources": "resources"
+    "buildResources": "buildResources"
   },
+  "extraResources": [
+    {
+      "from": "node_modules/regedit/vbs",
+      "to": "regedit/vbs"
+    }
+  ],
   "appx": {
     "applicationId": "dospolov.com.AccountSurfer",
     "backgroundColor": "transparent",
