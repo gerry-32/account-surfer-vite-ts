@@ -22,7 +22,9 @@ try {
   }
 
   const onStoreChange = (cb: any) => {
-    ipcRenderer.on('storeChanged', (_, newState: any) => cb(newState))
+    const listener = (_: any, newState: any) => cb(newState)
+    ipcRenderer.on('storeChanged', listener)
+    return () => ipcRenderer.removeListener('storeChanged', listener)
   }
 
   contextBridge.exposeInMainWorld('electronLog', electronLog)
