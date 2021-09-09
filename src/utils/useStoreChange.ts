@@ -1,28 +1,20 @@
 import { useState, useEffect } from 'react'
 
-const useStoreChange = (fieldName: any) => {
+const useStoreChange = (): [any, any] => {
   const [state, setState] = useState(window.initialStoreData)
 
-  const setField = (newVal: any) => {
-    window.sendEvent('requestStoreSet', { [fieldName]: newVal })
+  const updateStore = (newDataObj: any) => {
+    window.sendEvent('requestStoreSet', newDataObj)
   }
 
   useEffect(() => {
-    // let unsubscribe: any
-    // let isActive = true
-    // if (isActive) {
     const unsubscribe = window.onStoreChange((newState: any) => {
       setState(newState)
     })
-    // }
-    return () => {
-      console.log('unsubscribe() ' + fieldName)
-      // isActive = false
-      unsubscribe()
-    }
+    return () => unsubscribe()
   }, [])
 
-  return [state?.[fieldName], setField]
+  return [state, updateStore]
 }
 
 export default useStoreChange

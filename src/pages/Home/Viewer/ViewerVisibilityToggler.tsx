@@ -2,7 +2,7 @@ import React from 'react'
 import useStoreChange from '../../../utils/useStoreChange'
 
 const ViewerVisibilityToggler = ({ isVisible, viewerId }: any) => {
-  const [grid, storeGrid] = useStoreChange('grid')
+  const [{ grid }, setState] = useStoreChange()
   return (
     <div className="flex-shrink-0 ">
       <div
@@ -12,11 +12,11 @@ const ViewerVisibilityToggler = ({ isVisible, viewerId }: any) => {
             : 'text-gray-600 hover:text-gray-500'
         }`}
         onClick={() =>
-          storeGrid(
-            grid.map((v: any) =>
+          setState({
+            grid: grid.map((v: any) =>
               v.id === viewerId ? { ...v, isVisible: !isVisible } : v
             )
-          )
+          })
         }
       >
         <svg className="h-6 w-6" viewBox="0 0 1024 1024" fill="currentColor">

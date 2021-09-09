@@ -2,8 +2,7 @@ import React from 'react'
 import useStoreChange from '../../../utils/useStoreChange'
 
 const ToggleDrag = () => {
-  const [, storeShowHidden] = useStoreChange('showHidden')
-  const [dragEnabled, storeDragEnabled] = useStoreChange('dragEnabled')
+  const [{ dragEnabled }, setState] = useStoreChange()
   return (
     <div
       className={`${
@@ -12,8 +11,8 @@ const ToggleDrag = () => {
       aria-pressed={dragEnabled ? 'true' : 'false'}
       title="Reorder accounts"
       onClick={() => {
-        if (!dragEnabled) storeShowHidden(false)
-        storeDragEnabled(!dragEnabled)
+        if (!dragEnabled) setState({ showHidden: false })
+        setState({ dragEnabled: !dragEnabled })
       }}
     >
       <span

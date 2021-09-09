@@ -4,8 +4,7 @@ import useStoreChange from '../../utils/useStoreChange'
 import { CheckIcon } from '@heroicons/react/solid'
 
 const Header = () => {
-  const [url, storeUrl] = useStoreChange('url')
-  const [, storeShouldSaveDomain] = useStoreChange('shouldSaveDomain')
+  const [{ url }, setState] = useStoreChange()
   const [copied, setCopied] = useState(false)
   const onCopy = () => {
     copy(url)
@@ -40,8 +39,7 @@ const Header = () => {
             <span
               className="py-1 px-2 bg-red-900 hover:bg-red-700 hover:text-gray-200"
               onClick={() => {
-                storeUrl('')
-                storeShouldSaveDomain(false)
+                setState({ url: '', shouldSaveDomain: false })
               }}
             >
               Erase

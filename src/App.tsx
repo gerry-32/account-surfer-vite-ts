@@ -11,8 +11,7 @@ import './App.css'
 
 function App() {
   const history = useHistory()
-  const [currentPage] = useStoreChange('currentPage')
-  const [isDefaultBrowser] = useStoreChange('isDefaultBrowser')
+  const [{ currentPage, isDefaultBrowser }] = useStoreChange()
 
   useEffect(() => {
     history.push(currentPage)

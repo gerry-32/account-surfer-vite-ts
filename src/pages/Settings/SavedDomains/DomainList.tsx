@@ -4,13 +4,16 @@ import { BrowserIcon } from '../../../constants'
 import useStoreChange from '../../../utils/useStoreChange'
 
 const DomainList = ({ viewer }: any) => {
-  const [grid, storeGrid] = useStoreChange('grid')
+  const [{ grid }, setState] = useStoreChange()
+
   const { id, browser, channelName, account, incognito, domains } = viewer
   const userTitle = account?.title || incognito?.title
   const [newDomain, setNewDomain] = useState('')
 
   const updateDomains = (viewerId: any, domains: any) =>
-    storeGrid(grid.map((v: any) => (v.id === viewerId ? { ...v, domains } : v)))
+    setState({
+      grid: grid.map((v: any) => (v.id === viewerId ? { ...v, domains } : v))
+    })
 
   return (
     <div key={id} className="bg-gray-900 p-3 mb-3">

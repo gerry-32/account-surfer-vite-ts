@@ -3,7 +3,7 @@ import DomainList from './DomainList'
 import useStoreChange from '../../../utils/useStoreChange'
 
 const SavedDomains = ({ openInFirst }: any) => {
-  const [grid] = useStoreChange('grid')
+  const [{ grid }] = useStoreChange()
 
   return (
     <div className="relative pt-10">

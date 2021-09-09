@@ -10,34 +10,28 @@ const GRID_HEIGHT = 270
 const SAVE_DOMAIN_PANEL_HEIGHT = 28
 
 const Home = () => {
-  const [url] = useStoreChange('url')
-  const [grid, storeGrid] = useStoreChange('grid')
-  const [showHidden, storeShowHidden] = useStoreChange('showHidden')
-  const [, storeDragEnabled] = useStoreChange('dragEnabled')
-  const [shouldSaveDomain, storeShouldSaveDomain] = useStoreChange('shouldSaveDomain')
+  const [{ url, grid, showHidden, shouldSaveDomain }, setState] = useStoreChange()
 
   useKeyPress(
     ({ code }: any) => code === 'KeyD',
     () => {
-      if (!showHidden) storeDragEnabled(false)
-      storeShowHidden(!showHidden)
+      if (!showHidden) setState({ dragEnabled: false })
+      setState({ showHidden: !showHidden })
     }
   )
   useKeyPress(
     ({ code }: any) => code === 'KeyA',
-    () => {
-      storeShouldSaveDomain(!shouldSaveDomain)
-    }
+    () => setState({ shouldSaveDomain: !shouldSaveDomain })
   )
 
   const openUrlInViewer = (viewer: any) => {
     if (shouldSaveDomain) {
-      storeShouldSaveDomain(false)
-      storeGrid(
-        grid.map((v: any) =>
+      setState({
+        shouldSaveDomain: false,
+        grid: grid.map((v: any) =>
           v.id === viewer.id ? { ...v, domains: [...v.domains, extractHostname(url)] } : v
         )
-      )
+      })
     }
     window.sendEvent('requestOpenUrl', viewer)
   }
@@ -67,7 +61,7 @@ const Home = () => {
               type="checkbox"
               checked={shouldSaveDomain}
               className="form-checkbox"
-              onChange={e => storeShouldSaveDomain(e.target.checked)}
+              onChange={e => setState({ shouldSaveDomain: e.target.checked })}
             />
           </div>
           <div className="ml-2 text-sm">

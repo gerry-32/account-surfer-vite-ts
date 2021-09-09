@@ -5,8 +5,7 @@ import Footer from './Footer'
 import useStoreChange from '../../utils/useStoreChange'
 
 const Settings = () => {
-  const [appVersion] = useStoreChange('appVersion')
-  const [openInFirst, storeOpenInFirst] = useStoreChange('openInFirst')
+  const [{ appVersion, openInFirst }, setState] = useStoreChange()
   return (
     <div className="h-[400px]">
       <Header />
@@ -20,7 +19,7 @@ const Settings = () => {
                 type="checkbox"
                 checked={openInFirst}
                 className="form-checkbox"
-                onChange={e => storeOpenInFirst(e.target.checked)}
+                onChange={e => setState({ openInFirst: e.target.checked })}
               />
             </div>
             <div className="ml-2 text-sm">
