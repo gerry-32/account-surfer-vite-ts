@@ -1,5 +1,5 @@
-@import "react-grid-layout/css/styles.css";
-@import "react-resizable/css/styles.css";
+@import 'react-grid-layout/css/styles.css';
+@import 'react-resizable/css/styles.css';
 
 @tailwind base;
 @tailwind components;
@@ -29,16 +29,17 @@ body {
   border: 3px solid #1f2937;
 }
 
-input[type="checkbox"]:checked,
-input[type="checkbox"]:focus,
-input[type="checkbox"]:active {
+input[type='checkbox']:checked,
+input[type='checkbox']:focus,
+input[type='checkbox']:active {
   box-shadow: none;
 }
 
 .app-region-drag {
+  user-select: none;
   -webkit-app-region: drag;
 }
 
 .app-region-no-drag {
-  -webkit-app-region: drag;
+  -webkit-app-region: no-drag;
 }
