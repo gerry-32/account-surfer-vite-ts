@@ -138,7 +138,6 @@ try {
 
             ipcMain.on('requestStoreSet', (_, data: any) => {
               try {
-                console.log('requestStoreSet', data)
                 store.set(data)
               } catch (e) {
                 console.error(e)

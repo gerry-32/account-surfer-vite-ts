@@ -1,23 +1,23 @@
 {
   "name": "account-surfer-electron",
   "productName": "account-surfer-electron",
-  "version": "3.2.4",
+  "version": "3.2.5",
   "main": "main/index.js",
   "author": "dospolov.com",
   "license": "UNLICENSED",
   "description": "Quickly switch between accounts and browsers with Account Surfer.",
   "scripts": {
     "dev": "npm run clear:machine:cache && concurrently \"yarn dev:vite\" \" yarn dev:electron\"",
+    "dist": "npm run build && electron-builder --config ./build-config-local.json",
+    "type-check": "tsc",
     "dev:vite": "vite",
     "dev:electron": "npm run build:electron && electron .",
     "build": "npm run build:vite && npm run build:electron",
     "build:vite": "vite build",
     "build:electron": "tsc -p electron",
-    "dist": "npm run build && electron-builder --config ./build-config-local.json",
     "pack": "npm run build && electron-builder --dir",
     "clean": "rimraf dist main src/out",
     "lint": "eslint --fix --ext .ts,.tsx .",
-    "type-check": "tsc",
     "clear:machine:cache": "clean-app-data.bat"
   },
   "dependencies": {
@@ -40,9 +40,11 @@
     "typy": "^3.3.0"
   },
   "devDependencies": {
+    "@types/babel__core": "^7.1.16",
     "@types/node": "^16.7.10",
     "@types/react": "^17.0.20",
     "@types/react-dom": "^17.0.9",
+    "@types/react-grid-layout": "^1.1.2",
     "@types/react-router-dom": "^5.1.8",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
     "@typescript-eslint/parser": "^4.30.0",

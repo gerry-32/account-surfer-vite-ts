@@ -5,41 +5,52 @@ import { LAYOUT_COLS_NUMBER, FieldsToStore } from '../constants'
 // "matrix" items contain ALL data
 // "mesh" is any type of previous
 
-const orderMeshByCoordinate = mesh =>
+const orderMeshByCoordinate = (mesh: any) =>
   mesh
-    .map(item => ({ ...item, weight: item.x + LAYOUT_COLS_NUMBER * item.y }))
-    .sort((a, b) => a.weight - b.weight)
-    .map(item => {
+    .map((item: any) => ({ ...item, weight: item.x + LAYOUT_COLS_NUMBER * item.y }))
+    .sort((a: any, b: any) => a.weight - b.weight)
+    .map((item: any) => {
       const { weight, ...rest } = item
       return rest
     })
 
-const squeezeMesh = mesh =>
-  mesh.map((item, i, arr) => ({
+const squeezeMesh = (mesh: any) =>
+  mesh.map((item: any, i: any, arr: any) => ({
     ...item,
     x: i % LAYOUT_COLS_NUMBER,
     y: Math.floor(i / LAYOUT_COLS_NUMBER)
   }))
 
 // GRID has ID field, LAYOUT has I field
-const mergeLayoutWithGridField = (layout, grid) =>
-  layout.map(layoutItem => ({
-    ...grid.find(gridItem => gridItem.id === layoutItem.i),
+const mergeLayoutWithGridField = (layout: any, grid: any) =>
+  layout.map((layoutItem: any) => ({
+    ...grid.find((gridItem: any) => gridItem.id === layoutItem.i),
     ...layoutItem
   }))
 
 // GRID has ID field, LAYOUT has I field
-const getMissingIds = (editModeGrid, squeezedLayout) =>
+const getMissingIds = (editModeGrid: any, squeezedLayout: any) =>
   editModeGrid
-    .filter(gridItem => !squeezedLayout.some(layoutItem => layoutItem.i === gridItem.id))
-    .map(item => ({
+    .filter(
+      (gridItem: any) =>
+        !squeezedLayout.some((layoutItem: any) => layoutItem.i === gridItem.id)
+    )
+    .map((item: any) => ({
       id: item.id,
-      originalIndex: editModeGrid.findIndex(indexItem => indexItem.id === item.id)
+      originalIndex: editModeGrid.findIndex((indexItem: any) => indexItem.id === item.id)
     }))
 
-const getMatrixWithInactive = (matrixWithoutInactive, missingIds, editModeGrid) => {
+const getMatrixWithInactive = (
+  matrixWithoutInactive: any,
+  missingIds: any,
+  editModeGrid: any
+) => {
   let matrixWithInactive = [...matrixWithoutInactive]
-  const insertInPosition = (arr, item, i) => [...arr.slice(0, i), item, ...arr.slice(i)]
+  const insertInPosition = (arr: any, item: any, i: any) => [
+    ...arr.slice(0, i),
+    item,
+    ...arr.slice(i)
+  ]
 
   if (missingIds.length) {
     for (let i = 0; i < missingIds.length; i++) {
@@ -56,14 +67,14 @@ const getMatrixWithInactive = (matrixWithoutInactive, missingIds, editModeGrid) 
   return matrixWithInactive
 }
 
-const getGridFromMatrix = matrix =>
-  matrix.map(viewer =>
+const getGridFromMatrix = (matrix: any) =>
+  matrix.map((viewer: any) =>
     Object.keys(viewer)
       .filter(field => FieldsToStore.includes(field))
       .reduce((acc, curVal) => ({ ...acc, [curVal]: viewer[curVal] }), {})
   )
 
-export const prepareLayoutForSave = (updatedLayout, grid) => {
+export const prepareLayoutForSave = (updatedLayout: any, grid: any) => {
   const orderedLayout = orderMeshByCoordinate(updatedLayout)
   const squeezedLayout = squeezeMesh(orderedLayout)
   const matrixWithoutInactive = mergeLayoutWithGridField(squeezedLayout, grid)
@@ -79,12 +90,13 @@ export const prepareLayoutForSave = (updatedLayout, grid) => {
   return newGrid
 }
 
-export const extractModeGrid = (grid, dragEnabled, showHidden) => {
-  const modeGrid = dragEnabled || showHidden ? grid : grid.filter(item => item.isVisible)
+export const extractModeGrid = (grid: any, dragEnabled: any, showHidden: any) => {
+  const modeGrid =
+    dragEnabled || showHidden ? grid : grid.filter((item: any) => item.isVisible)
   return squeezeMesh(modeGrid)
 }
 
-export const getSqueezeRequired = layout => {
+export const getSqueezeRequired = (layout: any) => {
   let isSqueezeRequired = false
   const LAST_IN_ROW = LAYOUT_COLS_NUMBER - 1
   for (let i = 0; i < layout.length - 1; i++) {

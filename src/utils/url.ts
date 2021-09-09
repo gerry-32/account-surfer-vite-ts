@@ -1,4 +1,4 @@
-export const extractHostname = url => {
+export const extractHostname = (url: any) => {
   let hostname
   //find & remove protocol (http, ftp, etc.) and get hostname
 

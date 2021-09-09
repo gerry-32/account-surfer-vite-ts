@@ -8,10 +8,15 @@ const useStoreChange = (fieldName: any) => {
   }
 
   useEffect(() => {
-    const unsubscribe = window.onStoreChange((newState: any) => {
-      setState(newState)
-    })
-    return () => unsubscribe()
+    let isActive = true
+    if (isActive) {
+      window.onStoreChange((newState: any) => {
+        setState(newState)
+      })
+    }
+    return () => {
+      isActive = false
+    }
   }, [])
 
   return [state?.[fieldName], setField]

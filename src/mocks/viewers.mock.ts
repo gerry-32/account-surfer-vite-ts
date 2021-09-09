@@ -43,6 +43,8 @@ type Viewer = {
   incognito?: Incognito
   account?: Account
   domains: string[]
+  // TODO do we still need that?
+  incognitoName?: string
   isVisible: boolean
   x: number
   y: number
