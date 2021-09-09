@@ -1,8 +1,7 @@
 import React from 'react'
-import useStoreChange from '../../../utils/useStoreChange'
 
-const ToggleHidden = () => {
-  const [{ showHidden }, setState] = useStoreChange()
+const ToggleHidden = ({ state, storeState }: any) => {
+  const { showHidden } = state
 
   return (
     <div
@@ -12,8 +11,8 @@ const ToggleHidden = () => {
       aria-pressed={showHidden ? 'true' : 'false'}
       title='Show hidden accounts (hotkey: "d")'
       onClick={() => {
-        if (!showHidden) setState({ dragEnabled: false })
-        setState({ showHidden: !showHidden })
+        if (!showHidden) storeState({ dragEnabled: false })
+        storeState({ showHidden: !showHidden })
       }}
     >
       <span

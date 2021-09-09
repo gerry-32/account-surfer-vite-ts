@@ -80,10 +80,10 @@ try {
     }
   }
 
-  function createWindow() {
+  const createWindow = () => {
     return new Promise((resolve: any) => {
       try {
-        const mainWindow = new BrowserWindow(browserWindowConfig)
+        mainWindow = new BrowserWindow(browserWindowConfig)
 
         mainWindow.once('ready-to-show', () => {
           try {
@@ -164,7 +164,7 @@ try {
           }
         })
 
-        mainWindow.on('will-resize', e => {
+        mainWindow.on('will-resize', (e: any) => {
           e.preventDefault()
         })
         mainWindow.setResizable(false)
@@ -174,7 +174,7 @@ try {
         //   mainWindow = null
         // })
 
-        mainWindow.on('close', function (event) {
+        mainWindow.on('close', (event: any) => {
           try {
             if (!store.get('appClosed')) {
               event.preventDefault()

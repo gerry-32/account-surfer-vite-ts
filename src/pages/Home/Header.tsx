@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import copy from 'copy-to-clipboard'
-import useStoreChange from '../../utils/useStoreChange'
 import { CheckIcon } from '@heroicons/react/solid'
 
-const Header = () => {
-  const [{ url }, setState] = useStoreChange()
+const Header = ({ state, storeState }: any) => {
+  const { url } = state
   const [copied, setCopied] = useState(false)
   const onCopy = () => {
     copy(url)
@@ -39,7 +38,7 @@ const Header = () => {
             <span
               className="py-1 px-2 bg-red-900 hover:bg-red-700 hover:text-gray-200"
               onClick={() => {
-                setState({ url: '', shouldSaveDomain: false })
+                storeState({ url: '', shouldSaveDomain: false })
               }}
             >
               Erase

@@ -2,10 +2,10 @@ import React from 'react'
 import Header from './Header'
 import SavedDomains from './SavedDomains'
 import Footer from './Footer'
-import useStoreChange from '../../utils/useStoreChange'
 
-const Settings = () => {
-  const [{ appVersion, openInFirst }, setState] = useStoreChange()
+const Settings = ({ state, storeState }: any) => {
+  const { appVersion, openInFirst } = state
+
   return (
     <div className="h-[400px]">
       <Header />
@@ -19,7 +19,7 @@ const Settings = () => {
                 type="checkbox"
                 checked={openInFirst}
                 className="form-checkbox"
-                onChange={e => setState({ openInFirst: e.target.checked })}
+                onChange={e => storeState({ openInFirst: e.target.checked })}
               />
             </div>
             <div className="ml-2 text-sm">
@@ -33,7 +33,7 @@ const Settings = () => {
             </div>
           </div>
         </div>{' '}
-        <SavedDomains {...{ openInFirst }} />
+        <SavedDomains {...{ state, storeState }} />
         <div className="pt-5 pb-5">
           <div
             className="px-2 inline-flex items-center py-1 border border-transparent text-xs font-medium text-gray-300 bg-gray-600 hover:bg-gray-500 cursor-default"
@@ -46,7 +46,7 @@ const Settings = () => {
           <p>App version: {appVersion}</p>
         </div>
       </div>
-      <Footer />
+      <Footer {...{ storeState }} />
     </div>
   )
 }

@@ -4,7 +4,14 @@ import DragDots from './DragDots'
 import ViewerVisibilityToggler from './ViewerVisibilityToggler'
 import useOnlineStatus from 'react-online-hook'
 
-const Viewer = ({ viewer, dragEnabled, linearIndex, openUrlInViewer }: any) => {
+const Viewer = ({
+  viewer,
+  dragEnabled,
+  linearIndex,
+  openUrlInViewer,
+  state,
+  storeState
+}: any) => {
   const { isVisible, account, browser, incognito, channelName } = viewer
   const { isOnline } = useOnlineStatus()
   return (
@@ -42,7 +49,9 @@ const Viewer = ({ viewer, dragEnabled, linearIndex, openUrlInViewer }: any) => {
       </div>
       {dragEnabled && (
         <>
-          <ViewerVisibilityToggler {...{ isVisible, viewerId: viewer.id }} />
+          <ViewerVisibilityToggler
+            {...{ isVisible, viewerId: viewer.id, state, storeState }}
+          />
           <DragDots {...{ isVisible }} />
         </>
       )}

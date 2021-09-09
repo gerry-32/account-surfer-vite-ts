@@ -11,7 +11,9 @@ const useStoreChange = (): [any, any] => {
     const unsubscribe = window.onStoreChange((newState: any) => {
       setState(newState)
     })
-    return () => unsubscribe()
+    return () => {
+      unsubscribe()
+    }
   }, [])
 
   return [state, updateStore]

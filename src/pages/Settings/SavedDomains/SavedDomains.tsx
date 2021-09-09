@@ -1,9 +1,8 @@
 import React from 'react'
 import DomainList from './DomainList'
-import useStoreChange from '../../../utils/useStoreChange'
 
-const SavedDomains = ({ openInFirst }: any) => {
-  const [{ grid }] = useStoreChange()
+const SavedDomains = ({ state, storeState }: any) => {
+  const { openInFirst, grid } = state
 
   return (
     <div className="relative pt-10">
@@ -21,7 +20,7 @@ const SavedDomains = ({ openInFirst }: any) => {
         :
       </h2>
       {grid.map((viewer: any) => (
-        <DomainList {...{ viewer }} key={viewer.id} />
+        <DomainList {...{ viewer, state, storeState }} key={viewer.id} />
       ))}
     </div>
   )

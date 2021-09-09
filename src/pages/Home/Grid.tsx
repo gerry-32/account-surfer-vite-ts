@@ -3,7 +3,6 @@ import GridLayout from 'react-grid-layout'
 import Viewer from './Viewer'
 import { LAYOUT_COLS_NUMBER } from '../../constants'
 import useKeyPress from '../../utils/useKeyPress'
-import useStoreChange from '../../utils/useStoreChange'
 import {
   extractModeGrid,
   getSqueezeRequired,
@@ -15,9 +14,9 @@ const getVisibleIndex = (item: any, editModeGrid: any) => {
   return onlyVisible.findIndex((gridItem: any) => item.i === gridItem.i)
 }
 
-const Grid = ({ openUrlInViewer }: any) => {
+const Grid = ({ openUrlInViewer, state, storeState }: any) => {
   const [ignoreUpdateLayout, setIgnoreUpdateLayout] = useState(true)
-  const [{ grid, showHidden, dragEnabled }, setState] = useStoreChange()
+  const { grid, showHidden, dragEnabled } = state
 
   const currentModeLayout = extractModeGrid(
     grid.map((v: any) => ({ ...v, i: v.id, h: 1, w: 1 })),
@@ -49,7 +48,7 @@ const Grid = ({ openUrlInViewer }: any) => {
         if (ignoreUpdateLayout && !squeezeRequired) {
           setIgnoreUpdateLayout(false)
         } else {
-          setState({ grid: prepareLayoutForSave(updatedLayout, grid) })
+          storeState({ grid: prepareLayoutForSave(updatedLayout, grid) })
           setIgnoreUpdateLayout(true)
         }
       }}
@@ -63,7 +62,9 @@ const Grid = ({ openUrlInViewer }: any) => {
                 viewer,
                 dragEnabled,
                 openUrlInViewer,
-                linearIndex
+                linearIndex,
+                state,
+                storeState
               }}
             />
           </div>

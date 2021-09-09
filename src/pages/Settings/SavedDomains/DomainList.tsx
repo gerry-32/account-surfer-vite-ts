@@ -1,17 +1,16 @@
 import React, { useState } from 'react'
 import { PlusIcon, CheckIcon, XIcon } from '@heroicons/react/solid'
 import { BrowserIcon } from '../../../constants'
-import useStoreChange from '../../../utils/useStoreChange'
 
-const DomainList = ({ viewer }: any) => {
-  const [{ grid }, setState] = useStoreChange()
+const DomainList = ({ viewer, state, storeState }: any) => {
+  const { grid } = state
 
   const { id, browser, channelName, account, incognito, domains } = viewer
   const userTitle = account?.title || incognito?.title
   const [newDomain, setNewDomain] = useState('')
 
   const updateDomains = (viewerId: any, domains: any) =>
-    setState({
+    storeState({
       grid: grid.map((v: any) => (v.id === viewerId ? { ...v, domains } : v))
     })
 

@@ -3,30 +3,29 @@ import Header from './Header'
 import Grid from './Grid'
 import Footer from './Footer'
 import useKeyPress from '../../utils/useKeyPress'
-import useStoreChange from '../../utils/useStoreChange'
 import { extractHostname } from '../../utils/url'
 
 const GRID_HEIGHT = 270
 const SAVE_DOMAIN_PANEL_HEIGHT = 28
 
-const Home = () => {
-  const [{ url, grid, showHidden, shouldSaveDomain }, setState] = useStoreChange()
+const Home = ({ state, storeState }: any) => {
+  const { url, grid, showHidden, shouldSaveDomain } = state
 
   useKeyPress(
     ({ code }: any) => code === 'KeyD',
     () => {
-      if (!showHidden) setState({ dragEnabled: false })
-      setState({ showHidden: !showHidden })
+      if (!showHidden) storeState({ dragEnabled: false })
+      storeState({ showHidden: !showHidden })
     }
   )
   useKeyPress(
     ({ code }: any) => code === 'KeyA',
-    () => setState({ shouldSaveDomain: !shouldSaveDomain })
+    () => storeState({ shouldSaveDomain: !shouldSaveDomain })
   )
 
   const openUrlInViewer = (viewer: any) => {
     if (shouldSaveDomain) {
-      setState({
+      storeState({
         shouldSaveDomain: false,
         grid: grid.map((v: any) =>
           v.id === viewer.id ? { ...v, domains: [...v.domains, extractHostname(url)] } : v
@@ -38,12 +37,12 @@ const Home = () => {
 
   return (
     <div className="h-[400px]">
-      <Header />
+      <Header {...{ state, storeState }} />
       <div
         className="overflow-y-auto overflow-x-hidden pb-5"
         style={{ height: url ? GRID_HEIGHT - SAVE_DOMAIN_PANEL_HEIGHT : GRID_HEIGHT }}
       >
-        <Grid {...{ openUrlInViewer }} />
+        <Grid {...{ openUrlInViewer, state, storeState }} />
       </div>
       {url && (
         <div
@@ -61,7 +60,7 @@ const Home = () => {
               type="checkbox"
               checked={shouldSaveDomain}
               className="form-checkbox"
-              onChange={e => setState({ shouldSaveDomain: e.target.checked })}
+              onChange={e => storeState({ shouldSaveDomain: e.target.checked })}
             />
           </div>
           <div className="ml-2 text-sm">
@@ -75,7 +74,7 @@ const Home = () => {
         className="relative z-50"
         style={{ boxShadow: url ? '' : '#1c2531 -12px -5px 10px 0px' }}
       >
-        <Footer />
+        <Footer {...{ state, storeState }} />
       </div>
     </div>
   )

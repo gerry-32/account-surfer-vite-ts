@@ -11,7 +11,8 @@ import './App.css'
 
 function App() {
   const history = useHistory()
-  const [{ currentPage, isDefaultBrowser }] = useStoreChange()
+  const [state, storeState] = useStoreChange()
+  const { currentPage, isDefaultBrowser } = state
 
   useEffect(() => {
     history.push(currentPage)
@@ -35,10 +36,10 @@ function App() {
             <NotDefault />
           </Route>
           <Route path="/settings">
-            <Settings />
+            <Settings {...{ state, storeState }} />
           </Route>
           <Route path="/">
-            <Home />
+            <Home {...{ state, storeState }} />
           </Route>
         </Switch>
       ) : (
