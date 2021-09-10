@@ -1,11 +1,12 @@
 import React from 'react'
 import { toast } from 'react-toastify'
+import { version } from '../../../package.json'
 import Header from './Header'
 import SavedDomains from './SavedDomains'
 import Footer from './Footer'
 
 const Settings = ({ state, storeState }: any) => {
-  const { appVersion, openInFirst } = state
+  const { openInFirst } = state
 
   return (
     <div className="h-[400px]">
@@ -48,7 +49,7 @@ const Settings = ({ state, storeState }: any) => {
           </div>
         </div>
         <div>
-          <p>App version: {appVersion}</p>
+          <p>App version: {version}</p>
         </div>
       </div>
       <Footer {...{ storeState }} />

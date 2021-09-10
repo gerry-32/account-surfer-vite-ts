@@ -13,10 +13,6 @@ export const initStore = () => {
         type: 'string',
         default: ''
       },
-      appVersion: {
-        type: 'string',
-        default: ''
-      },
       progId: {
         type: 'string',
         default: ''

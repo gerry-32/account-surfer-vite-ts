@@ -30,7 +30,6 @@ type Viewer = {
 
 const DEFAULT_STORE: any = {
   url: 'https://www.google.com/search?q=google&oq=google&aqs=chrome.0.69i59l3j69i60l2j69i65j69i60j69i65.2933j0j7&sourceid=chrome&ie=UTF-8',
-  appVersion: '3.2.0',
   progId: 'AppXshmtx3g30r0k9tzr3jxaegvzpsasy3yv',
   currentPage: '/',
   shouldSaveDomain: false,
