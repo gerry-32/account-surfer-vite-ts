@@ -3,7 +3,7 @@ import { app, Tray, Menu } from 'electron'
 
 export const createTray = ({ onOpenApp, store }: any) => {
   try {
-    const tray = new Tray(join(__dirname, '../buildResources/logo_256.png'))
+    const tray = new Tray(join(__dirname, '../static/logo_256.png'))
     const contextMenu = Menu.buildFromTemplate([
       {
         label: 'Show App',
