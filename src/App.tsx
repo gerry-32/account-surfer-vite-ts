@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Switch, Route, useHistory } from 'react-router-dom'
+import copy from 'copy-to-clipboard'
 import TitleBar from './TitleBar'
 import Home from './pages/Home'
 import Settings from './pages/Settings'
@@ -25,6 +26,14 @@ function App() {
   useKeyPress(
     ({ code }: any) => code === 'Escape',
     () => window.sendEvent('requestHideWindow')
+  )
+  useKeyPress(
+    ({ code, ctrlKey }: any) => code === 'KeyR' && ctrlKey,
+    () => storeState({ url: '', shouldSaveDomain: false })
+  )
+  useKeyPress(
+    ({ code, ctrlKey }: any) => code === 'KeyC' && ctrlKey,
+    () => copy(state.url)
   )
 
   return (

@@ -25,6 +25,7 @@ const Header = ({ state, storeState }: any) => {
           <div className="absolute top-0 right-0 text-gray-300 z-10 opacity-0 group-hover:opacity-100 text-sm">
             <span
               className="py-1 px-2 bg-blue-900 hover:bg-blue-700 hover:text-gray-200"
+              title='Hotkey: "ctrl+c"'
               onClick={onCopy}
             >
               {copied ? (
@@ -37,6 +38,7 @@ const Header = ({ state, storeState }: any) => {
             </span>
             <span
               className="py-1 px-2 bg-red-900 hover:bg-red-700 hover:text-gray-200"
+              title='Hotkey: "ctrl+r"'
               onClick={() => {
                 storeState({ url: '', shouldSaveDomain: false })
               }}
