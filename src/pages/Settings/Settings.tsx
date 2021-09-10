@@ -1,4 +1,5 @@
 import React from 'react'
+import { toast } from 'react-toastify'
 import Header from './Header'
 import SavedDomains from './SavedDomains'
 import Footer from './Footer'
@@ -37,7 +38,11 @@ const Settings = ({ state, storeState }: any) => {
         <div className="pt-5 pb-5">
           <div
             className="px-2 inline-flex items-center py-1 border border-transparent text-xs font-medium text-gray-300 bg-gray-600 hover:bg-gray-500 cursor-default"
-            onClick={() => window.sendEvent('requestResetBrowserList')}
+            onClick={() => {
+              window.sendEvent('requestResetBrowserList')
+              storeState({ currentPage: '/' })
+              toast('Browsers has been reset')
+            }}
           >
             Reset Browser list
           </div>

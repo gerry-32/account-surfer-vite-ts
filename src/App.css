@@ -1,5 +1,6 @@
 @import 'react-grid-layout/css/styles.css';
 @import 'react-resizable/css/styles.css';
+@import 'react-toastify/dist/ReactToastify.css';
 
 @tailwind base;
 @tailwind components;

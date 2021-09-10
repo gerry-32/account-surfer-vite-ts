@@ -7,6 +7,7 @@ import Settings from './pages/Settings'
 import NotDefault from './pages/NotDefault'
 import useKeyPress from './utils/useKeyPress'
 import useStoreChange from './utils/useStoreChange'
+import { ToastContainer, toast, Zoom } from 'react-toastify'
 // import DEFAULT_VIEWERS from '@/mocks/viewers.mock'
 import './App.css'
 
@@ -28,16 +29,40 @@ function App() {
     () => window.sendEvent('requestHideWindow')
   )
   useKeyPress(
-    ({ code, ctrlKey }: any) => code === 'KeyR' && ctrlKey,
-    () => storeState({ url: '', shouldSaveDomain: false })
+    ({ code, ctrlKey }: any) => code === 'KeyX' && ctrlKey && state.url,
+    () => {
+      copy(state.url)
+      storeState({ url: '', shouldSaveDomain: false })
+      toast('Url cut')
+    }
   )
   useKeyPress(
-    ({ code, ctrlKey }: any) => code === 'KeyC' && ctrlKey,
-    () => copy(state.url)
+    ({ code, ctrlKey }: any) => code === 'KeyC' && ctrlKey && state.url,
+    () => {
+      copy(state.url)
+      toast('Url copied')
+    }
   )
 
   return (
     <div className="relative h-screen select-none">
+      <ToastContainer
+        limit={1}
+        closeButton={false}
+        transition={Zoom}
+        theme="dark"
+        className="top-[30px] right-[27px] w-[250px]"
+        toastClassName="cursor-default min-h-0 rounded-none m-0 bg-indigo-900"
+        bodyClassName="cursor-default p-0"
+        position="top-right"
+        autoClose={1200}
+        hideProgressBar
+        newestOnTop
+        closeOnClick={false}
+        pauseOnFocusLoss
+        draggable={false}
+        pauseOnHover={false}
+      />
       <TitleBar />
       {isDefaultBrowser ? (
         <Switch>
