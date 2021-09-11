@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { PlusIcon, CheckIcon, XIcon } from '@heroicons/react/solid'
-import { BrowserIcon } from '../../../constants'
+import BrowserIcons from '../../../BrowserIcons'
 
 const DomainList = ({ viewer, state, storeState }: any) => {
   const { grid } = state
@@ -19,7 +19,7 @@ const DomainList = ({ viewer, state, storeState }: any) => {
       <h3 className="mb-2">
         <img
           className="h-5 w-5 inline-block mr-1 align-text-bottom"
-          src={BrowserIcon[browser?.name]}
+          src={BrowserIcons[browser?.name]}
           alt=""
         />
         {browser.title}

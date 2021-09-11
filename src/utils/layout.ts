@@ -1,4 +1,4 @@
-import { LAYOUT_COLS_NUMBER, FieldsToStore } from '../constants'
+import { LAYOUT_COLS_NUMBER } from '../constants'
 
 // "grid" items contain only browsers + grid coordinates
 // "layout" items contain only tech info
@@ -67,12 +67,25 @@ const getMatrixWithInactive = (
   return matrixWithInactive
 }
 
-const getGridFromMatrix = (matrix: any) =>
-  matrix.map((viewer: any) =>
+const getGridFromMatrix = (matrix: any) => {
+  const FieldsToStore = [
+    'account',
+    'browser',
+    'channelName',
+    'domains',
+    'id',
+    'isVisible',
+    'x',
+    'y',
+    'incognito'
+  ]
+
+  return matrix.map((viewer: any) =>
     Object.keys(viewer)
       .filter(field => FieldsToStore.includes(field))
       .reduce((acc, curVal) => ({ ...acc, [curVal]: viewer[curVal] }), {})
   )
+}
 
 export const prepareLayoutForSave = (updatedLayout: any, grid: any) => {
   const orderedLayout = orderMeshByCoordinate(updatedLayout)

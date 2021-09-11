@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BrowserIcon } from '../../../constants'
+import BrowserIcons from '../../../BrowserIcons'
 
 const Avatar = ({ viewer }: any) => {
   const { isVisible, account, browser, incognito } = viewer
@@ -8,8 +8,8 @@ const Avatar = ({ viewer }: any) => {
     account?.image
       ? account?.image
       : incognito
-      ? BrowserIcon.incognito
-      : BrowserIcon[browser?.name]
+      ? BrowserIcons.incognito
+      : BrowserIcons[browser?.name]
   )
 
   const getBigCoin = () => {
@@ -24,7 +24,7 @@ const Avatar = ({ viewer }: any) => {
           style={{ filter: isVisible ? 'none' : 'grayscale(80%)' }}
           onError={() => {
             setImageLoadFailed(true)
-            setImageSrc(BrowserIcon[browser?.name])
+            setImageSrc(BrowserIcons[browser?.name])
             window.electronLog.error(`image loading failed: ${imageSrc}`)
           }}
         />
@@ -47,7 +47,7 @@ const Avatar = ({ viewer }: any) => {
     (account || incognito) && (
       <img
         className="h-5 w-5 absolute -bottom-0.5 -right-0.5"
-        src={BrowserIcon[browser?.name]}
+        src={BrowserIcons[browser?.name]}
         alt=""
         style={{ filter: isVisible ? 'none' : 'grayscale(80%)' }}
       />
