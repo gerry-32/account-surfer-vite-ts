@@ -37,7 +37,7 @@ const Home = ({ state, storeState }: any) => {
 
   return (
     <div className="h-[400px]">
-      <Header {...{ state, storeState }} />
+      <Header {...{ state }} />
       <div
         className="overflow-y-auto overflow-x-hidden pb-5"
         style={{ height: url ? GRID_HEIGHT - SAVE_DOMAIN_PANEL_HEIGHT : GRID_HEIGHT }}

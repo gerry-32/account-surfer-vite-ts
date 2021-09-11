@@ -26,15 +26,10 @@ function App() {
   )
   useKeyPress(
     ({ code }: any) => code === 'Escape',
-    () => window.sendEvent('requestHideWindow')
-  )
-  useKeyPress(
-    ({ code, ctrlKey }: any) => code === 'KeyX' && ctrlKey && state.url,
-    () => {
-      copy(state.url)
-      storeState({ url: '', shouldSaveDomain: false })
-      toast('Url cut')
-    }
+    () =>
+      state.url
+        ? storeState({ url: '', shouldSaveDomain: false })
+        : window.sendEvent('requestHideWindow')
   )
   useKeyPress(
     ({ code, ctrlKey }: any) => code === 'KeyC' && ctrlKey && state.url,

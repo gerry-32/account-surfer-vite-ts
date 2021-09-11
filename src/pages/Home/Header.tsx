@@ -2,7 +2,7 @@ import React from 'react'
 import copy from 'copy-to-clipboard'
 import { toast } from 'react-toastify'
 
-const Header = ({ state, storeState }: any) => {
+const Header = ({ state }: any) => {
   const { url } = state
 
   return (
@@ -20,21 +20,10 @@ const Header = ({ state, storeState }: any) => {
               title='Hotkey: "ctrl+c"'
               onClick={() => {
                 copy(url)
-                toast('Url cut')
-              }}
-            >
-              Copy
-            </span>
-            <span
-              className="py-1 px-2 bg-red-900 hover:bg-red-700 hover:text-gray-200"
-              title='Hotkey: "ctrl+x"'
-              onClick={() => {
-                copy(url)
-                storeState({ url: '', shouldSaveDomain: false })
                 toast('Url copied')
               }}
             >
-              Cut
+              Copy
             </span>
           </div>
         </div>
