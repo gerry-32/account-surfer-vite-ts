@@ -37,7 +37,9 @@ try {
         dragEnabled: false,
         showHidden: false
       })
-      mainWindow.hide()
+      setTimeout(() => {
+        mainWindow.hide()
+      }, 50) // prevent blinking on open
     } catch (e) {
       electronLog.error(e)
     }
