@@ -8,7 +8,6 @@ import NotDefault from './pages/NotDefault'
 import useKeyPress from './utils/useKeyPress'
 import useStoreChange from './utils/useStoreChange'
 import { ToastContainer, toast, Zoom } from 'react-toastify'
-// import DEFAULT_VIEWERS from '@/mocks/viewers.mock'
 import './App.css'
 
 function App() {
