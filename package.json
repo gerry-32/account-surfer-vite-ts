@@ -1,7 +1,7 @@
 {
   "name": "account-surfer-electron",
   "productName": "account-surfer-electron",
-  "version": "3.2.5",
+  "version": "3.2.6",
   "main": "main/index.js",
   "author": "dospolov.com",
   "license": "UNLICENSED",
@@ -74,15 +74,5 @@
     "*.{js,ts,tsx}": [
       "eslint --fix"
     ]
-  },
-  "build": {
-    "asar": true,
-    "files": [
-      "main",
-      "src/out"
-    ],
-    "directories": {
-      "buildResources": "resources"
-    }
   }
 }

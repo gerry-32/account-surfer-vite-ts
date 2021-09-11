@@ -8,7 +8,6 @@ export default ({ command }: ConfigEnv): UserConfig => {
   // DEV
   if (command === 'serve') {
     return {
-      base: '/',
       plugins: [reactRefresh()],
       alias: {
         '/@': srcRoot
@@ -30,7 +29,7 @@ export default ({ command }: ConfigEnv): UserConfig => {
   // PROD
   else {
     return {
-      base: `${__dirname}/src/out/`,
+      base: './',
       plugins: [reactRefresh()],
       alias: {
         '/@': srcRoot

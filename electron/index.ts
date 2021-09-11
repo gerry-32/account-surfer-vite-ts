@@ -158,6 +158,8 @@ try {
               : join(__dirname, '../src/out/index.html')
 
             isDev ? mainWindow?.loadURL(url) : mainWindow?.loadFile(url)
+
+            if (isDev) mainWindow.webContents.openDevTools({ mode: 'undocked' })
           } catch (e) {
             console.error(e)
           }
