@@ -5,7 +5,7 @@
 // import t from 'typy'
 // import { startLogging } from './log'
 import electronLog from './log'
-import { getNonChromiumViewers } from './viewers/getViewers'
+import { getViewers } from './viewers/getViewers'
 
 // const log = startLogging();
 
@@ -28,18 +28,20 @@ const LAYOUT_COLS_NUMBER = 3
 //   viewers.map((viewer: any, index: any) => ({
 //     ...viewer,
 //     id: index,
+//     domains: [],
+//     isVisible: true,
 //     x: index % LAYOUT_COLS_NUMBER,
 //     y: Math.floor(index / LAYOUT_COLS_NUMBER)
 //   }))
 
 export const getBrowserGrid = async () => {
-  const nonChromiumViewers = await getNonChromiumViewers()
+  const allViewers = await getViewers()
 
-  const allViewers = [
-    ...nonChromiumViewers
-    // ...chromiumViewersWithAccounts,
-    // ...chromiumViewersWithoutAccounts
-  ]
+  // const allViewers = [
+  //   ...nonChromiumViewers
+  //   // ...chromiumViewersWithAccounts,
+  //   // ...chromiumViewersWithoutAccounts
+  // ]
   electronLog.info(allViewers)
   // const grid = generateGrid()
 

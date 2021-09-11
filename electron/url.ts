@@ -1,15 +1,8 @@
 import { exec } from 'child_process'
 
 export const openUrl = ({ viewer, url }: any) => {
-  const {
-    browser: { exePath, commandLineArguments },
-    account
-  } = viewer
+  const { exePath, commandLineArguments } = viewer
   let execCmd = `start "" "${exePath}"`
-  if (account && account?.profileDirectoryPath)
-    execCmd += ` --profile-directory="${[
-      ...account?.profileDirectoryPath.split('\\')
-    ].pop()}"`
   execCmd += ` ${commandLineArguments}`
   if (url) execCmd += ` "${url}"`
   exec(execCmd)
