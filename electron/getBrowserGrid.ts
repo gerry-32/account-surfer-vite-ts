@@ -6,6 +6,7 @@ import fs from 'fs'
 // import t from 'typy'
 // import { startLogging } from './log'
 import { browserLocations } from './browserLocations'
+// import electronLog from './log'
 
 // const log = startLogging();
 
@@ -38,7 +39,7 @@ const getExistingBrowsers = async () => {
 
           existingBrowsers.push(existingBrowser)
         } catch (e) {
-          // console.log(`${exePath}: path does not exist`);
+          // electronLog.error(`${exePath}: path does not exist`)
         }
       }
     }

@@ -29,7 +29,7 @@ export default ({ command }: ConfigEnv): UserConfig => {
   // PROD
   else {
     return {
-      base: './',
+      base: './', // do not change: replaces index.html path to "C://..."
       plugins: [reactRefresh()],
       alias: {
         '/@': srcRoot

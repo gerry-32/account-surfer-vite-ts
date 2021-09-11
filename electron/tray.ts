@@ -1,5 +1,6 @@
 import { join } from 'path'
 import { app, Tray, Menu } from 'electron'
+import electronLog from './log'
 
 export const createTray = ({ onOpenApp, store }: any) => {
   try {
@@ -27,6 +28,6 @@ export const createTray = ({ onOpenApp, store }: any) => {
 
     return tray
   } catch (e) {
-    console.error(e)
+    electronLog.error(e)
   }
 }

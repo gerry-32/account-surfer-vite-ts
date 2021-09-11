@@ -25,7 +25,7 @@ const Avatar = ({ viewer }: any) => {
           onError={() => {
             setImageLoadFailed(true)
             setImageSrc(BrowserIcon[browser?.name])
-            console.error(`image loading failed: ${imageSrc}`)
+            window.electronLog.error(`image loading failed: ${imageSrc}`)
           }}
         />
       )

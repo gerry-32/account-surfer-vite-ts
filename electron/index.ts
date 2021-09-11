@@ -2,17 +2,16 @@ import { join } from 'path'
 import { exec } from 'child_process'
 import { BrowserWindow, app, Menu, ipcMain, globalShortcut } from 'electron'
 import isDev from 'electron-is-dev'
-import electronLog from 'electron-log'
 import { initStore } from './store'
 import browserWindowConfig from './browserWindow'
 import { createTray } from './tray'
 import { openUrl } from './url'
+import electronLog from './log'
 import { findDomainInViewer, getUrlFromArgv } from './utils'
 import { getBrowserGrid, getMergedGrid } from './getBrowserGrid'
 
 try {
-  Object.assign(console, electronLog.functions)
-  console.warn('@@@@@@@ MAIN STARTED @@@@@@@')
+  electronLog.warn('@@@@@@@ MAIN STARTED @@@@@@@')
   process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
 
   const store = initStore()
@@ -40,7 +39,7 @@ try {
       })
       mainWindow.hide()
     } catch (e) {
-      console.error(e)
+      electronLog.error(e)
     }
   }
 
@@ -49,7 +48,7 @@ try {
       openUrl({ viewer, url })
       hideAS()
     } catch (e) {
-      console.error(e)
+      electronLog.error(e)
     }
   }
 
@@ -60,23 +59,23 @@ try {
 
       if (store.get('openInFirst')) {
         if (url && grid.length && !ctrlAltXPressed) {
-          console.log('openInFirst mode onOpenUrl')
+          electronLog.log('openInFirst mode onOpenUrl')
           onOpenUrl({ viewer: grid[0], url })
         } else {
-          console.log('openInFirst mode openAS')
+          electronLog.log('openInFirst mode openAS')
           openAS(url)
         }
       } else {
         if (url && grid.length && domainFoundInViewer) {
-          console.log('default mode onOpenUrl')
+          electronLog.log('default mode onOpenUrl')
           onOpenUrl({ viewer: domainFoundInViewer, url })
         } else {
-          console.log('default mode openAS')
+          electronLog.log('default mode openAS')
           openAS(url)
         }
       }
     } catch (e) {
-      console.error(e)
+      electronLog.error(e)
     }
   }
 
@@ -93,7 +92,7 @@ try {
             Menu.setApplicationMenu(null)
             resolve()
           } catch (e) {
-            console.error(e)
+            electronLog.error(e)
           }
         })
 
@@ -110,7 +109,7 @@ try {
               try {
                 mainWindow.webContents.openDevTools({ mode: 'undocked' })
               } catch (e) {
-                console.error(e)
+                electronLog.error(e)
               }
             })
 
@@ -132,7 +131,7 @@ try {
                   store.set('grid', freshGrid)
                 })
               } catch (e) {
-                console.error(e)
+                electronLog.error(e)
               }
             })
 
@@ -140,7 +139,7 @@ try {
               try {
                 store.set(data)
               } catch (e) {
-                console.error(e)
+                electronLog.error(e)
               }
             })
 
@@ -148,7 +147,7 @@ try {
               try {
                 mainWindow.webContents.send('storeChanged', newState)
               } catch (e) {
-                console.log(e)
+                electronLog.log(e)
               }
             })
 
@@ -161,7 +160,7 @@ try {
 
             if (isDev) mainWindow.webContents.openDevTools({ mode: 'undocked' })
           } catch (e) {
-            console.error(e)
+            electronLog.error(e)
           }
         })
 
@@ -188,13 +187,13 @@ try {
             }
             return false
           } catch (e) {
-            console.error(e)
+            electronLog.error(e)
           }
         })
 
         return mainWindow
       } catch (e) {
-        console.error(e)
+        electronLog.error(e)
       }
     })
   }
@@ -209,7 +208,7 @@ try {
           app.clearRecentDocuments()
           onOpenApp(getUrlFromArgv(argv))
         } catch (e) {
-          console.error(e)
+          electronLog.error(e)
         }
       })
     }
@@ -228,11 +227,11 @@ try {
     }
 
     const ret = globalShortcut.register('Ctrl+Alt+X', () => {
-      console.log('Ctrl+Alt+X registered')
+      electronLog.log('Ctrl+Alt+X registered')
       ctrlAltXPressed = true
     })
 
-    if (!ret) console.log('globalShortcut is not registered')
+    if (!ret) electronLog.log('globalShortcut is not registered')
   })
 
   app.on('will-quit', () => {
@@ -240,9 +239,9 @@ try {
       globalShortcut.unregister('Ctrl+Alt+X')
       globalShortcut.unregisterAll()
     } catch (e) {
-      console.error(e)
+      electronLog.error(e)
     }
   })
 } catch (e) {
-  console.error(e)
+  electronLog.error(e)
 }

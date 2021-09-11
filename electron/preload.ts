@@ -1,5 +1,5 @@
 import { ipcRenderer, contextBridge, webFrame } from 'electron'
-import electronLog from 'electron-log'
+import electronLog from 'electron-log' // not using ./log cause electron-is-dev is not working in renderer
 import { initStore } from './store'
 
 declare global {
@@ -12,8 +12,7 @@ declare global {
 }
 
 try {
-  Object.assign(console, electronLog.functions)
-  console.log('@@@@@@@ PRELOAD STARTED @@@@@@@')
+  electronLog.log('@@@@@@@ PRELOAD STARTED @@@@@@@')
   webFrame.setZoomFactor(1)
   const electronStore = initStore()
 
@@ -32,5 +31,5 @@ try {
   contextBridge.exposeInMainWorld('sendEvent', sendEvent)
   contextBridge.exposeInMainWorld('onStoreChange', onStoreChange)
 } catch (e) {
-  console.error(e)
+  electronLog.error(e)
 }
