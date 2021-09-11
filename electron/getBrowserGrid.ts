@@ -5,60 +5,68 @@ import fs from 'fs'
 // import base64Img from 'base64-img'
 // import t from 'typy'
 // import { startLogging } from './log'
-import { browserLocations } from './browserLocations'
-// import electronLog from './log'
+import { nonChromiumLocations } from './browserLocations'
+import electronLog from './log'
 
 // const log = startLogging();
 
 const LAYOUT_COLS_NUMBER = 3
 
-const getExistingBrowsers = async () => {
-  const existingBrowsers = []
-  for (const browser of browserLocations) {
+const getNonChromiumViewers = async () => {
+  const viewers = []
+  for (const browser of nonChromiumLocations) {
     for (const channel of browser.channels) {
       for (const exePath of channel.exePaths) {
         try {
           await fs.promises.access(exePath, fs.constants.R_OK)
 
-          const existingBrowser: any = {
-            id: `${browser.browserName}_${channel.channelName}`,
-            channelName: channel.channelName,
+          const viewerProps = {
             browser: {
+              channelName: channel.channelName,
               exePath: exePath,
-              name: browser.browserName,
-              title: browser.browserName.replace(/^./, str => str.toUpperCase())
+              iconName: browser.browserName,
+              title: browser.browserName.replace(/^./, str => str.toUpperCase()),
+              commandLineArguments: ''
             },
             domains: [],
             isVisible: true
           }
 
-          if ((<any>channel)?.accountDetails)
-            existingBrowser.accountDetails = (<any>channel).accountDetails
-          if ((<any>channel)?.incognitoName)
-            existingBrowser.incognitoName = (<any>channel).incognitoName
-
-          existingBrowsers.push(existingBrowser)
+          viewers.push(
+            {
+              id: `${browser.browserName}_${channel.channelName}`,
+              ...viewerProps
+            },
+            {
+              id: `${browser.browserName}_${channel.channelName}_incognito`,
+              ...viewerProps,
+              browser: {
+                ...viewerProps.browser,
+                commandLineArguments: browser.incognitoCommandLineArgument
+              }
+            }
+          )
         } catch (e) {
           // electronLog.error(`${exePath}: path does not exist`)
         }
       }
     }
   }
-  return existingBrowsers
-}
-
-const getViewers = async (existingBrowsers: any) => {
-  const viewers = []
-  for (const browser of existingBrowsers) {
-    if (browser.accountDetails) {
-      const accounts = await browser.accountDetails.resolver(browser)
-      viewers.push(...accounts)
-    } else {
-      viewers.push(browser)
-    }
-  }
   return viewers
 }
+
+// const getViewers = async (existingBrowsers: any) => {
+//   const viewers = []
+//   for (const browser of existingBrowsers) {
+//     if (browser.accountDetails) {
+//       const accounts = await browser.accountDetails.resolver(browser)
+//       viewers.push(...accounts)
+//     } else {
+//       viewers.push(browser)
+//     }
+//   }
+//   return viewers
+// }
 
 const generateGrid = (viewers: any) =>
   viewers.map((viewer: any, index: any) => ({
@@ -68,10 +76,20 @@ const generateGrid = (viewers: any) =>
   }))
 
 export const getBrowserGrid = async () => {
-  const existingBrowsers = await getExistingBrowsers()
-  const viewers = await getViewers(existingBrowsers)
-  const grid = generateGrid(viewers)
+  const nonChromiumViewers = await getNonChromiumViewers()
+
+  const allViewers = [
+    ...nonChromiumViewers
+    // ...chromiumViewersWithAccounts,
+    // ...chromiumViewersWithoutAccounts
+  ]
+  electronLog.info(allViewers)
+  // const grid = generateGrid()
+
+  // const viewers = await getViewers(existingBrowsers)
+  const grid = generateGrid(allViewers)
   return grid
+  // return []
 }
 
 export const getMergedGrid = (freshGrid: any, storedGrid: any) => {

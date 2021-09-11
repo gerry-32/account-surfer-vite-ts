@@ -47,5 +47,6 @@ export const initStore = () => {
       }
     }
   })
+  store.openInEditor()
   return store
 }
