@@ -1,7 +1,7 @@
 {
   "name": "account-surfer-electron",
   "productName": "account-surfer-electron",
-  "version": "3.2.7",
+  "version": "4.0.0",
   "main": "main/index.js",
   "author": "dospolov.com",
   "license": "UNLICENSED",

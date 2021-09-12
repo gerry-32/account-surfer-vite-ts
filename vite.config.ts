@@ -9,9 +9,6 @@ export default ({ command }: ConfigEnv): UserConfig => {
   if (command === 'serve') {
     return {
       plugins: [reactRefresh()],
-      alias: {
-        '/@': srcRoot
-      },
       build: {
         outDir: join(srcRoot, '/out'),
         emptyOutDir: true,
@@ -31,9 +28,9 @@ export default ({ command }: ConfigEnv): UserConfig => {
     return {
       base: './', // do not change: replaces index.html path to "C://..."
       plugins: [reactRefresh()],
-      alias: {
-        '/@': srcRoot
-      },
+      // alias: {
+      //   '/@': srcRoot
+      // },
       build: {
         outDir: join(srcRoot, '/out'),
         emptyOutDir: true,
