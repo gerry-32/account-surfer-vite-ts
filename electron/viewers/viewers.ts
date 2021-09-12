@@ -17,7 +17,8 @@ export const getViewers = async () => {
   const viewers = []
   for (const location of viewerLocations) {
     const {
-      iconName,
+      bigIconTemplate,
+      smallIconTemplate,
       title,
       subTitle,
       exePaths,
@@ -67,15 +68,26 @@ export const getViewers = async () => {
                   userDataFolderSub
                 )}`.toLocaleLowerCase(),
                 exePath: exePath,
-                iconName: iconName,
+                bigIcon: {
+                  fromTemplate: bigIconTemplate,
+                  fromSrc: t(preferences, 'account_info[0].picture_url').safeObject,
+                  fromFile: ''
+                },
+                smallIcon: {
+                  fromTemplate: t(preferences, 'account_info[0].picture_url').safeObject
+                    ? ''
+                    : smallIconTemplate,
+                  fromSrc: '',
+                  fromFile: ''
+                },
                 title: viewerTitle,
                 subTitle: subTitle,
                 commandLineArguments: `--profile-directory="${userDataFolderSub}"`
               }
 
-              const pictureUrl = t(preferences, 'account_info[0].picture_url').safeObject
+              // const pictureUrl = t(preferences, 'account_info[0].picture_url').safeObject
 
-              if (pictureUrl) (<any>viewer).avatarUrl = pictureUrl
+              // if (pictureUrl) (<any>viewer).bigIcon.fromSrc = pictureUrl
 
               viewers.push(viewer)
             }
@@ -89,7 +101,16 @@ export const getViewers = async () => {
           viewers.push({
             id: combinedId,
             exePath: exePath,
-            iconName: iconName,
+            bigIcon: {
+              fromTemplate: bigIconTemplate,
+              fromSrc: '',
+              fromFile: ''
+            },
+            smallIcon: {
+              fromTemplate: smallIconTemplate,
+              fromSrc: '',
+              fromFile: ''
+            },
             title: title,
             subTitle: subTitle,
             commandLineArguments: commandLineArguments

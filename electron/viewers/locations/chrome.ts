@@ -11,7 +11,8 @@ const chromeStablePaths = [
 
 const chromeStable = [
   {
-    iconName: 'chrome',
+    bigIconTemplate: 'chrome',
+    smallIconTemplate: '',
     title: '',
     subTitle: 'Chrome',
     exePaths: chromeStablePaths,
@@ -19,7 +20,8 @@ const chromeStable = [
     userDataFolderPath: 'AppData\\Local\\Google\\Chrome\\User Data'
   },
   {
-    iconName: 'incognito',
+    bigIconTemplate: 'incognito',
+    smallIconTemplate: 'chrome',
     title: 'Incognito',
     subTitle: 'Chrome',
     exePaths: chromeStablePaths,
@@ -34,7 +36,8 @@ const chromeBetaPaths = getAllProgramFilesLocations(
 
 const chromeBeta = [
   {
-    iconName: 'chrome',
+    bigIconTemplate: 'chrome',
+    smallIconTemplate: '',
     title: '',
     subTitle: 'Chrome: beta',
     exePaths: chromeBetaPaths,
@@ -42,7 +45,8 @@ const chromeBeta = [
     userDataFolderPath: 'AppData\\Local\\Google\\Chrome Beta\\User Data'
   },
   {
-    iconName: 'incognito',
+    bigIconTemplate: 'incognito',
+    smallIconTemplate: 'chrome',
     title: 'Incognito',
     subTitle: 'Chrome: beta',
     exePaths: chromeBetaPaths,
@@ -57,7 +61,8 @@ const chromeDevPaths = getAllProgramFilesLocations(
 
 const chromeDev = [
   {
-    iconName: 'chrome',
+    bigIconTemplate: 'chrome',
+    smallIconTemplate: '',
     title: '',
     subTitle: 'Chrome: dev',
     exePaths: chromeDevPaths,
@@ -65,7 +70,8 @@ const chromeDev = [
     userDataFolderPath: 'AppData\\Local\\Google\\Chrome Dev\\User Data'
   },
   {
-    iconName: 'incognito',
+    bigIconTemplate: 'incognito',
+    smallIconTemplate: 'chrome',
     title: 'Incognito',
     subTitle: 'Chrome: dev',
     exePaths: chromeDevPaths,
@@ -84,7 +90,8 @@ const chromeCanaryPaths = [
 
 const chromeCanary = [
   {
-    iconName: 'chrome',
+    bigIconTemplate: 'chrome',
+    smallIconTemplate: '',
     title: '',
     subTitle: 'Chrome: canary',
     exePaths: chromeCanaryPaths,
@@ -92,7 +99,8 @@ const chromeCanary = [
     userDataFolderPath: 'AppData\\Local\\Google\\Chrome SxS\\User Data'
   },
   {
-    iconName: 'incognito',
+    bigIconTemplate: 'incognito',
+    smallIconTemplate: 'chrome',
     title: 'Incognito',
     subTitle: 'Chrome: canary',
     exePaths: chromeCanaryPaths,

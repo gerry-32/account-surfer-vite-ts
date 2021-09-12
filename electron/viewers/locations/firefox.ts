@@ -2,7 +2,8 @@ import { getAllProgramFilesLocations } from './utils'
 
 const firefoxLocations = [
   {
-    iconName: 'firefox',
+    bigIconTemplate: 'firefox',
+    smallIconTemplate: '',
     title: 'Firefox',
     subTitle: '',
     exePaths: getAllProgramFilesLocations('Mozilla Firefox\\firefox.exe'),
@@ -10,7 +11,8 @@ const firefoxLocations = [
     userDataFolderPath: null
   },
   {
-    iconName: 'incognito',
+    bigIconTemplate: 'incognito',
+    smallIconTemplate: 'firefox',
     title: 'Incognito',
     subTitle: 'Firefox',
     exePaths: getAllProgramFilesLocations('Mozilla Firefox\\firefox.exe'),
@@ -18,7 +20,8 @@ const firefoxLocations = [
     userDataFolderPath: null
   },
   {
-    iconName: 'firefox',
+    bigIconTemplate: 'firefox',
+    smallIconTemplate: '',
     title: 'Firefox: dev',
     subTitle: '',
     exePaths: getAllProgramFilesLocations('Firefox Developer Edition\\firefox.exe'),
@@ -26,7 +29,8 @@ const firefoxLocations = [
     userDataFolderPath: null
   },
   {
-    iconName: 'incognito',
+    bigIconTemplate: 'incognito',
+    smallIconTemplate: 'firefox',
     title: 'Incognito',
     subTitle: 'Firefox: dev',
     exePaths: getAllProgramFilesLocations('Firefox Developer Edition\\firefox.exe'),
@@ -34,7 +38,8 @@ const firefoxLocations = [
     userDataFolderPath: null
   },
   {
-    iconName: 'firefox',
+    bigIconTemplate: 'firefox',
+    smallIconTemplate: '',
     title: 'Firefox: nightly',
     subTitle: '',
     exePaths: getAllProgramFilesLocations('Firefox Nightly\\firefox.exe'),
@@ -42,7 +47,8 @@ const firefoxLocations = [
     userDataFolderPath: null
   },
   {
-    iconName: 'incognito',
+    bigIconTemplate: 'incognito',
+    smallIconTemplate: 'firefox',
     title: 'Incognito',
     subTitle: 'Firefox: nightly',
     exePaths: getAllProgramFilesLocations('Firefox Nightly\\firefox.exe'),
