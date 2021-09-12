@@ -4,6 +4,7 @@ import brave from './brave.svg'
 import edge from './edge.svg'
 import firefox from './firefox.svg'
 import vivaldi from './vivaldi.svg'
+import polypane from './polypane.svg'
 import incognito from './incognito.svg'
 
 const BrowserIcons: any = {
@@ -13,6 +14,7 @@ const BrowserIcons: any = {
   edge,
   firefox,
   vivaldi,
+  polypane,
   incognito
 }
 

@@ -11,5 +11,15 @@
 import chromeLocations from './chrome'
 import firefoxLocations from './firefox'
 import braveLocations from './brave'
+import polypaneLocations from './polypane'
+import operaLocations from './opera'
+import vivaldiLocations from './vivaldi'
 
-export default [...chromeLocations, ...firefoxLocations, ...braveLocations]
+export default [
+  ...chromeLocations,
+  ...firefoxLocations,
+  ...braveLocations,
+  ...polypaneLocations,
+  ...operaLocations,
+  ...vivaldiLocations
+]
