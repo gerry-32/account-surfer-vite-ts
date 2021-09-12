@@ -1,7 +1,7 @@
 import path from 'path'
 import fs from 'fs'
 import { app } from 'electron'
-import viewerLocations from './viewerLocations'
+import viewerLocations from './locations/allLocations'
 import { t } from 'typy'
 
 const WINUSER_DIRECTORY = app.getPath('home')
@@ -46,6 +46,7 @@ export const getViewers = async () => {
                 exePath: exePath,
                 iconName: location.iconName,
                 title: accountName.replace(/^./, (s: any) => s.toUpperCase()),
+                subTitle: location.subTitle,
                 commandLineArguments: ` --profile-directory="${userDataFolderSub}"`
               }
 
@@ -61,6 +62,7 @@ export const getViewers = async () => {
             exePath: exePath,
             iconName: location.iconName,
             title: location.title,
+            subTitle: location.subTitle,
             commandLineArguments: location.commandLineArguments
           })
         }
