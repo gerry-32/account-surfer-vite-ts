@@ -33,16 +33,6 @@ const Avatar = ({ viewer }: any) => {
         }}
       />
     )
-
-    // return (
-    //   <span
-    //     className={`inline-flex items-center justify-center h-12 w-12 rounded-full bg-white ${
-    //       isVisible ? 'opacity-100' : 'opacity-40'
-    //     }`}
-    //   >
-    //     <span className="text-lg font-medium leading-none text-gray-800">{title}</span>
-    //   </span>
-    // )
   }
 
   const getSmallIcon = () =>

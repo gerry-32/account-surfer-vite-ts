@@ -69,15 +69,17 @@ const getMatrixWithInactive = (
 
 const getGridFromMatrix = (matrix: any) => {
   const FieldsToStore = [
-    'account',
-    'browser',
-    'channelName',
-    'domains',
     'id',
     'isVisible',
+    'domains',
     'x',
     'y',
-    'incognito'
+    'bigIcon',
+    'smallIcon',
+    'commandLineArguments',
+    'exePath',
+    'subTitle',
+    'title'
   ]
 
   return matrix.map((viewer: any) =>
