@@ -2,7 +2,8 @@ import { getAllProgramFilesLocations } from './utils'
 
 const braveLocations = [
   {
-    iconName: 'brave',
+    bigIconTemplate: 'brave',
+    smallIconTemplate: '',
     title: 'Brave',
     subTitle: '',
     exePaths: getAllProgramFilesLocations(
@@ -12,7 +13,8 @@ const braveLocations = [
     userDataFolderPath: null
   },
   {
-    iconName: 'incognito',
+    bigIconTemplate: 'incognito',
+    smallIconTemplate: 'brave',
     title: 'Incognito',
     subTitle: 'Brave',
     exePaths: getAllProgramFilesLocations(
@@ -22,7 +24,8 @@ const braveLocations = [
     userDataFolderPath: null
   },
   {
-    iconName: 'brave',
+    bigIconTemplate: 'brave',
+    smallIconTemplate: '',
     title: 'Brave: beta',
     subTitle: '',
     exePaths: getAllProgramFilesLocations(
@@ -32,7 +35,8 @@ const braveLocations = [
     userDataFolderPath: null
   },
   {
-    iconName: 'incognito',
+    bigIconTemplate: 'incognito',
+    smallIconTemplate: 'brave',
     title: 'Incognito',
     subTitle: 'Brave: beta',
     exePaths: getAllProgramFilesLocations(
@@ -42,7 +46,8 @@ const braveLocations = [
     userDataFolderPath: null
   },
   {
-    iconName: 'brave',
+    bigIconTemplate: 'brave',
+    smallIconTemplate: '',
     title: 'Brave: nightly',
     subTitle: '',
     exePaths: getAllProgramFilesLocations(
@@ -52,7 +57,8 @@ const braveLocations = [
     userDataFolderPath: null
   },
   {
-    iconName: 'incognito',
+    bigIconTemplate: 'incognito',
+    smallIconTemplate: 'brave',
     title: 'Incognito',
     subTitle: 'Brave: nightly',
     exePaths: getAllProgramFilesLocations(

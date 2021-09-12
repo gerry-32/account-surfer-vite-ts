@@ -6,7 +6,8 @@ const WINUSER_DIRECTORY = app.getPath('home')
 
 const braveLocations = [
   {
-    iconName: 'opera',
+    bigIconTemplate: 'opera',
+    smallIconTemplate: '',
     title: 'Opera',
     subTitle: '',
     exePaths: [
@@ -17,7 +18,8 @@ const braveLocations = [
     userDataFolderPath: null
   },
   {
-    iconName: 'incognito',
+    bigIconTemplate: 'incognito',
+    smallIconTemplate: 'opera',
     title: 'Incognito',
     subTitle: 'Opera',
     exePaths: [
@@ -28,7 +30,8 @@ const braveLocations = [
     userDataFolderPath: null
   },
   {
-    iconName: 'opera',
+    bigIconTemplate: 'opera',
+    smallIconTemplate: '',
     title: 'Opera: beta',
     subTitle: '',
     exePaths: [
@@ -39,7 +42,8 @@ const braveLocations = [
     userDataFolderPath: null
   },
   {
-    iconName: 'incognito',
+    bigIconTemplate: 'incognito',
+    smallIconTemplate: 'opera',
     title: 'Incognito',
     subTitle: 'Opera: beta',
     exePaths: [
@@ -50,7 +54,8 @@ const braveLocations = [
     userDataFolderPath: null
   },
   {
-    iconName: 'opera',
+    bigIconTemplate: 'opera',
+    smallIconTemplate: '',
     title: 'Opera: dev',
     subTitle: '',
     exePaths: [
@@ -64,7 +69,8 @@ const braveLocations = [
     userDataFolderPath: null
   },
   {
-    iconName: 'incognito',
+    bigIconTemplate: 'incognito',
+    smallIconTemplate: 'opera',
     title: 'Incognito',
     subTitle: 'Opera: dev',
     exePaths: [
