@@ -40,7 +40,7 @@ export const browserLocations = [
         exePaths: [
           ...allProgramFilesLocations('Google\\Chrome\\Application\\chrome.exe'),
           path.join(
-            app.getPath('home'),
+            WINUSER_DIRECTORY,
             'AppData\\Local\\Google\\Chrome\\Application\\chrome.exe'
           )
         ]
@@ -215,7 +215,7 @@ export const browserLocations = [
         exePaths: [
           ...allProgramFilesLocations('Microsoft\\Edge\\Application\\msedge.exe'),
           path.join(
-            app.getPath('home'),
+            WINUSER_DIRECTORY,
             'AppData\\Local\\Microsoft\\Edge\\Application\\msedge.exe'
           )
         ]
@@ -233,7 +233,7 @@ export const browserLocations = [
         exePaths: [
           ...allProgramFilesLocations('Microsoft\\Edge Beta\\Application\\msedge.exe'),
           path.join(
-            app.getPath('home'),
+            WINUSER_DIRECTORY,
             'AppData\\Local\\Microsoft\\Edge Beta\\Application\\msedge.exe'
           )
         ]
@@ -251,7 +251,7 @@ export const browserLocations = [
         exePaths: [
           ...allProgramFilesLocations('Microsoft\\Edge Dev\\Application\\msedge.exe'),
           path.join(
-            app.getPath('home'),
+            WINUSER_DIRECTORY,
             'AppData\\Local\\Microsoft\\Edge Dev\\Application\\msedge.exe'
           )
         ]
@@ -269,7 +269,7 @@ export const browserLocations = [
         exePaths: [
           ...allProgramFilesLocations('Microsoft\\Edge SxS\\Application\\msedge.exe'),
           path.join(
-            app.getPath('home'),
+            WINUSER_DIRECTORY,
             'AppData\\Local\\Microsoft\\Edge SxS\\Application\\msedge.exe'
           )
         ]

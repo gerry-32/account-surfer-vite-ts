@@ -6,10 +6,7 @@ const WINUSER_DIRECTORY = app.getPath('home')
 
 const chromeStablePaths = [
   ...getAllProgramFilesLocations('Google\\Chrome\\Application\\chrome.exe'),
-  path.join(
-    app.getPath('home'),
-    'AppData\\Local\\Google\\Chrome\\Application\\chrome.exe'
-  )
+  path.join(WINUSER_DIRECTORY, 'AppData\\Local\\Google\\Chrome\\Application\\chrome.exe')
 ]
 
 const chromeStable = [

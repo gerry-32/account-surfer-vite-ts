@@ -40,6 +40,7 @@ export const getViewers = async () => {
               const accountName =
                 t(preferences, 'profile.name').safeObject ||
                 t(preferences, 'account_info.full_name').safeObject ||
+                t(preferences, 'account_info[0].edge_account_first_name').safeObject ||
                 'Account ?'
 
               const viewer = {
