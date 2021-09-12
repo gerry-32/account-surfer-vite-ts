@@ -5,7 +5,7 @@ import BrowserIcons from '../../../BrowserIcons'
 const DomainList = ({ viewer, state, storeState }: any) => {
   const { grid } = state
 
-  const { id, domains, iconName, title, subTitle } = viewer
+  const { id, domains, bigIcon, smallIcon, title, subTitle } = viewer
   const [newDomain, setNewDomain] = useState('')
 
   const updateDomains = (viewerId: any, domains: any) =>
@@ -18,7 +18,14 @@ const DomainList = ({ viewer, state, storeState }: any) => {
       <h3 className="mb-2">
         <img
           className="h-5 w-5 inline-block mr-1 align-text-bottom"
-          src={BrowserIcons[iconName]}
+          src={
+            bigIcon.fromSrc ||
+            bigIcon.fromFile ||
+            BrowserIcons[bigIcon.fromTemplate] ||
+            smallIcon.fromSrc ||
+            smallIcon.fromFile ||
+            BrowserIcons[smallIcon.fromTemplate]
+          }
           alt=""
         />
         {title}
