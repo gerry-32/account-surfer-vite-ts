@@ -10,7 +10,7 @@ const firefoxLocations = [
     userDataFolderPath: null
   },
   {
-    iconName: 'firefox',
+    iconName: 'incognito',
     title: 'Incognito',
     subTitle: 'Firefox',
     exePaths: getAllProgramFilesLocations('Mozilla Firefox\\firefox.exe'),
@@ -26,7 +26,7 @@ const firefoxLocations = [
     userDataFolderPath: null
   },
   {
-    iconName: 'firefox',
+    iconName: 'incognito',
     title: 'Incognito',
     subTitle: 'Firefox: dev',
     exePaths: getAllProgramFilesLocations('Firefox Developer Edition\\firefox.exe'),
@@ -42,7 +42,7 @@ const firefoxLocations = [
     userDataFolderPath: null
   },
   {
-    iconName: 'firefox',
+    iconName: 'incognito',
     title: 'Incognito',
     subTitle: 'Firefox: nightly',
     exePaths: getAllProgramFilesLocations('Firefox Nightly\\firefox.exe'),

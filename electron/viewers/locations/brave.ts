@@ -12,7 +12,7 @@ const braveLocations = [
     userDataFolderPath: null
   },
   {
-    iconName: 'brave',
+    iconName: 'incognito',
     title: 'Incognito',
     subTitle: 'Brave',
     exePaths: getAllProgramFilesLocations(
@@ -32,7 +32,7 @@ const braveLocations = [
     userDataFolderPath: null
   },
   {
-    iconName: 'brave',
+    iconName: 'incognito',
     title: 'Incognito',
     subTitle: 'Brave: beta',
     exePaths: getAllProgramFilesLocations(
@@ -52,7 +52,7 @@ const braveLocations = [
     userDataFolderPath: null
   },
   {
-    iconName: 'brave',
+    iconName: 'incognito',
     title: 'Incognito',
     subTitle: 'Brave: nightly',
     exePaths: getAllProgramFilesLocations(

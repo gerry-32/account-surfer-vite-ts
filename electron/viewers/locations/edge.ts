@@ -19,7 +19,7 @@ const edgeStable = [
     userDataFolderPath: 'AppData\\Local\\Microsoft\\Edge\\User Data'
   },
   {
-    iconName: 'edge',
+    iconName: 'incognito',
     title: 'Incognito',
     subTitle: 'Edge',
     exePaths: edgeStablePaths,
@@ -46,7 +46,7 @@ const edgeBeta = [
     userDataFolderPath: 'AppData\\Local\\Microsoft\\Edge Beta\\User Data'
   },
   {
-    iconName: 'edge',
+    iconName: 'incognito',
     title: 'Incognito',
     subTitle: 'Edge: beta',
     exePaths: edgeBetaPaths,
@@ -73,7 +73,7 @@ const edgeDev = [
     userDataFolderPath: 'AppData\\Local\\Microsoft\\Edge Dev\\User Data'
   },
   {
-    iconName: 'edge',
+    iconName: 'incognito',
     title: 'Incognito',
     subTitle: 'Edge: dev',
     exePaths: edgeDevPaths,
@@ -100,7 +100,7 @@ const edgeCanary = [
     userDataFolderPath: 'AppData\\Local\\Microsoft\\Edge SxS\\User Data'
   },
   {
-    iconName: 'edge',
+    iconName: 'incognito',
     title: 'Incognito',
     subTitle: 'Edge: canary',
     exePaths: edgeCanaryPaths,

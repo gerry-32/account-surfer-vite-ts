@@ -1,4 +1,4 @@
-import { getViewers } from './viewers/getViewers'
+import { getViewers } from './viewers'
 
 const LAYOUT_COLS_NUMBER = 3
 

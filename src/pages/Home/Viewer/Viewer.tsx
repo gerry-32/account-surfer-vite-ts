@@ -12,7 +12,7 @@ const Viewer = ({
   state,
   storeState
 }: any) => {
-  const { isVisible, account, browser, incognito, channelName } = viewer
+  const { isVisible, title, subTitle } = viewer
   const { isOnline } = useOnlineStatus()
   return (
     <div
@@ -33,18 +33,8 @@ const Viewer = ({
       {isOnline && <Avatar {...{ viewer }} />}
       <div className="flex-1 min-w-0 pl-2">
         <div className="">
-          <p className="text-sm font-medium text-gray-300 truncate">
-            {account?.title || incognito?.title || browser?.title}
-            {!(account?.title || incognito?.title) &&
-              channelName !== 'stable' &&
-              `: ${channelName}`}
-          </p>
-          <p className="text-sm text-gray-500 truncate">
-            {account?.title || incognito?.title ? browser?.title : ''}
-            {(account?.title || incognito?.title) &&
-              channelName !== 'stable' &&
-              `: ${channelName}`}
-          </p>
+          <p className="text-sm font-medium text-gray-300 truncate">{title}</p>
+          <p className="text-sm text-gray-500 truncate">{subTitle}</p>
         </div>
       </div>
       {dragEnabled && (

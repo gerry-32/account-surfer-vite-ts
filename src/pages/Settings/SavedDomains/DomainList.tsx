@@ -5,8 +5,7 @@ import BrowserIcons from '../../../BrowserIcons'
 const DomainList = ({ viewer, state, storeState }: any) => {
   const { grid } = state
 
-  const { id, browser, channelName, account, incognito, domains } = viewer
-  const userTitle = account?.title || incognito?.title
+  const { id, domains, iconName, title, subTitle } = viewer
   const [newDomain, setNewDomain] = useState('')
 
   const updateDomains = (viewerId: any, domains: any) =>
@@ -19,12 +18,11 @@ const DomainList = ({ viewer, state, storeState }: any) => {
       <h3 className="mb-2">
         <img
           className="h-5 w-5 inline-block mr-1 align-text-bottom"
-          src={BrowserIcons[browser?.name]}
+          src={BrowserIcons[iconName]}
           alt=""
         />
-        {browser.title}
-        {channelName !== 'stable' && ` ${channelName}`}
-        {userTitle && `: ${userTitle}`}
+        {title}
+        {subTitle && ` | ${subTitle}`}
       </h3>
       <div className="">
         {domains.map((domain: any) => (

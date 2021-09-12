@@ -19,7 +19,7 @@ const chromeStable = [
     userDataFolderPath: 'AppData\\Local\\Google\\Chrome\\User Data'
   },
   {
-    iconName: 'chrome',
+    iconName: 'incognito',
     title: 'Incognito',
     subTitle: 'Chrome',
     exePaths: chromeStablePaths,
@@ -42,7 +42,7 @@ const chromeBeta = [
     userDataFolderPath: 'AppData\\Local\\Google\\Chrome Beta\\User Data'
   },
   {
-    iconName: 'chrome',
+    iconName: 'incognito',
     title: 'Incognito',
     subTitle: 'Chrome: beta',
     exePaths: chromeBetaPaths,
@@ -65,7 +65,7 @@ const chromeDev = [
     userDataFolderPath: 'AppData\\Local\\Google\\Chrome Dev\\User Data'
   },
   {
-    iconName: 'chrome',
+    iconName: 'incognito',
     title: 'Incognito',
     subTitle: 'Chrome: dev',
     exePaths: chromeDevPaths,
@@ -92,7 +92,7 @@ const chromeCanary = [
     userDataFolderPath: 'AppData\\Local\\Google\\Chrome SxS\\User Data'
   },
   {
-    iconName: 'chrome',
+    iconName: 'incognito',
     title: 'Incognito',
     subTitle: 'Chrome: canary',
     exePaths: chromeCanaryPaths,

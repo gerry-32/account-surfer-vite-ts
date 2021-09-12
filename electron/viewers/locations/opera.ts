@@ -17,7 +17,7 @@ const braveLocations = [
     userDataFolderPath: null
   },
   {
-    iconName: 'opera',
+    iconName: 'incognito',
     title: 'Incognito',
     subTitle: 'Opera',
     exePaths: [
@@ -39,7 +39,7 @@ const braveLocations = [
     userDataFolderPath: null
   },
   {
-    iconName: 'opera',
+    iconName: 'incognito',
     title: 'Incognito',
     subTitle: 'Opera: beta',
     exePaths: [
@@ -64,7 +64,7 @@ const braveLocations = [
     userDataFolderPath: null
   },
   {
-    iconName: 'opera',
+    iconName: 'incognito',
     title: 'Incognito',
     subTitle: 'Opera: dev',
     exePaths: [
