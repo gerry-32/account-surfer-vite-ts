@@ -37,7 +37,7 @@ const firefoxLocations = [
     iconName: 'firefox',
     title: 'Firefox: nightly',
     subTitle: '',
-    exePaths: getAllProgramFilesLocations('Firefox Developer Edition\\firefox.exe'),
+    exePaths: getAllProgramFilesLocations('Firefox Nightly\\firefox.exe'),
     commandLineArguments: '',
     userDataFolderPath: null
   },
@@ -45,7 +45,7 @@ const firefoxLocations = [
     iconName: 'firefox',
     title: 'Incognito',
     subTitle: 'Firefox: nightly',
-    exePaths: getAllProgramFilesLocations('Firefox Developer Edition\\firefox.exe'),
+    exePaths: getAllProgramFilesLocations('Firefox Nightly\\firefox.exe'),
     commandLineArguments: '-private',
     userDataFolderPath: null
   }

@@ -10,5 +10,6 @@
 // } from './getChromiumAccount'
 import chromeLocations from './chrome'
 import firefoxLocations from './firefox'
+import braveLocations from './brave'
 
-export default [...chromeLocations, ...firefoxLocations]
+export default [...chromeLocations, ...firefoxLocations, ...braveLocations]

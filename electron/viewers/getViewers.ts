@@ -47,7 +47,7 @@ export const getViewers = async () => {
                 iconName: location.iconName,
                 title: accountName.replace(/^./, (s: any) => s.toUpperCase()),
                 subTitle: location.subTitle,
-                commandLineArguments: ` --profile-directory="${userDataFolderSub}"`
+                commandLineArguments: `--profile-directory="${userDataFolderSub}"`
               }
 
               const pictureUrl = t(preferences, 'account_info[0].picture_url').safeObject
