@@ -1,53 +1,25 @@
-// import { app } from 'electron'
-// import path from 'path'
-// import https from 'https'
-// import base64Img from 'base64-img'
-// import t from 'typy'
-// import { startLogging } from './log'
 import electronLog from './log'
 import { getViewers } from './viewers/getViewers'
 
-// const log = startLogging();
-
 const LAYOUT_COLS_NUMBER = 3
 
-// const getViewers = async (existingBrowsers: any) => {
-//   const viewers = []
-//   for (const browser of existingBrowsers) {
-//     if (browser.accountDetails) {
-//       const accounts = await browser.accountDetails.resolver(browser)
-//       viewers.push(...accounts)
-//     } else {
-//       viewers.push(browser)
-//     }
-//   }
-//   return viewers
-// }
-
-// const generateGrid = (viewers: any) =>
-//   viewers.map((viewer: any, index: any) => ({
-//     ...viewer,
-//     id: index,
-//     domains: [],
-//     isVisible: true,
-//     x: index % LAYOUT_COLS_NUMBER,
-//     y: Math.floor(index / LAYOUT_COLS_NUMBER)
-//   }))
+const generateGrid = (viewers: any) =>
+  viewers.map((viewer: any, index: any) => ({
+    ...viewer,
+    domains: [],
+    isVisible: true,
+    x: index % LAYOUT_COLS_NUMBER,
+    y: Math.floor(index / LAYOUT_COLS_NUMBER)
+  }))
 
 export const getBrowserGrid = async () => {
-  const allViewers = await getViewers()
-
-  // const allViewers = [
-  //   ...nonChromiumViewers
-  //   // ...chromiumViewersWithAccounts,
-  //   // ...chromiumViewersWithoutAccounts
-  // ]
-  electronLog.info(allViewers)
-  // const grid = generateGrid()
+  const viewers = await getViewers()
+  const grid = generateGrid(viewers)
 
   // const viewers = await getViewers(existingBrowsers)
   // const grid = generateGrid(allViewers)
   // return grid
+  electronLog.info(grid)
   return []
 }
 

@@ -16,13 +16,25 @@ const isProfileFolder = (userDataFolder: any) =>
 export const getViewers = async () => {
   const viewers = []
   for (const location of viewerLocations) {
-    for (const exePath of location.exePaths) {
+    const {
+      iconName,
+      title,
+      subTitle,
+      exePaths,
+      commandLineArguments,
+      userDataFolderPath
+    } = location
+
+    for (const exePath of exePaths) {
       try {
         await fs.promises.access(exePath, fs.constants.R_OK)
 
-        if (location.userDataFolderPath) {
+        const sanitize = (str: string) =>
+          str.replace(/(?: |\!|\@|\#|\$|\%|\^|\&|\*|\(\)|\_|\:|\;)/gi, '-')
+
+        if (userDataFolderPath) {
           const userDataFolderSubs = await fs.promises.readdir(
-            path.join(WINUSER_DIRECTORY, location.userDataFolderPath)
+            path.join(WINUSER_DIRECTORY, userDataFolderPath)
           )
 
           for (const userDataFolderSub of userDataFolderSubs) {
@@ -30,7 +42,7 @@ export const getViewers = async () => {
               const preferencesFile = await fs.promises.readFile(
                 path.join(
                   WINUSER_DIRECTORY,
-                  location.userDataFolderPath,
+                  userDataFolderPath,
                   userDataFolderSub,
                   'Preferences'
                 ),
@@ -43,11 +55,16 @@ export const getViewers = async () => {
                 t(preferences, 'account_info[0].edge_account_first_name').safeObject ||
                 'Account ?'
 
+              const viewerTitle = accountName.replace(/^./, (s: any) => s.toUpperCase())
+
               const viewer = {
+                id: `${sanitize(subTitle)}_${sanitize(viewerTitle)}_${sanitize(
+                  userDataFolderSub
+                )}`.toLocaleLowerCase(),
                 exePath: exePath,
-                iconName: location.iconName,
-                title: accountName.replace(/^./, (s: any) => s.toUpperCase()),
-                subTitle: location.subTitle,
+                iconName: iconName,
+                title: viewerTitle,
+                subTitle: subTitle,
                 commandLineArguments: `--profile-directory="${userDataFolderSub}"`
               }
 
@@ -60,11 +77,14 @@ export const getViewers = async () => {
           }
         } else {
           viewers.push({
+            id: `${title}_${sanitize(subTitle)}_${sanitize(
+              commandLineArguments
+            )}`.toLocaleLowerCase(),
             exePath: exePath,
-            iconName: location.iconName,
-            title: location.title,
-            subTitle: location.subTitle,
-            commandLineArguments: location.commandLineArguments
+            iconName: iconName,
+            title: title,
+            subTitle: subTitle,
+            commandLineArguments: commandLineArguments
           })
         }
       } catch (e) {

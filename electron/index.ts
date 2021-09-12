@@ -1,7 +1,7 @@
-import { join } from 'path'
+// import { join } from 'path'
 import { exec } from 'child_process'
 import { BrowserWindow, app, Menu, ipcMain, globalShortcut } from 'electron'
-import isDev from 'electron-is-dev'
+// import isDev from 'electron-is-dev'
 import { initStore } from './store'
 import browserWindowConfig from './browserWindow'
 import { createTray } from './tray'
@@ -153,14 +153,14 @@ try {
               }
             })
 
-            const port = process.env.PORT || 3000
-            const url = isDev
-              ? `http://localhost:${port}`
-              : join(__dirname, '../src/out/index.html')
+            // const port = process.env.PORT || 3000
+            // const url = isDev
+            //   ? `http://localhost:${port}`
+            //   : join(__dirname, '../src/out/index.html')
 
-            isDev ? mainWindow?.loadURL(url) : mainWindow?.loadFile(url)
+            // isDev ? mainWindow?.loadURL(url) : mainWindow?.loadFile(url)
 
-            if (isDev) mainWindow.webContents.openDevTools({ mode: 'undocked' })
+            // if (isDev) mainWindow.webContents.openDevTools({ mode: 'undocked' })
           } catch (e) {
             electronLog.error(e)
           }

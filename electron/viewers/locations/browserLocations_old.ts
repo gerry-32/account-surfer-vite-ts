@@ -9,7 +9,7 @@ import { app } from 'electron'
 import {
   getChromiumAccount
   // generateProfileId,
-} from './getChromiumAccount'
+} from '../getChromiumAccount_old'
 
 const WINUSER_DIRECTORY = app.getPath('home')
 
