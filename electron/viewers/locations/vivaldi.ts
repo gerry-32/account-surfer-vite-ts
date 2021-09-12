@@ -11,7 +11,8 @@ const vivaldiStablePaths = [
 
 const vivaldiStable = [
   {
-    iconName: 'vivaldi',
+    bigIconTemplate: 'vivaldi',
+    smallIconTemplate: '',
     title: '',
     subTitle: 'Vivaldi',
     exePaths: vivaldiStablePaths,
@@ -19,7 +20,8 @@ const vivaldiStable = [
     userDataFolderPath: 'AppData\\Local\\Vivaldi\\User Data'
   },
   {
-    iconName: 'incognito',
+    bigIconTemplate: 'incognito',
+    smallIconTemplate: 'vivaldi',
     title: 'Incognito',
     subTitle: 'Vivaldi',
     exePaths: vivaldiStablePaths,

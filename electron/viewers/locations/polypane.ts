@@ -2,7 +2,8 @@ import { getAllProgramFilesLocations } from './utils'
 
 const polypaneLocations = [
   {
-    iconName: 'polypane',
+    bigIconTemplate: 'polypane',
+    smallIconTemplate: '',
     title: 'Polypane',
     subTitle: '',
     exePaths: getAllProgramFilesLocations('Polypane\\Polypane.exe'),

@@ -11,7 +11,8 @@ const edgeStablePaths = [
 
 const edgeStable = [
   {
-    iconName: 'edge',
+    bigIconTemplate: 'edge',
+    smallIconTemplate: '',
     title: '',
     subTitle: 'Edge',
     exePaths: edgeStablePaths,
@@ -19,7 +20,8 @@ const edgeStable = [
     userDataFolderPath: 'AppData\\Local\\Microsoft\\Edge\\User Data'
   },
   {
-    iconName: 'incognito',
+    bigIconTemplate: 'incognito',
+    smallIconTemplate: 'edge',
     title: 'Incognito',
     subTitle: 'Edge',
     exePaths: edgeStablePaths,
@@ -38,7 +40,8 @@ const edgeBetaPaths = [
 
 const edgeBeta = [
   {
-    iconName: 'edge',
+    bigIconTemplate: 'edge',
+    smallIconTemplate: '',
     title: '',
     subTitle: 'Edge: beta',
     exePaths: edgeBetaPaths,
@@ -46,7 +49,8 @@ const edgeBeta = [
     userDataFolderPath: 'AppData\\Local\\Microsoft\\Edge Beta\\User Data'
   },
   {
-    iconName: 'incognito',
+    bigIconTemplate: 'incognito',
+    smallIconTemplate: 'edge',
     title: 'Incognito',
     subTitle: 'Edge: beta',
     exePaths: edgeBetaPaths,
@@ -65,7 +69,8 @@ const edgeDevPaths = [
 
 const edgeDev = [
   {
-    iconName: 'edge',
+    bigIconTemplate: 'edge',
+    smallIconTemplate: '',
     title: '',
     subTitle: 'Edge: dev',
     exePaths: edgeDevPaths,
@@ -73,7 +78,8 @@ const edgeDev = [
     userDataFolderPath: 'AppData\\Local\\Microsoft\\Edge Dev\\User Data'
   },
   {
-    iconName: 'incognito',
+    bigIconTemplate: 'incognito',
+    smallIconTemplate: 'edge',
     title: 'Incognito',
     subTitle: 'Edge: dev',
     exePaths: edgeDevPaths,
@@ -92,7 +98,8 @@ const edgeCanaryPaths = [
 
 const edgeCanary = [
   {
-    iconName: 'edge',
+    bigIconTemplate: 'edge',
+    smallIconTemplate: '',
     title: '',
     subTitle: 'Edge: canary',
     exePaths: edgeCanaryPaths,
@@ -100,7 +107,8 @@ const edgeCanary = [
     userDataFolderPath: 'AppData\\Local\\Microsoft\\Edge SxS\\User Data'
   },
   {
-    iconName: 'incognito',
+    bigIconTemplate: 'incognito',
+    smallIconTemplate: 'edge',
     title: 'Incognito',
     subTitle: 'Edge: canary',
     exePaths: edgeCanaryPaths,
