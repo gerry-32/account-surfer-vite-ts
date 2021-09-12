@@ -1,4 +1,3 @@
-import electronLog from './log'
 import { getViewers } from './viewers/getViewers'
 
 const LAYOUT_COLS_NUMBER = 3
@@ -15,12 +14,7 @@ const generateGrid = (viewers: any) =>
 export const getBrowserGrid = async () => {
   const viewers = await getViewers()
   const grid = generateGrid(viewers)
-
-  // const viewers = await getViewers(existingBrowsers)
-  // const grid = generateGrid(allViewers)
-  // return grid
-  electronLog.info(grid)
-  return []
+  return grid
 }
 
 export const getMergedGrid = (freshGrid: any, storedGrid: any) => {

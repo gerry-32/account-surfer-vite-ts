@@ -8,7 +8,7 @@ import { createTray } from './tray'
 import { openUrl } from './url'
 import electronLog from './log'
 import { findDomainInViewer, getUrlFromArgv } from './utils'
-import { getBrowserGrid, getMergedGrid } from './getBrowserGrid'
+import { getBrowserGrid, getMergedGrid } from './grid'
 
 try {
   electronLog.warn('@@@@@@@ MAIN STARTED @@@@@@@')

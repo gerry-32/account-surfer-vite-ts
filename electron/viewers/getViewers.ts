@@ -30,7 +30,7 @@ export const getViewers = async () => {
         await fs.promises.access(exePath, fs.constants.R_OK)
 
         const sanitize = (str: string) =>
-          str.replace(/(?: |\!|\@|\#|\$|\%|\^|\&|\*|\(\)|\_|\:|\;)/gi, '-')
+          str.replace(/\s|\!|\@|\#|\$|\%|\^|\&|\*|\(\)|\_|\:|\;/gi, '-')
 
         if (userDataFolderPath) {
           const userDataFolderSubs = await fs.promises.readdir(
@@ -57,6 +57,11 @@ export const getViewers = async () => {
 
               const viewerTitle = accountName.replace(/^./, (s: any) => s.toUpperCase())
 
+              let combinedId = `${sanitize(subTitle)}`
+              if (viewerTitle) combinedId += `_${sanitize(viewerTitle)}`
+              if (userDataFolderSub) combinedId += `_${sanitize(userDataFolderSub)}`
+              combinedId = combinedId.toLocaleLowerCase()
+
               const viewer = {
                 id: `${sanitize(subTitle)}_${sanitize(viewerTitle)}_${sanitize(
                   userDataFolderSub
@@ -76,10 +81,13 @@ export const getViewers = async () => {
             }
           }
         } else {
+          let combinedId = `${sanitize(title)}`
+          if (subTitle) combinedId += `_${sanitize(subTitle)}`
+          if (commandLineArguments) combinedId += `_${sanitize(commandLineArguments)}`
+          combinedId = combinedId.toLocaleLowerCase()
+
           viewers.push({
-            id: `${title}_${sanitize(subTitle)}_${sanitize(
-              commandLineArguments
-            )}`.toLocaleLowerCase(),
+            id: combinedId,
             exePath: exePath,
             iconName: iconName,
             title: title,
