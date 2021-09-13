@@ -12,19 +12,15 @@ const Home = ({ state, storeState }: any) => {
   const { url, grid, showHidden, shouldSaveDomain } = state
 
   useKeyPress(
-    ({ code }: any) => code === 'KeyD',
+    ({ code }: any) => code === 'KeyA',
     () => {
       if (!showHidden) storeState({ dragEnabled: false })
       storeState({ showHidden: !showHidden })
     }
   )
-  useKeyPress(
-    ({ code }: any) => code === 'KeyA',
-    () => storeState({ shouldSaveDomain: !shouldSaveDomain })
-  )
 
-  const openUrlInViewer = (viewer: any) => {
-    if (shouldSaveDomain) {
+  const openUrlInViewer = (viewer: any, ctrlEnabled: boolean) => {
+    if (shouldSaveDomain || ctrlEnabled) {
       storeState({
         shouldSaveDomain: false,
         grid: grid.map((v: any) =>
@@ -51,7 +47,6 @@ const Home = ({ state, storeState }: any) => {
             height: SAVE_DOMAIN_PANEL_HEIGHT,
             boxShadow: url ? '#1c2531 -12px -5px 5px 0px' : ''
           }}
-          title='Hotkey: "a"'
         >
           <div className="flex items-center h-5">
             <input

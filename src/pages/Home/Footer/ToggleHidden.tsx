@@ -9,7 +9,7 @@ const ToggleHidden = ({ state, storeState }: any) => {
         showHidden ? 'bg-blue-600' : 'bg-gray-600'
       } relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full transition-colors ease-in-out duration-200`}
       aria-pressed={showHidden ? 'true' : 'false'}
-      title='Show hidden accounts (Hotkey: "d")'
+      title='Show All accounts (Hotkey: "a")'
       onClick={() => {
         if (!showHidden) storeState({ dragEnabled: false })
         storeState({ showHidden: !showHidden })

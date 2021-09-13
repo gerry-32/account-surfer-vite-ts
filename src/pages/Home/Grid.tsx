@@ -28,7 +28,7 @@ const Grid = ({ openUrlInViewer, state, storeState }: any) => {
     ({ code, metaKey }: any) => !dragEnabled && code.includes('Digit') && !metaKey,
     (e: any) => {
       const viewerIndex = +e.key - 1
-      openUrlInViewer(currentModeLayout[viewerIndex])
+      openUrlInViewer(currentModeLayout[viewerIndex], e.ctrlKey)
     }
   )
 
@@ -56,7 +56,12 @@ const Grid = ({ openUrlInViewer, state, storeState }: any) => {
       {currentModeLayout.map((viewer: any, index: any): any => {
         const linearIndex = dragEnabled ? getVisibleIndex(viewer, grid) : index
         return (
-          <div key={viewer.id} title={`Hotkey: "${linearIndex + 1}"`}>
+          <div
+            key={viewer.id}
+            title={`Hotkey: "${linearIndex + 1}", save domain and open: "ctrl+${
+              linearIndex + 1
+            }"`}
+          >
             <Viewer
               {...{
                 viewer,

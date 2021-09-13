@@ -19,7 +19,7 @@ const Viewer = ({
       className={`flex relative px-2 py-2 shadow-sm items-center hover:shadow-lg ${
         isVisible ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-800 hover:bg-gray-700'
       }`}
-      onClick={() => !dragEnabled && openUrlInViewer(viewer)}
+      onClick={e => !dragEnabled && openUrlInViewer(viewer, e.ctrlKey)}
     >
       {linearIndex !== -1 && linearIndex < 9 && (
         <div

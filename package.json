@@ -40,6 +40,9 @@
     "regedit": "^5.0.0",
     "typy": "^3.3.0"
   },
+  "dependenciesComments": {
+    "electron": "not using 14.* cause of draggable issues https://github.com/electron/electron/issues/30788"
+  },
   "devDependencies": {
     "@types/babel__core": "^7.1.16",
     "@types/node": "^16.9.1",
