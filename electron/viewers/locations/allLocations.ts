@@ -5,6 +5,7 @@ import operaLocations from './opera'
 import vivaldiLocations from './vivaldi'
 import edgeLocations from './edge'
 import polypaneLocations from './polypane'
+import sidekickLocations from './sidekick'
 
 export default [
   ...chromeLocations,
@@ -13,5 +14,6 @@ export default [
   ...operaLocations,
   ...vivaldiLocations,
   ...edgeLocations,
-  ...polypaneLocations
+  ...polypaneLocations,
+  ...sidekickLocations
 ]

@@ -5,6 +5,7 @@ import edge from './edge.svg'
 import firefox from './firefox.svg'
 import vivaldi from './vivaldi.svg'
 import polypane from './polypane.svg'
+import sidekick from './sidekick.svg'
 import incognito from './incognito.svg'
 
 const BrowserIcons: any = {
@@ -15,6 +16,7 @@ const BrowserIcons: any = {
   firefox,
   vivaldi,
   polypane,
+  sidekick,
   incognito
 }
 
