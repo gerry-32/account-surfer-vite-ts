@@ -15,6 +15,7 @@ const ViewerSection = ({ viewer, state, storeState }: any) => {
       smallIcon.fromFile ||
       BrowserIcons[smallIcon.fromTemplate]
   )
+  const [addDomainEnabled, setAddDomainEnabled] = useState(false)
 
   const updateDomains = (viewerId: any, domains: any) =>
     storeState({
@@ -56,17 +57,7 @@ const ViewerSection = ({ viewer, state, storeState }: any) => {
             </div>
           </div>
         ))}
-        {newDomain === null ? (
-          <div
-            className="inline-flex p-1 pl-4 m-0.5 relative bg-green-800 hover:bg-green-600"
-            onClick={() => setNewDomain('')}
-          >
-            <div className="inset-y-0 left-0 absolute ">
-              <PlusIcon className="w-6 h-4 mt-1.5 " />
-            </div>
-            <div className="inline-flex px-1.5 text-sm text-gray-200">domain</div>
-          </div>
-        ) : (
+        {addDomainEnabled ? (
           <>
             <input
               autoFocus
@@ -79,17 +70,22 @@ const ViewerSection = ({ viewer, state, storeState }: any) => {
             <div
               className="inline-flex p-1 h-7 align-baseline m-0.5 relative bg-red-900 hover:bg-red-800"
               onClick={() => {
-                // TODO fix return null
                 setNewDomain('')
+                setAddDomainEnabled(false)
               }}
             >
               <div className="inline-flex px-1.5 text-sm text-gray-200">Cancel</div>
             </div>
             <div
-              className="inline-flex p-1 h-7 align-baseline pl-4 m-0.5 relative bg-blue-700 hover:bg-blue-600"
+              className={`inline-flex p-1 h-7 align-baseline pl-4 m-0.5 relative ${
+                newDomain.length
+                  ? ' bg-blue-700 hover:bg-blue-600 text-gray-200'
+                  : ' bg-gray-700 text-gray-500'
+              }`}
               onClick={() => {
                 if (newDomain) {
                   updateDomains(viewer.id, [...domains, newDomain])
+                  setAddDomainEnabled(false)
                   setNewDomain('')
                 }
               }}
@@ -97,9 +93,21 @@ const ViewerSection = ({ viewer, state, storeState }: any) => {
               <div className="inset-y-0 left-0 absolute ">
                 <CheckIcon className="w-6 h-4 mt-1.5 " />
               </div>
-              <div className="inline-flex px-1.5 text-sm text-gray-200">Save</div>
+              <div className="inline-flex px-1.5 text-sm ">Save</div>
             </div>
           </>
+        ) : (
+          <div
+            className="inline-flex p-1 pl-4 m-0.5 relative bg-green-800 hover:bg-green-600"
+            onClick={() => {
+              setAddDomainEnabled(true)
+            }}
+          >
+            <div className="inset-y-0 left-0 absolute ">
+              <PlusIcon className="w-6 h-4 mt-1.5 " />
+            </div>
+            <div className="inline-flex px-1.5 text-sm text-gray-200">domain</div>
+          </div>
         )}
       </div>
     </div>
