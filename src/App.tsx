@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Switch, Route, useHistory } from 'react-router-dom'
+import { Switch, Route, useHistory, useLocation } from 'react-router-dom'
 import copy from 'copy-to-clipboard'
 import TitleBar from './TitleBar'
 import Home from './pages/Home'
@@ -15,7 +15,7 @@ function App() {
   const { url, currentPage, isDefaultBrowser } = useStoreChange('app')
 
   useEffect(() => {
-    history.push(currentPage)
+    if (history.location.pathname !== currentPage) history.push(currentPage)
   }, [currentPage])
 
   useKeyPress(
