@@ -2,11 +2,19 @@ import React, { useState } from 'react'
 import { PlusIcon, CheckIcon, XIcon } from '@heroicons/react/solid'
 import BrowserIcons from '../../../BrowserIcons'
 
-const DomainList = ({ viewer, state, storeState }: any) => {
+const ViewerSection = ({ viewer, state, storeState }: any) => {
   const { grid } = state
 
   const { id, domains, bigIcon, smallIcon, title, subTitle } = viewer
   const [newDomain, setNewDomain] = useState('')
+  const [imgSrc, setImgSrc] = useState(
+    bigIcon.fromSrc ||
+      bigIcon.fromFile ||
+      BrowserIcons[bigIcon.fromTemplate] ||
+      smallIcon.fromSrc ||
+      smallIcon.fromFile ||
+      BrowserIcons[smallIcon.fromTemplate]
+  )
 
   const updateDomains = (viewerId: any, domains: any) =>
     storeState({
@@ -18,15 +26,12 @@ const DomainList = ({ viewer, state, storeState }: any) => {
       <h3 className="mb-2">
         <img
           className="h-5 w-5 inline-block mr-1 align-text-bottom"
-          src={
-            bigIcon.fromSrc ||
-            bigIcon.fromFile ||
-            BrowserIcons[bigIcon.fromTemplate] ||
-            smallIcon.fromSrc ||
-            smallIcon.fromFile ||
-            BrowserIcons[smallIcon.fromTemplate]
-          }
+          src={imgSrc}
           alt=""
+          onError={() => {
+            window.electronLog.warn(`image loading failed: ${imgSrc}`)
+            setImgSrc(BrowserIcons[bigIcon.fromTemplate])
+          }}
         />
         {title}
         {subTitle && ` | ${subTitle}`}
@@ -101,4 +106,4 @@ const DomainList = ({ viewer, state, storeState }: any) => {
   )
 }
 
-export default DomainList
+export default ViewerSection

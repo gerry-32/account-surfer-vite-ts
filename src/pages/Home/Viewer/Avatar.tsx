@@ -28,7 +28,7 @@ const Avatar = ({ viewer }: any) => {
         style={{ filter: isVisible ? 'none' : 'grayscale(80%)' }}
         onError={() => {
           setBigIconLoadFailed(true)
-          window.electronLog.error(`image loading failed: ${bigIconSrc}`)
+          window.electronLog.warn(`image loading failed: ${bigIconSrc}`)
           setBigIconSrc(BrowserIcons[bigIcon.fromTemplate])
         }}
       />
