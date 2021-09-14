@@ -108,7 +108,7 @@ try {
 
             store.set('grid', actualGrid)
 
-            ipcMain.on('requestOpenDevTools', () => {
+            ipcMain.handle('openDevTools', () => {
               try {
                 mainWindow.webContents.openDevTools({ mode: 'undocked' })
               } catch (e) {
@@ -116,25 +116,25 @@ try {
               }
             })
 
-            ipcMain.on('requestHideWindow', hideAS)
+            ipcMain.handle('hideWindow', hideAS)
 
-            ipcMain.on('requestOpenUrl', (_, viewer) => {
+            ipcMain.handle('openUrl', (_, viewer) => {
               store.set('currentPage', '/')
               onOpenUrl({ viewer, url: store.get('url') })
             })
 
-            ipcMain.on('requestOpenWindowsSettings', () =>
+            ipcMain.handle('openWindowsSettings', () =>
               exec('start ms-settings:defaultapps')
             )
 
-            ipcMain.on('requestResetBrowserList', () => {
+            ipcMain.handle('resetBrowserList', async () => {
               try {
-                store.set('currentPage', '/')
-                getBrowserGrid().then(freshGrid => {
-                  store.set('grid', freshGrid)
-                })
+                const freshGrid = await getBrowserGrid()
+                store.set({ grid: freshGrid, currentPage: '/' })
+                return { message: 'All browsers has been reset' }
               } catch (e) {
                 electronLog.error(e)
+                return { error: "Can't reset browser" }
               }
             })
 
@@ -160,7 +160,7 @@ try {
               }
             })
 
-            ipcMain.on('requestStoreSet', (_, data: any) => {
+            ipcMain.handle('storeSet', (_, data: any) => {
               try {
                 store.set(data)
               } catch (e) {

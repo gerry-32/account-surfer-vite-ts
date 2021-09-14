@@ -6,7 +6,6 @@ declare global {
   interface Window {
     electronLog: any
     initialStoreData: any
-    sendEvent: any
     invokeEvent: any
     onStoreChange: any
   }
@@ -16,10 +15,6 @@ try {
   electronLog.log('@@@@@@@ PRELOAD STARTED @@@@@@@')
   webFrame.setZoomFactor(1)
   const electronStore = initStore()
-
-  const sendEvent = (eventName: string, data: any) => {
-    ipcRenderer.send(eventName, data)
-  }
 
   const invokeEvent = (eventName: string, data: any) =>
     ipcRenderer.invoke(eventName, data)
@@ -32,7 +27,6 @@ try {
 
   contextBridge.exposeInMainWorld('electronLog', electronLog)
   contextBridge.exposeInMainWorld('initialStoreData', electronStore.store)
-  contextBridge.exposeInMainWorld('sendEvent', sendEvent)
   contextBridge.exposeInMainWorld('invokeEvent', invokeEvent)
   contextBridge.exposeInMainWorld('onStoreChange', onStoreChange)
 } catch (e) {

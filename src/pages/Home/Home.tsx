@@ -28,7 +28,7 @@ const Home = ({ state, storeState }: any) => {
         )
       })
     }
-    window.sendEvent('requestOpenUrl', viewer)
+    window.invokeEvent('openUrl', viewer)
   }
 
   return (

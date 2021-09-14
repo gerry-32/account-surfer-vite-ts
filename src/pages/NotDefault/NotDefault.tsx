@@ -20,7 +20,7 @@ const NotDefault = () => {
       <div className="flex leading-4 px-8 py-3">
         <div
           className="ml-auto -mt-0.5 px-2 inline-flex items-center py-1 border border-transparent text-xs font-medium text-gray-300 bg-blue-600 hover:bg-blue-500 cursor-default"
-          onClick={() => window.sendEvent('requestOpenWindowsSettings')}
+          onClick={() => window.invokeEvent('openWindowsSettings')}
         >
           Go to Windows settings
         </div>

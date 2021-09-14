@@ -21,14 +21,14 @@ function App() {
 
   useKeyPress(
     ({ code, ctrlKey, shiftKey }: any) => code === 'KeyI' && ctrlKey && shiftKey,
-    () => window.sendEvent('requestOpenDevTools')
+    () => window.invokeEvent('openDevTools')
   )
   useKeyPress(
     ({ code }: any) => code === 'Escape',
     () =>
       state.url
         ? storeState({ url: '', shouldSaveDomain: false })
-        : window.sendEvent('requestHideWindow')
+        : window.invokeEvent('hideWindow')
   )
   useKeyPress(
     ({ code, ctrlKey }: any) => code === 'KeyC' && ctrlKey && state.url,

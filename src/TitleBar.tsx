@@ -13,7 +13,7 @@ const TitleBar = () => {
           viewBox="0 0 20 20"
           fill="currentColor"
           aria-hidden="true"
-          onClick={() => window.sendEvent('requestHideWindow')}
+          onClick={() => window.invokeEvent('hideWindow')}
         >
           <path
             fillRule="evenodd"

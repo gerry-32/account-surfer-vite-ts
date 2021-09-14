@@ -4,7 +4,7 @@ const useStoreChange = (): [any, any] => {
   const [state, setState] = useState(window.initialStoreData)
 
   const updateStore = (newDataObj: any) => {
-    window.sendEvent('requestStoreSet', newDataObj)
+    window.invokeEvent('storeSet', newDataObj)
   }
 
   useEffect(() => {
