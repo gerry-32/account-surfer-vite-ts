@@ -1,5 +1,5 @@
 import { join } from 'path'
-import { writeFile } from 'fs/promises'
+import { readFile, writeFile } from 'fs/promises'
 import { exec } from 'child_process'
 import { BrowserWindow, app, Menu, ipcMain, globalShortcut, dialog } from 'electron'
 import isDev from 'electron-is-dev'
@@ -138,6 +138,26 @@ try {
               }
             })
 
+            ipcMain.handle('importSettings', async () => {
+              try {
+                const result = await dialog.showOpenDialog(mainWindow, {
+                  defaultPath: 'account-surfer-settings.json',
+                  title: 'Import Account Surfer settings',
+                  filters: [{ name: 'JSON Files', extensions: ['json'] }],
+                  properties: ['openFile', 'dontAddToRecent']
+                })
+
+                if (!result.canceled && result.filePaths && result.filePaths.length) {
+                  const grid = await readFile(result.filePaths[0], { encoding: 'utf8' })
+                  store.set({ grid: JSON.parse(grid), currentPage: '/' })
+                  return { message: 'Settings applied' }
+                }
+              } catch (e) {
+                electronLog.error(e)
+                return { error: "Can't import settings" }
+              }
+            })
+
             ipcMain.handle('exportSettings', async () => {
               try {
                 const result = await dialog.showSaveDialog(mainWindow, {
@@ -152,6 +172,7 @@ try {
                     result.filePath,
                     JSON.stringify(store.get('grid'), null, 2)
                   )
+                  store.set({ currentPage: '/' })
                   return { message: 'Settings saved' }
                 }
               } catch (e) {

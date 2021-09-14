@@ -51,6 +51,9 @@ const Settings = ({ state, storeState }: any) => {
             className="ml-2 px-2 inline-flex items-center py-1 border border-transparent text-xs font-medium text-gray-300 bg-gray-600 hover:bg-gray-500 cursor-default"
             onClick={() => {
               // read from file
+              window
+                .invokeEvent('importSettings')
+                .then((r: any) => (r.error ? toast.error(r.error) : toast(r.message)))
             }}
           >
             Import settings
