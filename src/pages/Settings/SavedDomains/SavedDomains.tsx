@@ -1,7 +1,7 @@
 import React from 'react'
 import ViewerSection from './ViewerSection'
 
-const SavedDomains = ({ state, storeState }: any) => {
+const SavedDomains = ({ state }: any) => {
   const { openInFirst, grid } = state
 
   return (
@@ -20,7 +20,7 @@ const SavedDomains = ({ state, storeState }: any) => {
         :
       </h2>
       {grid.map((viewer: any) => (
-        <ViewerSection {...{ viewer, state, storeState }} key={viewer.id} />
+        <ViewerSection {...{ viewer, state }} key={viewer.id} />
       ))}
     </div>
   )

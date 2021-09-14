@@ -3,7 +3,7 @@ import { PlusIcon, CheckIcon, XIcon } from '@heroicons/react/solid'
 import Protocols from './Protocols'
 import BrowserIcons from '../../../BrowserIcons'
 
-const ViewerSection = ({ viewer, state, storeState }: any) => {
+const ViewerSection = ({ viewer, state }: any) => {
   const { grid } = state
 
   const { id, savedDomains, bigIcon, smallIcon, title, subTitle } = viewer
@@ -21,7 +21,7 @@ const ViewerSection = ({ viewer, state, storeState }: any) => {
 
   const updateDomains = (viewerId: any, domains: any) => {
     window.console.log(viewerId, domains)
-    storeState({
+    window.storeSet({
       grid: grid.map((v: any) => (v.id === viewerId ? { ...v, domains } : v))
     })
   }

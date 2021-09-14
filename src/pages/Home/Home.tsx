@@ -8,20 +8,20 @@ import { extractHostAndProtocol } from '../../utils/url'
 const GRID_HEIGHT = 270
 const SAVE_DOMAIN_PANEL_HEIGHT = 28
 
-const Home = ({ state, storeState }: any) => {
+const Home = ({ state }: any) => {
   const { url, grid, showHidden, shouldSaveDomain } = state
 
   useKeyPress(
     ({ code }: any) => code === 'KeyA',
     () => {
-      if (!showHidden) storeState({ dragEnabled: false })
-      storeState({ showHidden: !showHidden })
+      if (!showHidden) window.storeSet({ dragEnabled: false })
+      window.storeSet({ showHidden: !showHidden })
     }
   )
 
   const openUrlInViewer = (viewer: any, ctrlEnabled: boolean) => {
     if (shouldSaveDomain || ctrlEnabled) {
-      storeState({
+      window.storeSet({
         shouldSaveDomain: false,
         grid: grid.map((v: any) => {
           if (v.id === viewer.id) {
@@ -51,7 +51,7 @@ const Home = ({ state, storeState }: any) => {
         className="overflow-y-auto overflow-x-hidden pb-5"
         style={{ height: url ? GRID_HEIGHT - SAVE_DOMAIN_PANEL_HEIGHT : GRID_HEIGHT }}
       >
-        <Grid {...{ openUrlInViewer, state, storeState }} />
+        <Grid {...{ openUrlInViewer, state }} />
       </div>
       {url && (
         <div
@@ -68,7 +68,7 @@ const Home = ({ state, storeState }: any) => {
               type="checkbox"
               checked={shouldSaveDomain}
               className="form-checkbox"
-              onChange={e => storeState({ shouldSaveDomain: e.target.checked })}
+              onChange={e => window.storeSet({ shouldSaveDomain: e.target.checked })}
             />
           </div>
           <div className="ml-2 text-sm">
@@ -82,7 +82,7 @@ const Home = ({ state, storeState }: any) => {
         className="relative z-50"
         style={{ boxShadow: url ? '' : '#1c2531 -12px -5px 10px 0px' }}
       >
-        <Footer {...{ state, storeState }} />
+        <Footer {...{ state }} />
       </div>
     </div>
   )

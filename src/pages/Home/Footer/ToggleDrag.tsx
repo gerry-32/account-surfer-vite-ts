@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ToggleDrag = ({ state, storeState }: any) => {
+const ToggleDrag = ({ state }: any) => {
   const { dragEnabled } = state
   return (
     <div
@@ -10,8 +10,8 @@ const ToggleDrag = ({ state, storeState }: any) => {
       aria-pressed={dragEnabled ? 'true' : 'false'}
       title="Reorder accounts"
       onClick={() => {
-        if (!dragEnabled) storeState({ showHidden: false })
-        storeState({ dragEnabled: !dragEnabled })
+        if (!dragEnabled) window.storeSet({ showHidden: false })
+        window.storeSet({ dragEnabled: !dragEnabled })
       }}
     >
       <span

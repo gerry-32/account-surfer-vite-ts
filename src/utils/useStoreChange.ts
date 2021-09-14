@@ -1,11 +1,7 @@
 import { useState, useEffect } from 'react'
 
-const useStoreChange = (): [any, any] => {
+const useStoreChange = (): [any] => {
   const [state, setState] = useState(window.initialStoreData)
-
-  const updateStore = (newDataObj: any) => {
-    window.invokeEvent('storeSet', newDataObj)
-  }
 
   useEffect(() => {
     const unsubscribe = window.onStoreChange((newState: any) => {
@@ -16,7 +12,7 @@ const useStoreChange = (): [any, any] => {
     }
   }, [])
 
-  return [state, updateStore]
+  return [state]
 }
 
 export default useStoreChange

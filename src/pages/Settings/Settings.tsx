@@ -5,7 +5,7 @@ import Header from './Header'
 import SavedDomains from './SavedDomains'
 import Footer from './Footer'
 
-const Settings = ({ state, storeState }: any) => {
+const Settings = ({ state }: any) => {
   const { openInFirst } = state
 
   return (
@@ -21,7 +21,7 @@ const Settings = ({ state, storeState }: any) => {
                 type="checkbox"
                 checked={openInFirst}
                 className="form-checkbox"
-                onChange={e => storeState({ openInFirst: e.target.checked })}
+                onChange={e => window.storeSet({ openInFirst: e.target.checked })}
               />
             </div>
             <div className="ml-2 text-sm">
@@ -35,7 +35,7 @@ const Settings = ({ state, storeState }: any) => {
             </div>
           </div>
         </div>{' '}
-        <SavedDomains {...{ state, storeState }} />
+        <SavedDomains {...{ state }} />
         <div className="pt-5 pb-5">
           <div
             className="px-2 inline-flex items-center py-1 border border-transparent text-xs font-medium text-gray-300 bg-red-900 hover:bg-red-800 cursor-default"
@@ -74,7 +74,7 @@ const Settings = ({ state, storeState }: any) => {
           <p>App version: {version}</p>
         </div>
       </div>
-      <Footer {...{ storeState }} />
+      <Footer />
     </div>
   )
 }

@@ -12,7 +12,7 @@ import './App.css'
 
 function App() {
   const history = useHistory()
-  const [state, storeState] = useStoreChange()
+  const [state] = useStoreChange()
   const { currentPage, isDefaultBrowser } = state
 
   useEffect(() => {
@@ -27,7 +27,7 @@ function App() {
     ({ code }: any) => code === 'Escape',
     () =>
       state.url
-        ? storeState({ url: '', shouldSaveDomain: false })
+        ? window.storeSet({ url: '', shouldSaveDomain: false })
         : window.invokeEvent('hideWindow')
   )
   useKeyPress(
@@ -64,10 +64,10 @@ function App() {
             <NotDefault />
           </Route>
           <Route path="/settings">
-            <Settings {...{ state, storeState }} />
+            <Settings {...{ state }} />
           </Route>
           <Route path="/">
-            <Home {...{ state, storeState }} />
+            <Home {...{ state }} />
           </Route>
         </Switch>
       ) : (

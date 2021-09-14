@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ToggleHidden = ({ state, storeState }: any) => {
+const ToggleHidden = ({ state }: any) => {
   const { showHidden } = state
 
   return (
@@ -11,8 +11,8 @@ const ToggleHidden = ({ state, storeState }: any) => {
       aria-pressed={showHidden ? 'true' : 'false'}
       title='Show All accounts (Hotkey: "a")'
       onClick={() => {
-        if (!showHidden) storeState({ dragEnabled: false })
-        storeState({ showHidden: !showHidden })
+        if (!showHidden) window.storeSet({ dragEnabled: false })
+        window.storeSet({ showHidden: !showHidden })
       }}
     >
       <span

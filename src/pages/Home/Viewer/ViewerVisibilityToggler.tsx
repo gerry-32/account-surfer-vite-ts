@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ViewerVisibilityToggler = ({ isVisible, viewerId, state, storeState }: any) => {
+const ViewerVisibilityToggler = ({ isVisible, viewerId, state }: any) => {
   const { grid } = state
   return (
     <div className="flex-shrink-0 ">
@@ -11,7 +11,7 @@ const ViewerVisibilityToggler = ({ isVisible, viewerId, state, storeState }: any
             : 'text-gray-600 hover:text-gray-500'
         }`}
         onClick={() =>
-          storeState({
+          window.storeSet({
             grid: grid.map((v: any) =>
               v.id === viewerId ? { ...v, isVisible: !isVisible } : v
             )

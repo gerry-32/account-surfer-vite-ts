@@ -14,7 +14,7 @@ const getVisibleIndex = (item: any, editModeGrid: any) => {
   return onlyVisible.findIndex((gridItem: any) => item.i === gridItem.i)
 }
 
-const Grid = ({ openUrlInViewer, state, storeState }: any) => {
+const Grid = ({ openUrlInViewer, state }: any) => {
   const [ignoreUpdateLayout, setIgnoreUpdateLayout] = useState(true)
   const { grid, showHidden, dragEnabled } = state
 
@@ -48,7 +48,7 @@ const Grid = ({ openUrlInViewer, state, storeState }: any) => {
         if (ignoreUpdateLayout && !squeezeRequired) {
           setIgnoreUpdateLayout(false)
         } else {
-          storeState({ grid: prepareLayoutForSave(updatedLayout, grid) })
+          window.storeSet({ grid: prepareLayoutForSave(updatedLayout, grid) })
           setIgnoreUpdateLayout(true)
         }
       }}
@@ -68,8 +68,7 @@ const Grid = ({ openUrlInViewer, state, storeState }: any) => {
                 dragEnabled,
                 openUrlInViewer,
                 linearIndex,
-                state,
-                storeState
+                state
               }}
             />
           </div>
