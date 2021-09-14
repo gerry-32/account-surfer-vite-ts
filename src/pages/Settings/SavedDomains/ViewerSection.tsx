@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import { PlusIcon, CheckIcon, XIcon } from '@heroicons/react/solid'
 import Protocols from './Protocols'
 import BrowserIcons from '../../../BrowserIcons'
+import useStoreChange from '@/utils/useStoreChange'
 
-const ViewerSection = ({ viewer, state }: any) => {
-  const { grid } = state
+const ViewerSection = ({ viewer }: any) => {
+  const { grid } = useStoreChange()
 
   const { id, savedDomains, bigIcon, smallIcon, title, subTitle } = viewer
   const [newDomainHost, setNewDomainHost] = useState('')

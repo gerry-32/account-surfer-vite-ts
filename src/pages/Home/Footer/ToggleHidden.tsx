@@ -1,7 +1,8 @@
 import React from 'react'
+import useStoreChange from '@/utils/useStoreChange'
 
-const ToggleHidden = ({ state }: any) => {
-  const { showHidden } = state
+const ToggleHidden = () => {
+  const { showHidden } = useStoreChange()
 
   return (
     <div

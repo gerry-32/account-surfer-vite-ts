@@ -2,12 +2,12 @@ import React from 'react'
 import ToggleHidden from './ToggleHidden'
 import ToggleDrag from './ToggleDrag'
 
-const Footer = ({ state }: any) => {
+const Footer = () => {
   return (
     <div className="flex leading-4 px-8 py-3">
       <div className="space-x-3">
-        <ToggleHidden {...{ state }} />
-        <ToggleDrag {...{ state }} />
+        <ToggleHidden />
+        <ToggleDrag />
       </div>
 
       <div

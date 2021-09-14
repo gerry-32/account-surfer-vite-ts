@@ -4,9 +4,10 @@ import { version } from '../../../package.json'
 import Header from './Header'
 import SavedDomains from './SavedDomains'
 import Footer from './Footer'
+import useStoreChange from '@/utils/useStoreChange'
 
-const Settings = ({ state }: any) => {
-  const { openInFirst } = state
+const Settings = () => {
+  const { openInFirst } = useStoreChange()
 
   return (
     <div className="h-[400px]">
@@ -35,7 +36,7 @@ const Settings = ({ state }: any) => {
             </div>
           </div>
         </div>{' '}
-        <SavedDomains {...{ state }} />
+        <SavedDomains />
         <div className="pt-5 pb-5">
           <div
             className="px-2 inline-flex items-center py-1 border border-transparent text-xs font-medium text-gray-300 bg-red-900 hover:bg-red-800 cursor-default"

@@ -8,15 +8,16 @@ import {
   getSqueezeRequired,
   prepareLayoutForSave
 } from '../../utils/layout'
+import useStoreChange from '@/utils/useStoreChange'
 
 const getVisibleIndex = (item: any, editModeGrid: any) => {
   const onlyVisible = editModeGrid.filter((item: any) => item.isActive)
   return onlyVisible.findIndex((gridItem: any) => item.i === gridItem.i)
 }
 
-const Grid = ({ openUrlInViewer, state }: any) => {
+const Grid = ({ openUrlInViewer }: any) => {
   const [ignoreUpdateLayout, setIgnoreUpdateLayout] = useState(true)
-  const { grid, showHidden, dragEnabled } = state
+  const { grid, showHidden, dragEnabled } = useStoreChange()
 
   const currentModeLayout = extractModeGrid(
     grid.map((v: any) => ({ ...v, i: v.id, h: 1, w: 1 })),
@@ -67,8 +68,7 @@ const Grid = ({ openUrlInViewer, state }: any) => {
                 viewer,
                 dragEnabled,
                 openUrlInViewer,
-                linearIndex,
-                state
+                linearIndex
               }}
             />
           </div>

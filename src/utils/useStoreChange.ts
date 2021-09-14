@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const useStoreChange = (): [any] => {
+const useStoreChange = (): any => {
   const [state, setState] = useState(window.initialStoreData)
 
   useEffect(() => {
@@ -12,7 +12,7 @@ const useStoreChange = (): [any] => {
     }
   }, [])
 
-  return [state]
+  return state
 }
 
 export default useStoreChange

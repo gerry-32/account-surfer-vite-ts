@@ -6,14 +6,13 @@ import Home from './pages/Home'
 import Settings from './pages/Settings'
 import NotDefault from './pages/NotDefault'
 import useKeyPress from './utils/useKeyPress'
-import useStoreChange from './utils/useStoreChange'
+import useStoreChange from '@/utils/useStoreChange'
 import { ToastContainer, toast, Zoom } from 'react-toastify'
 import './App.css'
 
 function App() {
   const history = useHistory()
-  const [state] = useStoreChange()
-  const { currentPage, isDefaultBrowser } = state
+  const { url, currentPage, isDefaultBrowser } = useStoreChange()
 
   useEffect(() => {
     history.push(currentPage)
@@ -26,14 +25,14 @@ function App() {
   useKeyPress(
     ({ code }: any) => code === 'Escape',
     () =>
-      state.url
+      url
         ? window.storeSet({ url: '', shouldSaveDomain: false })
         : window.invokeEvent('hideWindow')
   )
   useKeyPress(
-    ({ code, ctrlKey }: any) => code === 'KeyC' && ctrlKey && state.url,
+    ({ code, ctrlKey }: any) => code === 'KeyC' && ctrlKey && url,
     () => {
-      copy(state.url)
+      copy(url)
       toast('Url copied')
     }
   )
@@ -64,10 +63,10 @@ function App() {
             <NotDefault />
           </Route>
           <Route path="/settings">
-            <Settings {...{ state }} />
+            <Settings />
           </Route>
           <Route path="/">
-            <Home {...{ state }} />
+            <Home />
           </Route>
         </Switch>
       ) : (

@@ -4,12 +4,13 @@ import Grid from './Grid'
 import Footer from './Footer'
 import useKeyPress from '../../utils/useKeyPress'
 import { extractHostAndProtocol } from '../../utils/url'
+import useStoreChange from '@/utils/useStoreChange'
 
 const GRID_HEIGHT = 270
 const SAVE_DOMAIN_PANEL_HEIGHT = 28
 
-const Home = ({ state }: any) => {
-  const { url, grid, showHidden, shouldSaveDomain } = state
+const Home = () => {
+  const { url, grid, showHidden, shouldSaveDomain } = useStoreChange()
 
   useKeyPress(
     ({ code }: any) => code === 'KeyA',
@@ -46,12 +47,12 @@ const Home = ({ state }: any) => {
 
   return (
     <div className="h-[400px]">
-      <Header {...{ state }} />
+      <Header />
       <div
         className="overflow-y-auto overflow-x-hidden pb-5"
         style={{ height: url ? GRID_HEIGHT - SAVE_DOMAIN_PANEL_HEIGHT : GRID_HEIGHT }}
       >
-        <Grid {...{ openUrlInViewer, state }} />
+        <Grid {...{ openUrlInViewer }} />
       </div>
       {url && (
         <div
@@ -82,7 +83,7 @@ const Home = ({ state }: any) => {
         className="relative z-50"
         style={{ boxShadow: url ? '' : '#1c2531 -12px -5px 10px 0px' }}
       >
-        <Footer {...{ state }} />
+        <Footer />
       </div>
     </div>
   )

@@ -1,8 +1,9 @@
 import React from 'react'
 import ViewerSection from './ViewerSection'
+import useStoreChange from '@/utils/useStoreChange'
 
-const SavedDomains = ({ state }: any) => {
-  const { openInFirst, grid } = state
+const SavedDomains = () => {
+  const { openInFirst, grid } = useStoreChange()
 
   return (
     <div className="relative pt-10">
@@ -20,7 +21,7 @@ const SavedDomains = ({ state }: any) => {
         :
       </h2>
       {grid.map((viewer: any) => (
-        <ViewerSection {...{ viewer, state }} key={viewer.id} />
+        <ViewerSection {...{ viewer }} key={viewer.id} />
       ))}
     </div>
   )
