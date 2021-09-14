@@ -12,7 +12,7 @@ import './App.css'
 
 function App() {
   const history = useHistory()
-  const { url, currentPage, isDefaultBrowser } = useStoreChange()
+  const { url, currentPage, isDefaultBrowser } = useStoreChange('app')
 
   useEffect(() => {
     history.push(currentPage)

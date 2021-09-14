@@ -3,7 +3,7 @@ import ViewerSection from './ViewerSection'
 import useStoreChange from '@/utils/useStoreChange'
 
 const SavedDomains = () => {
-  const { openInFirst, grid } = useStoreChange()
+  const { openInFirst, grid } = useStoreChange('SavedDomains')
 
   return (
     <div className="relative pt-10">

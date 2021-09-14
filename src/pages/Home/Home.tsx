@@ -10,7 +10,7 @@ const GRID_HEIGHT = 270
 const SAVE_DOMAIN_PANEL_HEIGHT = 28
 
 const Home = () => {
-  const { url, grid, showHidden, shouldSaveDomain } = useStoreChange()
+  const { url, grid, showHidden, shouldSaveDomain } = useStoreChange('home')
 
   useKeyPress(
     ({ code }: any) => code === 'KeyA',

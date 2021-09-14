@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react'
+import useIsMounted from './useIsMounted'
 
-const useStoreChange = (): any => {
+const useStoreChange = (fromSource?: string): any => {
   const [state, setState] = useState(window.initialStoreData)
+  const isMounted = useIsMounted()
 
   useEffect(() => {
     const unsubscribe = window.onStoreChange((newState: any) => {
-      setState(newState)
+      if (isMounted.current) setState(newState)
     })
-    return () => {
-      unsubscribe()
-    }
+    return () => unsubscribe()
   }, [])
 
   return state

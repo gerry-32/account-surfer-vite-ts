@@ -2,7 +2,8 @@ import React from 'react'
 import useStoreChange from '@/utils/useStoreChange'
 
 const ToggleDrag = () => {
-  const { dragEnabled } = useStoreChange()
+  const { dragEnabled } = useStoreChange('toggleDrag')
+
   return (
     <div
       className={`${

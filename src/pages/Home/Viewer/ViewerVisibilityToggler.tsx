@@ -2,7 +2,8 @@ import React from 'react'
 import useStoreChange from '@/utils/useStoreChange'
 
 const ViewerVisibilityToggler = ({ isVisible, viewerId }: any) => {
-  const { grid } = useStoreChange()
+  const { grid } = useStoreChange('ViewerVisibilityToggler')
+
   return (
     <div className="flex-shrink-0 ">
       <div

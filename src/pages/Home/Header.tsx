@@ -4,7 +4,7 @@ import { toast } from 'react-toastify'
 import useStoreChange from '@/utils/useStoreChange'
 
 const Header = () => {
-  const { url } = useStoreChange()
+  const { url } = useStoreChange('header')
 
   return (
     <div className="text-xl px-8 pt-2 text-gray-300 overflow-y-auto overflow-x-hidden h-[82px]">

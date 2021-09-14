@@ -17,7 +17,7 @@ const getVisibleIndex = (item: any, editModeGrid: any) => {
 
 const Grid = ({ openUrlInViewer }: any) => {
   const [ignoreUpdateLayout, setIgnoreUpdateLayout] = useState(true)
-  const { grid, showHidden, dragEnabled } = useStoreChange()
+  const { grid, showHidden, dragEnabled } = useStoreChange('grid')
 
   const currentModeLayout = extractModeGrid(
     grid.map((v: any) => ({ ...v, i: v.id, h: 1, w: 1 })),

@@ -5,7 +5,7 @@ import BrowserIcons from '../../../BrowserIcons'
 import useStoreChange from '@/utils/useStoreChange'
 
 const ViewerSection = ({ viewer }: any) => {
-  const { grid } = useStoreChange()
+  const { grid } = useStoreChange('ViewerSection')
 
   const { id, savedDomains, bigIcon, smallIcon, title, subTitle } = viewer
   const [newDomainHost, setNewDomainHost] = useState('')

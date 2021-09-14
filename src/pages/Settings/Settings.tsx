@@ -7,7 +7,7 @@ import Footer from './Footer'
 import useStoreChange from '@/utils/useStoreChange'
 
 const Settings = () => {
-  const { openInFirst } = useStoreChange()
+  const { openInFirst } = useStoreChange('Settings')
 
   return (
     <div className="h-[400px]">

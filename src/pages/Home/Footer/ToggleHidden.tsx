@@ -2,7 +2,7 @@ import React from 'react'
 import useStoreChange from '@/utils/useStoreChange'
 
 const ToggleHidden = () => {
-  const { showHidden } = useStoreChange()
+  const { showHidden } = useStoreChange('toggleHidden')
 
   return (
     <div
