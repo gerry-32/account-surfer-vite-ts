@@ -38,7 +38,7 @@ const Settings = ({ state, storeState }: any) => {
         <SavedDomains {...{ state, storeState }} />
         <div className="pt-5 pb-5">
           <div
-            className="px-2 inline-flex items-center py-1 border border-transparent text-xs font-medium text-gray-300 bg-gray-600 hover:bg-gray-500 cursor-default"
+            className="px-2 inline-flex items-center py-1 border border-transparent text-xs font-medium text-gray-300 bg-red-900 hover:bg-red-800 cursor-default"
             onClick={() => {
               window.sendEvent('requestResetBrowserList')
               storeState({ currentPage: '/' })
@@ -46,6 +46,25 @@ const Settings = ({ state, storeState }: any) => {
             }}
           >
             Reset Browser list
+          </div>
+          <div
+            className="ml-2 px-2 inline-flex items-center py-1 border border-transparent text-xs font-medium text-gray-300 bg-gray-600 hover:bg-gray-500 cursor-default"
+            onClick={() => {
+              // read from file
+            }}
+          >
+            Import settings
+          </div>
+          <div
+            className="ml-2 px-2 inline-flex items-center py-1 border border-transparent text-xs font-medium text-gray-300 bg-gray-600 hover:bg-gray-500 cursor-default"
+            onClick={() => {
+              // save to file
+              window.invokeEvent('exportSettings').then((r: any) => {
+                r.error ? toast.error(r.error) : toast(r.message)
+              })
+            }}
+          >
+            Export settings
           </div>
         </div>
         <div>

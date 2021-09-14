@@ -1,6 +1,7 @@
 import { join } from 'path'
+import { writeFile } from 'fs/promises'
 import { exec } from 'child_process'
-import { BrowserWindow, app, Menu, ipcMain, globalShortcut } from 'electron'
+import { BrowserWindow, app, Menu, ipcMain, globalShortcut, dialog } from 'electron'
 import isDev from 'electron-is-dev'
 import { initStore } from './store'
 import browserWindowConfig from './browserWindow'
@@ -134,6 +135,28 @@ try {
                 })
               } catch (e) {
                 electronLog.error(e)
+              }
+            })
+
+            ipcMain.handle('exportSettings', async () => {
+              try {
+                const result = await dialog.showSaveDialog(mainWindow, {
+                  defaultPath: 'account-surfer-settings.json',
+                  title: 'Export Account Surfer settings',
+                  filters: [{ name: 'JSON Files', extensions: ['json'] }],
+                  properties: ['dontAddToRecent']
+                })
+
+                if (!result.canceled && result.filePath) {
+                  await writeFile(
+                    result.filePath,
+                    JSON.stringify(store.get('grid'), null, 2)
+                  )
+                  return { message: 'Settings saved' }
+                }
+              } catch (e) {
+                electronLog.error(e)
+                return { error: "Can't save settings" }
               }
             })
 

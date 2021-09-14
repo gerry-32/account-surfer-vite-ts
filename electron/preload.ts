@@ -7,6 +7,7 @@ declare global {
     electronLog: any
     initialStoreData: any
     sendEvent: any
+    invokeEvent: any
     onStoreChange: any
   }
 }
@@ -20,6 +21,9 @@ try {
     ipcRenderer.send(eventName, data)
   }
 
+  const invokeEvent = (eventName: string, data: any) =>
+    ipcRenderer.invoke(eventName, data)
+
   const onStoreChange = (cb: any) => {
     const listener = (_: any, newState: any) => cb(newState)
     ipcRenderer.on('storeChanged', listener)
@@ -29,6 +33,7 @@ try {
   contextBridge.exposeInMainWorld('electronLog', electronLog)
   contextBridge.exposeInMainWorld('initialStoreData', electronStore.store)
   contextBridge.exposeInMainWorld('sendEvent', sendEvent)
+  contextBridge.exposeInMainWorld('invokeEvent', invokeEvent)
   contextBridge.exposeInMainWorld('onStoreChange', onStoreChange)
 } catch (e) {
   electronLog.error(e)
