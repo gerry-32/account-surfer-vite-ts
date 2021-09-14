@@ -1,17 +1,22 @@
-export const extractHostname = (url: any) => {
-  let hostname
-  //find & remove protocol (http, ftp, etc.) and get hostname
+// hash: ""
+// host: "vm.tiktok.com:3000"
+// hostname: "vm.tiktok.com"
+// href: "https://vm.tiktok.com:3000/2wefj239j?=233"
+// origin: "https://vm.tiktok.com:3000"
+// password: ""
+// pathname: "/2wefj239j"
+// port: "3000"
+// protocol: "https:"
 
-  if (url.indexOf('//') > -1) {
-    hostname = url.split('/')[2]
-  } else {
-    hostname = url.split('/')[0]
+export const extractHostAndProtocol = (url: any) => {
+  try {
+    const urlObj = new URL(url)
+    return {
+      host: urlObj.host.replace('www.', ''),
+      protocol: urlObj.protocol.replace(':', '')
+    }
+  } catch (e) {
+    window.electronLog.error(e)
+    return {}
   }
-
-  //find & remove port number
-  // hostname = hostname.split(':')[0]
-  //find & remove "?"
-  hostname = hostname.split('?')[0]
-
-  return hostname.replace('www.', '')
 }

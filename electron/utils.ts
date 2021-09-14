@@ -1,39 +1,46 @@
-export const extractHostname = (url: any) => {
-  let hostname
-  //find & remove protocol (http, ftp, etc.) and get hostname
+import electronLog from './log'
+// hash: ""
+// host: "vm.tiktok.com:3000"
+// hostname: "vm.tiktok.com"
+// href: "https://vm.tiktok.com:3000/2wefj239j?=233"
+// origin: "https://vm.tiktok.com:3000"
+// password: ""
+// pathname: "/2wefj239j"
+// port: "3000"
+// protocol: "https:"
 
-  if (url.indexOf('//') > -1) {
-    hostname = url.split('/')[2]
-  } else {
-    hostname = url.split('/')[0]
+export const extractHostAndProtocol = (url: any) => {
+  try {
+    const urlObj = new URL(url)
+    return {
+      host: urlObj.host.replace('www.', ''),
+      protocol: urlObj.protocol.replace(':', '')
+    }
+  } catch (e) {
+    electronLog.error(e)
+    return {}
   }
-
-  //find & remove port number
-  // hostname = hostname.split(':')[0]
-  //find & remove "?"
-  hostname = hostname.split('?')[0]
-
-  return hostname.replace('www.', '')
 }
 
 export const findDomainInViewer = (grid: any, url: any) => {
-  if (url && grid.length && grid.some((account: any) => account.domains.length)) {
-    const hostname = extractHostname(url)
-    const foundAccount = grid.find((account: any) =>
-      account.domains.some((domain: any) => {
-        // if domain = regexp rule
-        if (/\*|\//g.test(domain)) {
-          const pattern = new RegExp(domain)
-          return pattern.test(url)
-        } else {
-          return domain === hostname
-        }
-      })
-    )
-    return foundAccount
-  } else {
-    return false
+  if (url && grid.length && grid.some((account: any) => account.savedDomains.length)) {
+    const { host, protocol } = extractHostAndProtocol(url)
+    if (host && protocol) {
+      const foundAccount = grid.find((account: any) =>
+        account.savedDomains.some((domainObj: any) => {
+          if (/\*|\//g.test(domainObj.host)) {
+            // if domain = regexp rule
+            const pattern = new RegExp(domainObj.host)
+            return pattern.test(url)
+          } else {
+            return domainObj.host === host
+          }
+        })
+      )
+      return foundAccount
+    }
   }
+  return false
 }
 
 export const getUrlFromArgv = (argv: any) => {

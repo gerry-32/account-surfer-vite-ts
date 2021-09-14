@@ -71,7 +71,7 @@ const getGridFromMatrix = (matrix: any) => {
   const FieldsToStore = [
     'id',
     'isVisible',
-    'domains',
+    'savedDomains',
     'x',
     'y',
     'bigIcon',

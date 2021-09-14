@@ -65,7 +65,7 @@ export const getChromiumAccount = async ({
           ),
           image: pictureUrl
         },
-        domains: [],
+        savedDomains: [],
         isVisible: true
       })
 
@@ -85,7 +85,7 @@ export const getChromiumAccount = async ({
             name: incognitoName,
             title: incognitoName.replace(/^./, (str: any) => str.toUpperCase())
           },
-          domains: [],
+          savedDomains: [],
           isVisible: true
         })
       }
