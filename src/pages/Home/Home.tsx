@@ -3,7 +3,7 @@ import Header from './Header'
 import Grid from './Grid'
 import Footer from './Footer'
 import useKeyPress from '../../utils/useKeyPress'
-import { extractHostAndProtocol } from '../../utils/url'
+import { getUrlObj } from '../../utils/url'
 import useStoreChange from '@/utils/useStoreChange'
 
 const GRID_HEIGHT = 270
@@ -26,16 +26,20 @@ const Home = () => {
         shouldSaveDomain: false,
         grid: grid.map((v: any) => {
           if (v.id === viewer.id) {
-            const { host, protocol } = extractHostAndProtocol(url)
-            return {
-              ...v,
-              savedDomains: [
-                ...v.savedDomains,
-                {
-                  host,
-                  protocols: protocol?.includes('http') ? ['http', 'https'] : [protocol]
-                }
-              ]
+            const urlObj = getUrlObj(url)
+            if (urlObj) {
+              return {
+                ...v,
+                savedDomains: [
+                  ...v.savedDomains,
+                  {
+                    host: urlObj.host,
+                    protocols: urlObj.protocol?.includes('http')
+                      ? ['https', 'http']
+                      : [urlObj.protocol]
+                  }
+                ]
+              }
             }
           }
           return v

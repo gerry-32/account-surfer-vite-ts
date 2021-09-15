@@ -9,7 +9,7 @@ import electronLog from './log'
 // port: "3000"
 // protocol: "https:"
 
-export const extractHostAndProtocol = (url: any) => {
+export const getUrlObj = (url: any) => {
   try {
     const urlObj = new URL(url)
     return {
@@ -18,22 +18,25 @@ export const extractHostAndProtocol = (url: any) => {
     }
   } catch (e) {
     electronLog.error(e)
-    return {}
+    return false
   }
 }
 
 export const findDomainInViewer = (grid: any, url: any) => {
   if (url && grid.length && grid.some((account: any) => account.savedDomains.length)) {
-    const { host, protocol } = extractHostAndProtocol(url)
-    if (host && protocol) {
+    const urlObj = getUrlObj(url)
+    if (urlObj) {
       const foundAccount = grid.find((account: any) =>
-        account.savedDomains.some((domainObj: any) => {
-          if (/\*|\//g.test(domainObj.host)) {
-            // if domain = regexp rule
-            const pattern = new RegExp(domainObj.host)
-            return pattern.test(url)
-          } else {
-            return domainObj.host === host
+        account.savedDomains.some((savedDomainObj: any) => {
+          if (savedDomainObj.protocols.includes(urlObj.protocol)) {
+            if (/\*|\//g.test(savedDomainObj.host)) {
+              // if domain = regexp rule (Wildcard) OR contain SLASH
+              // then match whole URL
+              const pattern = new RegExp(savedDomainObj.host)
+              return pattern.test(url)
+            } else {
+              return urlObj.host.includes(savedDomainObj.host)
+            }
           }
         })
       )
@@ -45,6 +48,11 @@ export const findDomainInViewer = (grid: any, url: any) => {
 
 export const getUrlFromArgv = (argv: any) => {
   const possibleUrl = [...argv].pop()
-  const url = /http:\/\/|https:\/\//i.test(possibleUrl) ? possibleUrl : null
-  return url
+  try {
+    const url = new URL(possibleUrl)
+    return url.href
+  } catch (e) {
+    // not valid URL
+    return ''
+  }
 }

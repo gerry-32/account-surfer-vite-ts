@@ -5,13 +5,7 @@ const LAYOUT_COLS_NUMBER = 3
 const generateGrid = (viewers: any) =>
   viewers.map((viewer: any, index: any) => ({
     ...viewer,
-    savedDomains: [
-      {
-        host: 'google.com',
-        protocols:
-          index % 2 ? ['https', 'http'] : ['superlongProtocol', 'superlongProtocol2']
-      }
-    ],
+    savedDomains: [],
     isVisible: true,
     x: index % LAYOUT_COLS_NUMBER,
     y: Math.floor(index / LAYOUT_COLS_NUMBER)

@@ -8,7 +8,7 @@
 // port: "3000"
 // protocol: "https:"
 
-export const extractHostAndProtocol = (url: any) => {
+export const getUrlObj = (url: any) => {
   try {
     const urlObj = new URL(url)
     return {
@@ -17,6 +17,6 @@ export const extractHostAndProtocol = (url: any) => {
     }
   } catch (e) {
     window.electronLog.error(e)
-    return {}
+    return false
   }
 }
