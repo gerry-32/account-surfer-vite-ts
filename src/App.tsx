@@ -5,6 +5,7 @@ import TitleBar from './TitleBar'
 import Home from './pages/Home'
 import Settings from './pages/Settings'
 import NotDefault from './pages/NotDefault'
+import NoBrowsersFound from './pages/NoBrowsersFound'
 import useKeyPress from './utils/useKeyPress'
 import useStoreChange from '@/utils/useStoreChange'
 import { ToastContainer, toast, Zoom } from 'react-toastify'
@@ -12,7 +13,7 @@ import './App.css'
 
 function App() {
   const history = useHistory()
-  const { url, currentPage, isDefaultBrowser } = useStoreChange('app')
+  const { url, currentPage, isDefaultBrowser, grid } = useStoreChange('app')
 
   useEffect(() => {
     if (history.location.pathname !== currentPage) history.push(currentPage)
@@ -65,9 +66,7 @@ function App() {
           <Route path="/settings">
             <Settings />
           </Route>
-          <Route path="/">
-            <Home />
-          </Route>
+          <Route path="/">{!!grid.length ? <Home /> : <NoBrowsersFound />}</Route>
         </Switch>
       ) : (
         <NotDefault />
