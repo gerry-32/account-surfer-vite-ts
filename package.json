@@ -41,6 +41,7 @@
     "typy": "^3.3.0"
   },
   "dependenciesComments": {
+    "electron-is-dev": "not working in renderer, not fully working in main; find alternative",
     "electron": "not using 14.* cause of draggable issues https://github.com/electron/electron/issues/30788"
   },
   "devDependencies": {
