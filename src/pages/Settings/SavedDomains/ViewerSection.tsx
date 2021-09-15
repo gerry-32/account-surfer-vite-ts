@@ -20,12 +20,47 @@ const ViewerSection = ({ viewer }: any) => {
   )
   const [addDomainEnabled, setAddDomainEnabled] = useState(false)
 
-  const updateDomains = (viewerId: any, domains: any) => {
-    window.console.log(viewerId, domains)
-    window.storeSet({
-      grid: grid.map((v: any) => (v.id === viewerId ? { ...v, domains } : v))
-    })
-  }
+  const updateGrid = (grid: any) => window.storeSet({ grid })
+
+  const updateProtocolByIndex = (protocolsStr: string, indexToUpdate: number) =>
+    updateGrid(
+      grid.map((v: any) =>
+        v.id === id
+          ? {
+              ...v,
+              savedDomains: v.savedDomains.map((domainObj: any, i: number) =>
+                i === indexToUpdate
+                  ? {
+                      ...domainObj,
+                      protocols: protocolsStr.split(', ')
+                    }
+                  : domainObj
+              )
+            }
+          : v
+      )
+    )
+
+  const addDomain = (domainObj: any) =>
+    updateGrid(
+      grid.map((v: any) =>
+        v.id === id ? { ...v, savedDomains: [...v.savedDomains, domainObj] } : v
+      )
+    )
+
+  const removeDomainByIndex = (indexToRemove: number) =>
+    updateGrid(
+      grid.map((v: any) =>
+        v.id === id
+          ? {
+              ...v,
+              savedDomains: v.savedDomains.filter(
+                (_: any, i: number) => i !== indexToRemove
+              )
+            }
+          : v
+      )
+    )
 
   return (
     <div key={id} className="bg-gray-900 p-3 mb-3">
@@ -43,37 +78,25 @@ const ViewerSection = ({ viewer }: any) => {
         {subTitle && ` | ${subTitle}`}
       </h3>
       <div className="-mx-0.5">
-        {savedDomains.map((domainObj: any) => (
+        {savedDomains.map((domainObj: any, domainIndex: number) => (
           <div
             key={domainObj.host}
             className="inline-flex bg-gray-600 relative pr-6 align-top m-0.5 "
-            onClick={() =>
-              updateDomains(
-                viewer.id,
-                savedDomains.filter((dObj: any) => dObj.host !== domainObj.host)
-              )
-            }
           >
             <div className="inline-flex text-sm font-medium text-gray-300">
               <Protocols
                 {...{
                   domainObj,
-                  onChange: (protocolsStr: any) => {
-                    const protocols = protocolsStr.split(', ')
-                    updateDomains(
-                      viewer.id,
-                      savedDomains.map((dObj: any) =>
-                        dObj.host === domainObj.host
-                          ? { host: dObj.host, protocols }
-                          : dObj
-                      )
-                    )
-                  }
+                  onChange: (protocolsStr: string) =>
+                    updateProtocolByIndex(protocolsStr, domainIndex)
                 }}
               />
               <span className="px-1.5 pl-2 py-1">{domainObj.host}</span>
             </div>
-            <div className="inset-y-0 right-0 absolute bg-gray-700 hover:bg-gray-500">
+            <div
+              className="inset-y-0 right-0 absolute bg-gray-700 hover:bg-gray-500"
+              onClick={() => removeDomainByIndex(domainIndex)}
+            >
               <XIcon className="w-6 h-4 mt-1.5 " />
             </div>
           </div>
@@ -112,13 +135,10 @@ const ViewerSection = ({ viewer }: any) => {
               }`}
               onClick={() => {
                 if (newDomainHost) {
-                  updateDomains(viewer.id, [
-                    ...savedDomains,
-                    {
-                      host: newDomainHost,
-                      protocols: newDomainProtocol
-                    }
-                  ])
+                  addDomain({
+                    host: newDomainHost,
+                    protocols: newDomainProtocol
+                  })
                   setAddDomainEnabled(false)
                   setNewDomainHost('')
                 }
