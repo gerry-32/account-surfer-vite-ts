@@ -7,7 +7,7 @@ export const initStore = () => {
     schema: {
       isDefaultBrowser: {
         type: 'boolean',
-        default: true
+        default: false
       },
       url: {
         type: 'string',
