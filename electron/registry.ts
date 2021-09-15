@@ -2,6 +2,7 @@ import path from 'path'
 import { app } from 'electron'
 import regedit from 'regedit'
 import electronLog from './log'
+// import { version } from '../package.json'
 
 // That path need for browserParser. info: https://github.com/ironSource/node-regedit#a-note-about-electron
 const vbsDirectory = path.join(
@@ -11,8 +12,6 @@ const vbsDirectory = path.join(
 regedit.setExternalVBSLocation(vbsDirectory)
 
 export const getAppProgId = (store: any) => {
-  const APP_NAME_VALUE = 'AccountSurfer'
-
   const pathHttp =
     'HKLM\\Software\\Classes\\Local Settings\\Software\\Microsoft\\Windows\\CurrentVersion\\AppModel\\PackageRepository\\Extensions\\windows.protocol\\http'
 
@@ -22,9 +21,10 @@ export const getAppProgId = (store: any) => {
       regedit.list(`${pathHttp}\\${item}`, (err: any, result: any) => {
         if (err) electronLog.error(err)
         const name = Object.keys(result[`${pathHttp}\\${item}`].values)[0]
-        if (name.includes(APP_NAME_VALUE)) {
+        if (name.includes(`AccountSurfer_4.0.0`)) {
           store.set('progId', item)
-          electronLog.info(`ProgId app found: ${item}`)
+          electronLog.info('App name', name)
+          electronLog.info(`Exact ProgId app found: ${item}`)
         }
       })
     })

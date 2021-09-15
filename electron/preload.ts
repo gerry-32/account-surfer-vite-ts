@@ -13,7 +13,7 @@ declare global {
 }
 
 try {
-  electronLog.log('@@@@@@@ PRELOAD STARTED @@@@@@@')
+  electronLog.log('@@@@@@@ PRELOAD4 STARTED @@@@@@@')
   webFrame.setZoomFactor(1)
   const electronStore = initStore()
 

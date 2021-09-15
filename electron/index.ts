@@ -13,7 +13,7 @@ import { findDomainInViewer, getUrlFromArgv } from './utils'
 import { getBrowserGrid, getMergedGrid } from './grid'
 
 try {
-  electronLog.warn('@@@@@@@ MAIN STARTED @@@@@@@')
+  electronLog.warn('@@@@@@@ MAIN4 STARTED @@@@@@@')
   process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
 
   const store = initStore()
