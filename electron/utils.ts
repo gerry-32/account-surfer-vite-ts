@@ -47,7 +47,6 @@ export const findDomainInViewer = (grid: any, url: any) => {
 }
 
 export const getUrlFromArgv = (argv: any) => {
-  electronLog.info(argv)
   if (argv.length < 2) return '' // no url passed
   try {
     const possibleUrl = [...argv].pop()

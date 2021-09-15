@@ -58,16 +58,16 @@ function App() {
         pauseOnHover={false}
       />
       <TitleBar />
-      {isDefaultBrowser ? (
-        <Switch>
-          <Route path="/settings">
-            <Settings />
-          </Route>
-          <Route path="/">{!!grid.length ? <Home /> : <NoBrowsersFound />}</Route>
-        </Switch>
-      ) : (
+      {/* {isDefaultBrowser ? ( */}
+      <Switch>
+        <Route path="/settings">
+          <Settings />
+        </Route>
+        <Route path="/">{!!grid.length ? <Home /> : <NoBrowsersFound />}</Route>
+      </Switch>
+      {/* ) : (
         <NotDefault />
-      )}
+      )} */}
     </div>
   )
 }

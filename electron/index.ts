@@ -47,7 +47,7 @@ try {
       })
       setTimeout(() => {
         mainWindow.hide()
-      }, 50) // prevent blinking on open
+      }, 150) // prevent blinking on open
     } catch (e) {
       electronLog.error(e)
     }
@@ -130,9 +130,9 @@ try {
               onOpenUrl({ viewer, url: store.get('url') })
             })
 
-            ipcMain.handle('openWindowsSettings', () =>
+            ipcMain.handle('openWindowsSettings', () => {
               exec('start ms-settings:defaultapps')
-            )
+            })
 
             ipcMain.handle('resetBrowserList', async () => {
               try {

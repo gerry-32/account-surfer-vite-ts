@@ -5,9 +5,9 @@ import { initStore } from './store'
 declare global {
   interface Window {
     electronLog: any
-    initialStoreData: any
     invokeEvent: any
     onStoreChange: any
+    storeGet: any
     storeSet: any
   }
 }
@@ -26,12 +26,13 @@ try {
     return () => ipcRenderer.removeListener('storeChanged', listener)
   }
 
+  const storeGet = () => electronStore.store
   const storeSet = (data: any) => ipcRenderer.invoke('storeSet', data)
 
   contextBridge.exposeInMainWorld('electronLog', electronLog)
-  contextBridge.exposeInMainWorld('initialStoreData', electronStore.store)
   contextBridge.exposeInMainWorld('invokeEvent', invokeEvent)
   contextBridge.exposeInMainWorld('onStoreChange', onStoreChange)
+  contextBridge.exposeInMainWorld('storeGet', storeGet)
   contextBridge.exposeInMainWorld('storeSet', storeSet)
 } catch (e) {
   electronLog.error(e)

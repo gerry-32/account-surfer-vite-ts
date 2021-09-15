@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import useIsMounted from './useIsMounted'
 
 const useStoreChange = (fromSource?: string): any => {
-  const [state, setState] = useState(window.initialStoreData)
+  const [state, setState] = useState(window.storeGet())
   const isMounted = useIsMounted()
 
   useEffect(() => {
