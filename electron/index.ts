@@ -4,6 +4,7 @@ import { exec } from 'child_process'
 import { BrowserWindow, app, Menu, ipcMain, globalShortcut, dialog } from 'electron'
 import isDev from 'electron-is-dev'
 import { initStore } from './store'
+import { getAppProgId, getIsDefaultBrowser } from './registry'
 import browserWindowConfig from './browserWindow'
 import { createTray } from './tray'
 import { openUrl } from './url'
@@ -19,9 +20,15 @@ try {
   let ctrlAltXPressed = false
   let mainWindow: any, tray: any
 
+  if (!store.get('progId')) getAppProgId(store)
+
   setInterval(() => {
     ctrlAltXPressed = false
   }, 150)
+
+  setInterval(() => {
+    getIsDefaultBrowser(store)
+  }, 500)
 
   const openAS = (url: any) => {
     if (url) store.set('url', url)

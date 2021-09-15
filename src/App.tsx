@@ -60,9 +60,6 @@ function App() {
       <TitleBar />
       {isDefaultBrowser ? (
         <Switch>
-          <Route path="/as-not-default">
-            <NotDefault />
-          </Route>
           <Route path="/settings">
             <Settings />
           </Route>
