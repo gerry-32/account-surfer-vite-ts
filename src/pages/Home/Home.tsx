@@ -33,7 +33,7 @@ const Home = () => {
                 savedDomains: [
                   ...v.savedDomains,
                   {
-                    host: urlObj.host,
+                    matcher: urlObj.host,
                     protocols: urlObj.protocol?.includes('http')
                       ? ['https', 'http']
                       : [urlObj.protocol]

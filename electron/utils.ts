@@ -15,7 +15,8 @@ export const getUrlObj = (url: any) => {
     const urlObj = new URL(url)
     return {
       host: urlObj.host.replace('www.', ''),
-      protocol: urlObj.protocol.replace(':', '')
+      protocol: urlObj.protocol.replace(':', ''),
+      href: urlObj.href
     }
   } catch (e) {
     electronLog.error(e)
@@ -23,19 +24,23 @@ export const getUrlObj = (url: any) => {
   }
 }
 
-export const findDomainInViewer = (grid: any, url: any) => {
-  if (url && grid.length && grid.some((account: any) => account.savedDomains.length)) {
-    const urlObj = getUrlObj(url)
+export const findDomainInViewer = (grid: any, urlToOpen: any) => {
+  if (
+    urlToOpen &&
+    grid.length &&
+    grid.some((account: any) => account.savedDomains.length)
+  ) {
+    const urlObj = getUrlObj(urlToOpen)
     if (urlObj) {
       const foundAccount = grid.find((account: any) =>
         account.savedDomains.some((savedDomainObj: any) => {
           if (savedDomainObj.protocols.includes(urlObj.protocol)) {
-            const domainWithWildcardOrSlash = /\*|\//g.test(savedDomainObj.host)
+            const domainWithWildcardOrSlash = /\*|\//g.test(savedDomainObj.matcher)
             if (domainWithWildcardOrSlash) {
-              const testMatch = wcmatch(savedDomainObj.host)
-              return testMatch(url)
+              const testMatch = wcmatch(savedDomainObj.matcher)
+              return testMatch(urlObj.href)
             } else {
-              return urlObj.host.includes(savedDomainObj.host)
+              return urlObj.host.includes(savedDomainObj.matcher)
             }
           }
         })

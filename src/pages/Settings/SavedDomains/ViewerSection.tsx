@@ -8,7 +8,7 @@ const ViewerSection = ({ viewer }: any) => {
   const { grid } = useStoreChange('ViewerSection')
 
   const { id, savedDomains, bigIcon, smallIcon, title, subTitle } = viewer
-  const [newDomainHost, setNewDomainHost] = useState('')
+  const [newDomainMatcher, setNewDomainMatcher] = useState('')
   const [newDomainProtocol, setNewDomainProtocol] = useState(['https', 'http'])
   const [imgSrc, setImgSrc] = useState(
     bigIcon.fromSrc ||
@@ -80,7 +80,7 @@ const ViewerSection = ({ viewer }: any) => {
       <div className="-mx-0.5">
         {savedDomains.map((domainObj: any, domainIndex: number) => (
           <div
-            key={domainObj.host}
+            key={domainObj.matcher}
             className="inline-flex bg-gray-600 relative pr-6 align-top m-0.5 "
           >
             <div className="inline-flex text-sm font-medium text-gray-300">
@@ -91,7 +91,7 @@ const ViewerSection = ({ viewer }: any) => {
                     updateProtocolByIndex(protocolsStr, domainIndex)
                 }}
               />
-              <span className="px-1.5 pl-2 py-1">{domainObj.host}</span>
+              <span className="px-1.5 pl-2 py-1">{domainObj.matcher}</span>
             </div>
             <div
               className="inset-y-0 right-0 absolute bg-gray-700 hover:bg-gray-500"
@@ -113,15 +113,15 @@ const ViewerSection = ({ viewer }: any) => {
             <input
               autoFocus
               type="text"
-              value={newDomainHost}
-              onChange={e => setNewDomainHost(e.target.value)}
+              value={newDomainMatcher}
+              onChange={e => setNewDomainMatcher(e.target.value)}
               className="inline-flex m-0.5 p-2 w-40 h-7 bg-gray-800 text-gray-200 text-sm border-none align-top"
               placeholder="e.g. google.com"
             />
             <div
               className="inline-flex p-1 h-7 align-baseline m-0.5 relative bg-red-900 hover:bg-red-800"
               onClick={() => {
-                setNewDomainHost('')
+                setNewDomainMatcher('')
                 setAddDomainEnabled(false)
               }}
             >
@@ -129,18 +129,18 @@ const ViewerSection = ({ viewer }: any) => {
             </div>
             <div
               className={`inline-flex p-1 h-7 align-baseline pl-4 m-0.5 relative ${
-                newDomainHost.length
+                newDomainMatcher.length
                   ? ' bg-blue-700 hover:bg-blue-600 text-gray-200'
                   : ' bg-gray-700 text-gray-500'
               }`}
               onClick={() => {
-                if (newDomainHost) {
+                if (newDomainMatcher) {
                   addDomain({
-                    host: newDomainHost,
+                    matcher: newDomainMatcher,
                     protocols: newDomainProtocol
                   })
                   setAddDomainEnabled(false)
-                  setNewDomainHost('')
+                  setNewDomainMatcher('')
                 }
               }}
             >

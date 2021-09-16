@@ -13,7 +13,8 @@ export const getUrlObj = (url: any) => {
     const urlObj = new URL(url)
     return {
       host: urlObj.host.replace('www.', ''),
-      protocol: urlObj.protocol.replace(':', '')
+      protocol: urlObj.protocol.replace(':', ''),
+      href: urlObj.href
     }
   } catch (e) {
     window.electronLog.error(e)
