@@ -38,8 +38,7 @@
     "react-router-dom": "^5.3.0",
     "react-toastify": "^8.0.2",
     "regedit": "^5.0.0",
-    "typy": "^3.3.0",
-    "wildcard-match": "^5.1.2"
+    "typy": "^3.3.0"
   },
   "dependenciesComments": {
     "package.json": "do not require package.json from main; it breaks tsc process without warning",

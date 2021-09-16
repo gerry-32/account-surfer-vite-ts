@@ -1,5 +1,4 @@
 import electronLog from './log'
-import wcmatch from 'wildcard-match'
 // hash: ""
 // host: "vm.tiktok.com:3000"
 // hostname: "vm.tiktok.com"
@@ -37,8 +36,8 @@ export const findDomainInViewer = (grid: any, urlToOpen: any) => {
           if (savedDomainObj.protocols.includes(urlObj.protocol)) {
             const domainWithWildcardOrSlash = /\*|\//g.test(savedDomainObj.matcher)
             if (domainWithWildcardOrSlash) {
-              const testMatch = wcmatch(savedDomainObj.matcher)
-              return testMatch(urlObj.href)
+              const validRegexp = new RegExp(savedDomainObj.matcher.replace(/\*/g, '.+?'))
+              return validRegexp.test(urlObj.href)
             } else {
               return urlObj.host.includes(savedDomainObj.matcher)
             }
