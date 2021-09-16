@@ -59,9 +59,13 @@ const Grid = ({ openUrlInViewer }: any) => {
         return (
           <div
             key={viewer.id}
-            title={`Hotkey: "${linearIndex + 1}", save domain and open: "ctrl+${
-              linearIndex + 1
-            }"`}
+            title={
+              linearIndex < 9
+                ? `Hotkey: "${linearIndex + 1}", save domain and open: "ctrl+${
+                    linearIndex + 1
+                  }"`
+                : ''
+            }
           >
             <Viewer
               {...{
