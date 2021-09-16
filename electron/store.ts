@@ -1,10 +1,13 @@
 import Store from 'electron-store'
-// import { version } from '../package.json'
 
 export const initStore = () => {
   const store = new Store({
     watch: true,
     schema: {
+      appVersion: {
+        type: 'string',
+        default: ''
+      },
       isDefaultBrowser: {
         type: 'boolean',
         default: false

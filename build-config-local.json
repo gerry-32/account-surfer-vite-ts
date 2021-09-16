@@ -9,7 +9,7 @@
     "certificateFile": "buildResources/company.pfx"
   },
   "files": [
-    "main", "src/out", "static", "package.json"
+    "main", "src/out", "static"
   ],
   "directories": {
     "output": "appx/local",

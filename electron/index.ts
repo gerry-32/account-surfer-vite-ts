@@ -20,6 +20,7 @@ try {
   let ctrlAltXPressed = false
   let mainWindow: any, tray: any
 
+  store.set({ appVersion: app.getVersion() })
   if (!store.get('progId')) getAppProgId(store)
 
   setInterval(() => {

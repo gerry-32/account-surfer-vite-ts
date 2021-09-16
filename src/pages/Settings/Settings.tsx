@@ -1,13 +1,12 @@
 import React from 'react'
 import { toast } from 'react-toastify'
-import { version } from '../../../package.json'
 import Header from './Header'
 import SavedDomains from './SavedDomains'
 import Footer from './Footer'
 import useStoreChange from '@/utils/useStoreChange'
 
 const Settings = () => {
-  const { openInFirst } = useStoreChange('Settings')
+  const { appVersion, openInFirst } = useStoreChange('Settings')
 
   return (
     <div className="h-[400px]">
@@ -72,7 +71,7 @@ const Settings = () => {
           </div>
         </div>
         <div>
-          <p>App version: {version}</p>
+          <p>App version: {appVersion}</p>
         </div>
       </div>
       <Footer />
