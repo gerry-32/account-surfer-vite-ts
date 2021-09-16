@@ -8,7 +8,8 @@
   "description": "Quickly switch between accounts and browsers with Account Surfer.",
   "scripts": {
     "dev": "npm run clear:machine:cache && concurrently \"yarn dev:vite\" \" yarn dev:electron\"",
-    "dist": "npm run clear:machine:cache && npm run build && electron-builder --config ./build-config-local.json",
+    "dist:local": "npm run clear:machine:cache && npm run build && electron-builder --config ./build-config-local.json",
+    "dist:store": "npm run clear:machine:cache && npm run build && electron-builder --config ./build-config-store.json",
     "type-check": "tsc",
     "dev:vite": "vite",
     "dev:electron": "npm run build:electron && electron .",
