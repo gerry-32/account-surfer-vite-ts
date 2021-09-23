@@ -21,7 +21,11 @@ const Settings = () => {
                 type="checkbox"
                 checked={openInFirst}
                 className="form-checkbox"
-                onChange={e => window.storeSet({ openInFirst: e.target.checked })}
+                onChange={e =>
+                  window
+                    .invokeEvent('setFirstAccountMode', e.target.checked)
+                    .then((r: any) => (r.error ? toast.error(r.error) : toast(r.message)))
+                }
               />
             </div>
             <div className="ml-2 text-sm">

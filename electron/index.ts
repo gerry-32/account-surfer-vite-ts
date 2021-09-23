@@ -187,6 +187,25 @@ try {
               }
             })
 
+            ipcMain.handle('setFirstAccountMode', (_, openInFirst: boolean) => {
+              try {
+                if (openInFirst) {
+                  const ret = globalShortcut.register('Ctrl+Alt+X', () => {
+                    ctrlAltXPressed = true
+                  })
+                  if (!ret) return { error: 'globalShortcut is not registered' }
+                } else {
+                  globalShortcut.unregister('Ctrl+Alt+X')
+                  globalShortcut.unregisterAll()
+                }
+                store.set({ openInFirst })
+                return {}
+              } catch (e) {
+                electronLog.error(e)
+                return { error: 'globalShortcut is not registered' }
+              }
+            })
+
             ipcMain.handle('storeSet', (_, data: any) => {
               try {
                 store.set(data)
@@ -277,13 +296,6 @@ try {
       tray = createTray({ onOpenApp, store })
       await createWindow()
     }
-
-    const ret = globalShortcut.register('Ctrl+Alt+X', () => {
-      electronLog.log('Ctrl+Alt+X registered')
-      ctrlAltXPressed = true
-    })
-
-    if (!ret) electronLog.log('globalShortcut is not registered')
   })
 
   app.on('will-quit', () => {
