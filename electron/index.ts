@@ -3,6 +3,7 @@ import { readFile, writeFile } from 'fs/promises'
 import { exec } from 'child_process'
 import { BrowserWindow, app, Menu, ipcMain, globalShortcut, dialog } from 'electron'
 import isDev from 'electron-is-dev'
+import { tall } from 'tall'
 import { initStore } from './store'
 import { getAppProgId, getIsDefaultBrowser } from './registry'
 import browserWindowConfig from './browserWindow'
@@ -33,6 +34,11 @@ try {
 
   const openAS = (url: any) => {
     if (url) store.set('url', url)
+    if (store.get('unshortenUrls') && url) {
+      tall(url)
+        .then(unshortenedUrl => store.set({ url: unshortenedUrl }))
+        .catch(e => electronLog.error(e))
+    }
     mainWindow.show()
     mainWindow.focus()
   }
@@ -222,14 +228,14 @@ try {
               }
             })
 
-            const port = process.env.PORT || 3000
-            const url = isDev
-              ? `http://localhost:${port}`
-              : join(__dirname, '../src/out/index.html')
-
-            isDev ? mainWindow?.loadURL(url) : mainWindow?.loadFile(url)
-
-            if (isDev) mainWindow.webContents.openDevTools({ mode: 'undocked' })
+            store.set({ isDev })
+            if (isDev) {
+              const port = process.env.PORT || 3000
+              mainWindow?.loadURL(`http://localhost:${port}`)
+              mainWindow.webContents.openDevTools({ mode: 'undocked' })
+            } else {
+              mainWindow?.loadFile(join(__dirname, '../src/out/index.html'))
+            }
           } catch (e) {
             electronLog.error(e)
           }

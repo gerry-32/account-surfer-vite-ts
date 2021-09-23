@@ -8,7 +8,15 @@ export const initStore = () => {
         type: 'string',
         default: ''
       },
+      isDev: {
+        type: 'boolean',
+        default: false
+      },
       isDefaultBrowser: {
+        type: 'boolean',
+        default: false
+      },
+      unshortenUrls: {
         type: 'boolean',
         default: false
       },

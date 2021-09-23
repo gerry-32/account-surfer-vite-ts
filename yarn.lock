@@ -3951,6 +3951,11 @@ tailwindcss@^2.2.15:
     resolve "^1.20.0"
     tmp "^0.2.1"
 
+tall@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/tall/-/tall-4.0.1.tgz#bf7a8ba26784407a94f21863afa4433237b172d6"
+  integrity sha512-X3KLNpZF+6nVa17zDfN2bE9uHUIQM/w9R7jawogrbj/Gf5aoOhwcdZs2k33CtkEgo3mQoUdybfDm9+HuH5L6HA==
+
 temp-file@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/temp-file/-/temp-file-3.4.0.tgz#766ea28911c683996c248ef1a20eea04d51652c7"

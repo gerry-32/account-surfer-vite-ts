@@ -13,7 +13,7 @@ import './App.css'
 
 function App() {
   const history = useHistory()
-  const { url, currentPage, isDefaultBrowser, grid } = useStoreChange('app')
+  const { url, currentPage, isDefaultBrowser, grid, isDev } = useStoreChange('app')
 
   useEffect(() => {
     if (history.location.pathname !== currentPage) history.push(currentPage)
@@ -58,7 +58,7 @@ function App() {
         pauseOnHover={false}
       />
       <TitleBar />
-      {isDefaultBrowser ? (
+      {isDefaultBrowser || isDev ? (
         <Switch>
           <Route path="/settings">
             <Settings />

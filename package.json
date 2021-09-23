@@ -1,7 +1,7 @@
 {
   "name": "account-surfer-4",
   "productName": "account-surfer-4",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "main": "main/index.js",
   "author": "dospolov.com",
   "license": "UNLICENSED",
@@ -39,6 +39,7 @@
     "react-router-dom": "^5.3.0",
     "react-toastify": "^8.0.2",
     "regedit": "^5.0.0",
+    "tall": "^4.0.1",
     "typy": "^3.3.0"
   },
   "dependenciesComments": {
