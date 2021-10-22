@@ -20,6 +20,19 @@ export const initStore = () => {
         type: 'boolean',
         default: false
       },
+      shortenerServices: {
+        type: 'array',
+        default: [
+          'goo.gl',
+          'bit.ly',
+          'bitly.com',
+          'tinyurl.com',
+          'rotf.lol',
+          'tiny.one',
+          'ow.ly',
+          'rb.gy'
+        ]
+      },
       url: {
         type: 'string',
         default: ''

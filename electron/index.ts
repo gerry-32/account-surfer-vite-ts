@@ -34,7 +34,12 @@ try {
 
   const openAS = (url: any) => {
     if (url) store.set('url', url)
-    if (store.get('unshortenUrls') && url) {
+    const shortenerServices: any = store.get('shortenerServices')
+    if (
+      store.get('unshortenUrls') &&
+      url &&
+      shortenerServices.some((shortenerService: string) => url.includes(shortenerService))
+    ) {
       tall(url)
         .then(unshortenedUrl => store.set({ url: unshortenedUrl }))
         .catch(e => electronLog.error(e))
