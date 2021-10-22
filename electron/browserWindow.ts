@@ -3,7 +3,7 @@ import { join } from 'path'
 const browserWindowConfig = {
   // useContentSize: true,
   center: true,
-  backgroundColor: '#1f2937',
+  // backgroundColor: '#1f2937',
   // fullscreenable: false,
   // maximizable: false,
   // fullscreen: false,
@@ -12,7 +12,7 @@ const browserWindowConfig = {
   height: 430,
   width: 655,
   frame: false,
-  transparent: false,
+  transparent: true,
   // show: false,
   thickFrame: false,
   webPreferences: {
