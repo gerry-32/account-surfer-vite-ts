@@ -16,8 +16,8 @@ const Viewer = ({ viewer, dragEnabled, linearIndex, openUrlInViewer }: any) => {
     >
       {linearIndex !== -1 && linearIndex < 9 && (
         <div
-          className={`absolute left-0.5 top-0 text-xs text-gray-${
-            isVisible ? '500' : '700'
+          className={`absolute left-0.5 top-0 text-xs ${
+            isVisible ? 'text-gray-500' : 'text-gray-700'
           }`}
         >
           {linearIndex + 1}

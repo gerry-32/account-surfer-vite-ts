@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Switch, Route, useHistory, useLocation } from 'react-router-dom'
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import copy from 'copy-to-clipboard'
 import TitleBar from './TitleBar'
 import Home from './pages/Home'
@@ -12,11 +12,12 @@ import { ToastContainer, toast, Zoom } from 'react-toastify'
 import './App.css'
 
 function App() {
-  const history = useHistory()
+  const navigate = useNavigate()
+  const location = useLocation()
   const { url, currentPage, isDefaultBrowser, grid, isDev } = useStoreChange('app')
 
   useEffect(() => {
-    if (history.location.pathname !== currentPage) history.push(currentPage)
+    if (location.pathname !== currentPage) navigate(currentPage)
   }, [currentPage])
 
   useKeyPress(
@@ -59,12 +60,10 @@ function App() {
       />
       <TitleBar />
       {isDefaultBrowser || isDev ? (
-        <Switch>
-          <Route path="/settings">
-            <Settings />
-          </Route>
-          <Route path="/">{!!grid.length ? <Home /> : <NoBrowsersFound />}</Route>
-        </Switch>
+        <Routes>
+          <Route path="settings" element={<Settings />} />
+          <Route path="/" element={!!grid.length ? <Home /> : <NoBrowsersFound />} />
+        </Routes>
       ) : (
         <NotDefault />
       )}
