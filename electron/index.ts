@@ -29,7 +29,9 @@ try {
   }, 150)
 
   setInterval(() => {
-    getIsDefaultBrowser(store)
+    if (mainWindow.isVisible()) {
+      getIsDefaultBrowser(store)
+    }
   }, 500)
 
   const openAS = (url: any) => {
