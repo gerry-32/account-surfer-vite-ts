@@ -29,7 +29,7 @@ try {
   }, 150)
 
   setInterval(() => {
-    if (mainWindow.isVisible()) {
+    if (mainWindow && mainWindow.isVisible()) {
       getIsDefaultBrowser(store)
     }
   }, 500)
