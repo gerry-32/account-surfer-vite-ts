@@ -43,8 +43,8 @@ try {
       shortenerServices.some((shortenerService: string) => url.includes(shortenerService))
     ) {
       tall(url)
-        .then(unshortenedUrl => store.set({ url: unshortenedUrl }))
-        .catch(e => electronLog.error(e))
+        .then((unshortenedUrl: any) => store.set({ url: unshortenedUrl }))
+        .catch((e: any) => electronLog.error(e))
     }
     mainWindow.show()
     mainWindow.focus()
