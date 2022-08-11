@@ -38,7 +38,9 @@ export const getIsDefaultBrowser = (store: any) => {
     regedit.list(pathDefaultHttp, (err: any, result: any) => {
       if (err) electronLog.error(err)
       const progId = store.get('progId')
-      const isDefaultBrowser = result[pathDefaultHttp].values.ProgId.value === progId
+      const isDefaultBrowser = Boolean(
+        result[pathDefaultHttp]?.values?.ProgId?.value === progId
+      )
       store.set({ isDefaultBrowser })
     })
   } catch (e) {
