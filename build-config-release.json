@@ -18,5 +18,5 @@
       "to": "regedit/vbs"
     }
   ],
-  "publish": "never"
+  "publish": null
 }
