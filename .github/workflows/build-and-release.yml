@@ -21,7 +21,7 @@ jobs:
         run: npm install
 
       - name: Build Electron App
-        run: npm run dist:local
+        run: npm run build && npx electron-builder --config ./build-config-release.json
 
       - name: Upload installer to GitHub Release
         uses: softprops/action-gh-release@v1
