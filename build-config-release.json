@@ -1,0 +1,21 @@
+{
+  "appId": "dospolov.com.AccountSurfer",
+  "productName": "AccountSurfer",
+  "directories": {
+    "output": "dist"
+  },
+  "files": [
+    "main",
+    "src/out",
+    "static"
+  ],
+  "win": {
+    "target": "nsis"
+  },
+  "extraResources": [
+    {
+      "from": "node_modules/regedit/vbs",
+      "to": "regedit/vbs"
+    }
+  ]
+}
