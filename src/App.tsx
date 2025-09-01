@@ -14,7 +14,9 @@ import './App.css'
 function App() {
   const navigate = useNavigate()
   const location = useLocation()
-  const { url, currentPage, isDefaultBrowser, grid, isDev } = useStoreChange('app')
+//  const { url, currentPage, isDefaultBrowser, grid, isDev } = useStoreChange('app')
+  const { url, currentPage, grid, isDev } = useStoreChange('app')
+  const isDefaultBrowser = true // Override für fehlerhafte Erkennung
 
   useEffect(() => {
     if (location.pathname !== currentPage) navigate(currentPage)
