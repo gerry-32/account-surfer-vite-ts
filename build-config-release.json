@@ -17,5 +17,6 @@
       "from": "node_modules/regedit/vbs",
       "to": "regedit/vbs"
     }
-  ]
+  ],
+  "publish": "never"
 }
